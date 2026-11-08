@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 
-from app import auth, routes_read
+from app import auth, routes_read, scenarios
 from app.config import Settings, get_settings
 from app.db import make_engine
 from app.pricing import PricingClient
@@ -15,6 +15,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.state.pricing = PricingClient(app.state.settings.pricing_service_url)
     app.include_router(auth.router)
     app.include_router(routes_read.router)
+    app.include_router(scenarios.router)
 
     @app.get("/api/health", tags=["system"])
     def health() -> dict:
