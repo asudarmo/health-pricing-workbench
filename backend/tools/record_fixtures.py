@@ -68,6 +68,8 @@ def main() -> None:
     )
     scenarios = []
     requests = [
+        # The frontend defaults: no change, cap 15 %, floor 10 %.
+        {"base_change": 0.0, "relativity_changes": [], "cap": 0.15, "floor": -0.1, "include_cells": False},
         {"base_change": 0.0, "relativity_changes": [], "cap": None, "floor": None, "include_cells": False},
         {"base_change": 0.04, "relativity_changes": [{"factor": "age", "level": "80+", "change": 0.1}], "cap": 0.12, "floor": 0.0, "include_cells": False},
     ]

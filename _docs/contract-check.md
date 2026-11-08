@@ -49,3 +49,13 @@ image stays the reference for the existing endpoints.
 
 Fallback if bucket counts are hard: the UI charts the existing percentiles (p05 to p95) per segment instead of a
 histogram. This is a frontend change only.
+
+## Mapping notes from task 8 (scenario impact)
+
+- The UI sends absolute new relativities; the service takes a relative change. The backend reads the current
+  relativity and sends `new / current - 1`, rounded to 6 decimals.
+- `cappedPolicies` and `flooredPolicies` carry the service's `cells_capped` and `cells_floored`. These count
+  rating cells, not policies. The UI label "Capped lives" is therefore wrong until the service returns exposure
+  (a small addition to the change request) or the label changes (task 11).
+- Histogram `policies` holds exposure in life-years, from the proposed `histogram` field.
+- The service call for the full book took about 25 ms on the published image (measured 8 Nov 2026, three runs).

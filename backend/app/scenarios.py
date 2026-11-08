@@ -12,7 +12,10 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.auth import CurrentUser, current_user, get_db
+from app.impact import compute_impact
 from app.models import AuditEntry, Scenario
+from app.pricing import PricingClient, PricingUnavailable
+from app.routes_read import pricing
 
 router = APIRouter(prefix="/api/scenarios", tags=["scenarios"])
 
@@ -92,6 +95,24 @@ def get_scenario(db: Session, scenario_id: str) -> Scenario:
     return scenario
 
 
+class ImpactRequest(BaseModel):
+    params: ScenarioParams
+
+
+def impact_for(client: PricingClient, params: ScenarioParams) -> dict:
+    try:
+        return compute_impact(client, params.model_dump())
+    except PricingUnavailable:
+        raise HTTPException(status_code=502, detail="Pricing service unavailable") from None
+
+
+@router.post("/impact")
+def scenario_impact(
+    body: ImpactRequest, _: CurrentUser = Depends(current_user), client: PricingClient = Depends(pricing)
+) -> dict:
+    return impact_for(client, body.params)
+
+
 @router.get("")
 def list_scenarios(_: CurrentUser = Depends(current_user), db: Session = Depends(get_db)) -> list[dict]:
     rows = db.scalars(select(Scenario).order_by(Scenario.updated_at.desc(), Scenario.id.desc()))
@@ -104,10 +125,21 @@ def read_scenario(scenario_id: str, _: CurrentUser = Depends(current_user), db: 
 
 
 @router.post("", status_code=201)
-def create_scenario(body: ScenarioInput, user: CurrentUser = Depends(current_user), db: Session = Depends(get_db)) -> dict:
+def create_scenario(
+    body: ScenarioInput,
+    user: CurrentUser = Depends(current_user),
+    db: Session = Depends(get_db),
+    client: PricingClient = Depends(pricing),
+) -> dict:
+    impact = impact_for(client, body.params)  # saved with the scenario so the review page can show it
     # Status is never read from the request: every new scenario starts as a Draft.
     scenario = Scenario(
-        name=body.name.strip(), status="Draft", author=user.name, rationale=body.rationale, params=body.params.model_dump()
+        name=body.name.strip(),
+        status="Draft",
+        author=user.name,
+        rationale=body.rationale,
+        params=body.params.model_dump(),
+        impact=impact,
     )
     db.add(scenario)
     db.flush()
@@ -118,15 +150,19 @@ def create_scenario(body: ScenarioInput, user: CurrentUser = Depends(current_use
 
 @router.put("/{scenario_id}")
 def update_scenario(
-    scenario_id: str, body: ScenarioInput, user: CurrentUser = Depends(current_user), db: Session = Depends(get_db)
+    scenario_id: str,
+    body: ScenarioInput,
+    user: CurrentUser = Depends(current_user),
+    db: Session = Depends(get_db),
+    client: PricingClient = Depends(pricing),
 ) -> dict:
     scenario = get_scenario(db, scenario_id)
     if scenario.status != "Draft":
         raise HTTPException(status_code=409, detail=f"A {scenario.status} scenario cannot be edited")
+    scenario.impact = impact_for(client, body.params)
     scenario.name = body.name.strip()
     scenario.rationale = body.rationale
     scenario.params = body.params.model_dump()
-    scenario.impact = None  # recomputed when impact is wired in
     scenario.updated_at = datetime.now(timezone.utc)
     record_audit(db, scenario, user.name, "Edited draft", "Draft")
     db.commit()

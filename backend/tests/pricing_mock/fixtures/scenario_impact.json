@@ -3,6 +3,236 @@
   "request": {
    "base_change": 0.0,
    "relativity_changes": [],
+   "cap": 0.15,
+   "floor": -0.1,
+   "include_cells": false
+  },
+  "response": {
+   "model_version": "v1",
+   "totals": {
+    "exposure": 21541.083333333332,
+    "old_premium": 43762453.87545052,
+    "new_premium": 43762453.87545052,
+    "change_pct": 0.0,
+    "cap_floor_cost": 0.0,
+    "cells_capped": 0,
+    "cells_floored": 0,
+    "old_premium_gbp": 10678038.745609928,
+    "new_premium_gbp": 10678038.745609928
+   },
+   "dislocation": [
+    {
+     "dimension": "age group",
+     "segment": "18-39",
+     "exposure": 5211.25,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "age group",
+     "segment": "40-64",
+     "exposure": 7002.083333333333,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "age group",
+     "segment": "65+",
+     "exposure": 5228.083333333334,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "age group",
+     "segment": "Children",
+     "exposure": 4099.666666666666,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "region",
+     "segment": "region 1",
+     "exposure": 3367.25,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "region",
+     "segment": "region 2",
+     "exposure": 4346.416666666667,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "region",
+     "segment": "region 3",
+     "exposure": 8312.333333333332,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "region",
+     "segment": "region 4",
+     "exposure": 5515.083333333334,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "number of conditions",
+     "segment": "0",
+     "exposure": 10700.416666666666,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "number of conditions",
+     "segment": "1",
+     "exposure": 5307.25,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "number of conditions",
+     "segment": "2",
+     "exposure": 2622.666666666667,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    },
+    {
+     "dimension": "number of conditions",
+     "segment": "3 or more",
+     "exposure": 2910.7499999999995,
+     "mean_change_pct": 0.0,
+     "p05_change_pct": 0.0,
+     "p25_change_pct": 0.0,
+     "p50_change_pct": 0.0,
+     "p75_change_pct": 0.0,
+     "p95_change_pct": 0.0,
+     "share_increase_over_10pct": 0.0
+    }
+   ],
+   "histogram": {
+    "edges_pct": [
+     -20,
+     -10,
+     -5,
+     -2,
+     0,
+     2,
+     5,
+     10,
+     15,
+     20
+    ],
+    "buckets": [
+     {
+      "bucket": "< -20%",
+      "exposure": 0.0
+     },
+     {
+      "bucket": "-20% to -10%",
+      "exposure": 0.0
+     },
+     {
+      "bucket": "-10% to -5%",
+      "exposure": 0.0
+     },
+     {
+      "bucket": "-5% to -2%",
+      "exposure": 0.0
+     },
+     {
+      "bucket": "-2% to 0%",
+      "exposure": 0.0
+     },
+     {
+      "bucket": "0% to 2%",
+      "exposure": 21541.083333333314
+     },
+     {
+      "bucket": "2% to 5%",
+      "exposure": 0.0
+     },
+     {
+      "bucket": "5% to 10%",
+      "exposure": 0.0
+     },
+     {
+      "bucket": "10% to 15%",
+      "exposure": 0.0
+     },
+     {
+      "bucket": "15% to 20%",
+      "exposure": 0.0
+     },
+     {
+      "bucket": ">= 20%",
+      "exposure": 0.0
+     }
+    ]
+   },
+   "projected_ae": 1.080103747383053
+  }
+ },
+ {
+  "request": {
+   "base_change": 0.0,
+   "relativity_changes": [],
    "cap": null,
    "floor": null,
    "include_cells": false

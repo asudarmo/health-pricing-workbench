@@ -1,6 +1,8 @@
 """Scenario storage, the draft-only editing rule and the audit entries written on create and edit."""
 
+import json
 import unittest
+from pathlib import Path
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -8,12 +10,19 @@ from sqlalchemy.orm import Session
 from app.models import Scenario
 from tests.helpers import Stack, request
 
+# Both parameter sets are recorded in the pricing mock (see tools/record_fixtures.py).
+CURRENT_80_PLUS = next(
+    r["relativity"]
+    for r in json.loads((Path(__file__).parent / "pricing_mock" / "fixtures" / "relativities.json").read_text())["relativities"]
+    if r["factor"] == "age" and r["level"] == "80+"
+)
 PARAMS = {
-    "baseRateChangePct": 2.0,
-    "relativityChanges": [{"factor": "age", "level": "80+", "newRelativity": 1.1}],
+    "baseRateChangePct": 4,
+    "relativityChanges": [{"factor": "age", "level": "80+", "newRelativity": CURRENT_80_PLUS * 1.1}],
     "capPct": 12,
-    "floorPct": 5,
+    "floorPct": 0,
 }
+ZERO_PARAMS = {"baseRateChangePct": 0, "relativityChanges": [], "capPct": 15, "floorPct": 10}
 BODY = {"name": "Test scenario", "rationale": "A/E 1.12 on 5,474 lives of exposure.", "params": PARAMS}
 
 
@@ -43,6 +52,7 @@ class ScenarioTest(unittest.TestCase):
         self.assertEqual((body["status"], body["author"]), ("Draft", "Demo Analyst"))
         self.assertTrue(body["id"].startswith("sc-") and body["updatedAt"].endswith("Z"))
         self.assertEqual(body["params"], PARAMS)
+        self.assertGreater(body["impact"]["averageChangePct"], 4)  # impact is stored with the scenario
         self.assertIsNone(body["reviewComment"])
         self.assertEqual(self.stack.post("/api/scenarios", BODY, role="Reviewer")[1]["author"], "Demo Reviewer")
 
@@ -67,9 +77,10 @@ class ScenarioTest(unittest.TestCase):
 
     def test_edit_draft_updates_and_writes_audit_entry(self) -> None:
         created = self.create()
-        changed = {**BODY, "name": "Renamed", "params": {**PARAMS, "capPct": 20}}
+        changed = {**BODY, "name": "Renamed", "params": ZERO_PARAMS}
         status, updated = self.stack.put(f"/api/scenarios/{created['id']}", changed, role="Reviewer")
-        self.assertEqual((status, updated["name"], updated["params"]["capPct"], updated["status"]), (200, "Renamed", 20, "Draft"))
+        self.assertEqual((status, updated["name"], updated["params"]["capPct"], updated["status"]), (200, "Renamed", 15, "Draft"))
+        self.assertEqual(updated["impact"]["averageChangePct"], 0)  # impact recomputed on save
         self.assertEqual(updated["author"], "Demo Analyst")  # the author does not change
         _, audit = self.stack.get(f"/api/scenarios/{created['id']}/audit")
         self.assertEqual([(a["action"], a["actor"]) for a in audit], [("Created draft", "Demo Analyst"), ("Edited draft", "Demo Reviewer")])
