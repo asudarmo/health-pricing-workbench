@@ -1,0 +1,7 @@
+{
+ "status": "ok",
+ "model_version": "v1",
+ "date": "2026-11-05",
+ "description": "v1: 2022-fitted multiplicative tariff with a monotone adult age rule",
+ "golden_cases_status": "regression baseline, provisional until the Excel reconciliation"
+}

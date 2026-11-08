@@ -1,0 +1,128 @@
+{
+ "_proposed": "GET /model does not exist in the published image. Shape follows _docs/contract-check.md; values are illustrative where marked.",
+ "id": "v1",
+ "date": "2026-11-05",
+ "description": "v1: 2022-fitted multiplicative tariff with a monotone adult age rule",
+ "data_years": {
+  "fit": 2022,
+  "out_of_time": 2023,
+  "cost_basis": "2023 prices, PMI scope"
+ },
+ "trend_assumptions": {
+  "forecast_trend": 1.019,
+  "forecast_trend_range": [
+   1.008,
+   1.031
+  ],
+  "rebase": 1.06,
+  "rebase_range": [
+   1.025,
+   1.145
+  ],
+  "rating_level_factor": 1.0801399999999999,
+  "note": "v2 refits on pooled years and projects to a rating period"
+ },
+ "validation_metrics": {
+  "test_split_2022": {
+   "tweedie_deviance": 839170.0134496919,
+   "gini": 0.37630277975785686,
+   "a_e": 1.0809607138112065
+  },
+  "grouped_cross_validation_2022": {
+   "tweedie_deviance": 3085066.7820555493,
+   "gini": 0.4755947216036628
+  },
+  "a_e_2023_after_rating_level": 1.0799250384316228
+ },
+ "permitted_rating_factors": [
+  {
+   "factor": "age",
+   "levels": [
+    "05-14",
+    "00-04",
+    "15-17",
+    "18-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80+"
+   ]
+  },
+  {
+   "factor": "region",
+   "levels": [
+    "3",
+    "1",
+    "2",
+    "4"
+   ]
+  },
+  {
+   "factor": "HIBPDX",
+   "levels": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "factor": "CHDDX",
+   "levels": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "factor": "CANCERDX",
+   "levels": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "factor": "ARTHDX",
+   "levels": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "factor": "ASTHDX",
+   "levels": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "factor": "CHOLDX",
+   "levels": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "factor": "OHRTDX",
+   "levels": [
+    "0",
+    "1"
+   ]
+  }
+ ],
+ "headline_ae": 1.0801,
+ "recalibration_flags": [
+  {
+   "segment": "illustrative mock flag: age 65+",
+   "a_e": 1.14,
+   "exposure": 5228.1,
+   "gap_type": "level shift",
+   "note": "Illustrative mock value, not produced by the recalibration rule."
+  }
+ ]
+}

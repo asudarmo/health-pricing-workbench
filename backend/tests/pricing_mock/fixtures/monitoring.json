@@ -1,0 +1,764 @@
+{
+ "model_version": "v1",
+ "validation_metrics": {
+  "test_split_2022": {
+   "tweedie_deviance": 839170.0134496919,
+   "gini": 0.37630277975785686,
+   "a_e": 1.0809607138112065
+  },
+  "grouped_cross_validation_2022": {
+   "tweedie_deviance": 3085066.7820555493,
+   "gini": 0.4755947216036628
+  },
+  "a_e_2023_after_rating_level": 1.0799250384316228
+ },
+ "ae": [
+  {
+   "factor": "age",
+   "level": "00-04",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 162850.51252013494,
+   "expected": 90287.09181946001,
+   "exposure": 150.16666666666666,
+   "a_e": 1.8036965111887122
+  },
+  {
+   "factor": "age",
+   "level": "05-14",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 231115.23371979754,
+   "expected": 216119.21422964838,
+   "exposure": 458.8333333333333,
+   "a_e": 1.0693877198452812
+  },
+  {
+   "factor": "age",
+   "level": "15-17",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 222520.3831214628,
+   "expected": 152462.81064348694,
+   "exposure": 161.0,
+   "a_e": 1.4595059751442976
+  },
+  {
+   "factor": "age",
+   "level": "18-24",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 253776.83087233343,
+   "expected": 176136.55386761378,
+   "exposure": 275.0833333333333,
+   "a_e": 1.4407959353120703
+  },
+  {
+   "factor": "age",
+   "level": "25-29",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 152703.0798903461,
+   "expected": 182518.54432838052,
+   "exposure": 189.25,
+   "a_e": 0.8366441911546721
+  },
+  {
+   "factor": "age",
+   "level": "30-34",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 323242.4572317153,
+   "expected": 302257.44875226176,
+   "exposure": 246.25,
+   "a_e": 1.0694275974540282
+  },
+  {
+   "factor": "age",
+   "level": "35-39",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 958921.8209996733,
+   "expected": 382155.7128042301,
+   "exposure": 252.0,
+   "a_e": 2.509243716293488
+  },
+  {
+   "factor": "age",
+   "level": "40-44",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 454752.38097273617,
+   "expected": 415545.52438935486,
+   "exposure": 237.25,
+   "a_e": 1.0943503281403304
+  },
+  {
+   "factor": "age",
+   "level": "45-49",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 553719.6719315955,
+   "expected": 497405.1672753353,
+   "exposure": 262.4166666666667,
+   "a_e": 1.113216565410322
+  },
+  {
+   "factor": "age",
+   "level": "50-54",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 301897.9169985307,
+   "expected": 542458.6935662946,
+   "exposure": 235.58333333333334,
+   "a_e": 0.5565362313833677
+  },
+  {
+   "factor": "age",
+   "level": "55-59",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 876049.0127905963,
+   "expected": 815089.245095115,
+   "exposure": 299.6666666666667,
+   "a_e": 1.074789071334597
+  },
+  {
+   "factor": "age",
+   "level": "60-64",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 828917.6635954505,
+   "expected": 1024411.0319789858,
+   "exposure": 296.25,
+   "a_e": 0.8091651082614019
+  },
+  {
+   "factor": "age",
+   "level": "65-69",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 1537074.0427584893,
+   "expected": 1129622.1088370192,
+   "exposure": 317.6666666666667,
+   "a_e": 1.3606975560534615
+  },
+  {
+   "factor": "age",
+   "level": "70-74",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 934451.7611615694,
+   "expected": 1116457.5468314325,
+   "exposure": 285.0833333333333,
+   "a_e": 0.8369792150302486
+  },
+  {
+   "factor": "age",
+   "level": "75-79",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 1172739.7276983564,
+   "expected": 942227.1406401834,
+   "exposure": 214.0,
+   "a_e": 1.244646515808868
+  },
+  {
+   "factor": "age",
+   "level": "80+",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 784250.7508429473,
+   "expected": 1033659.8207429644,
+   "exposure": 219.83333333333334,
+   "a_e": 0.7587126200564233
+  },
+  {
+   "factor": "region",
+   "level": "1",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 2104500.196878265,
+   "expected": 1521010.264605032,
+   "exposure": 596.0,
+   "a_e": 1.3836199832778582
+  },
+  {
+   "factor": "region",
+   "level": "2",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 1987996.2268622115,
+   "expected": 1982933.9061156695,
+   "exposure": 841.5,
+   "a_e": 1.0025529447708412
+  },
+  {
+   "factor": "region",
+   "level": "3",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 2855208.523355191,
+   "expected": 3218677.1429041657,
+   "exposure": 1608.0,
+   "a_e": 0.8870751543533123
+  },
+  {
+   "factor": "region",
+   "level": "4",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 2801278.3000100674,
+   "expected": 2296192.342176899,
+   "exposure": 1054.8333333333333,
+   "a_e": 1.2199667460585306
+  },
+  {
+   "factor": "HIBPDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 5221151.423603613,
+   "expected": 4219250.329421796,
+   "exposure": 2791.1666666666665,
+   "a_e": 1.237459504878232
+  },
+  {
+   "factor": "HIBPDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 4527831.823502122,
+   "expected": 4799563.32637997,
+   "exposure": 1309.1666666666667,
+   "a_e": 0.9433841196793212
+  },
+  {
+   "factor": "CHDDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 8681302.616707118,
+   "expected": 7779194.00658906,
+   "exposure": 3885.3333333333335,
+   "a_e": 1.1159642771929794
+  },
+  {
+   "factor": "CHDDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 1067680.6303986178,
+   "expected": 1239619.6492127068,
+   "exposure": 215.0,
+   "a_e": 0.8612969559466979
+  },
+  {
+   "factor": "CANCERDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 7085495.776469307,
+   "expected": 6609322.3104029065,
+   "exposure": 3674.5833333333335,
+   "a_e": 1.0720457323312733
+  },
+  {
+   "factor": "CANCERDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 2663487.470636428,
+   "expected": 2409491.34539886,
+   "exposure": 425.75,
+   "a_e": 1.105414831940607
+  },
+  {
+   "factor": "ARTHDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 5606516.737886918,
+   "expected": 4461530.275491203,
+   "exposure": 3104.8333333333335,
+   "a_e": 1.256635367619388
+  },
+  {
+   "factor": "ARTHDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 4142466.5092188176,
+   "expected": 4557283.380310563,
+   "exposure": 995.5,
+   "a_e": 0.9089771610683824
+  },
+  {
+   "factor": "ASTHDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 7591861.758000652,
+   "expected": 7291134.698352461,
+   "exposure": 3533.5833333333335,
+   "a_e": 1.0412455772784097
+  },
+  {
+   "factor": "ASTHDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 2157121.4891050826,
+   "expected": 1727678.9574493058,
+   "exposure": 566.75,
+   "a_e": 1.2485661643351802
+  },
+  {
+   "factor": "CHOLDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 5649175.633875162,
+   "expected": 4836394.761950396,
+   "exposure": 2934.5,
+   "a_e": 1.1680551137634994
+  },
+  {
+   "factor": "CHOLDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 4099807.613230572,
+   "expected": 4182418.89385137,
+   "exposure": 1165.8333333333333,
+   "a_e": 0.9802479658978573
+  },
+  {
+   "factor": "OHRTDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 7902068.573323628,
+   "expected": 7123407.961113727,
+   "exposure": 3694.5833333333335,
+   "a_e": 1.1093101246567043
+  },
+  {
+   "factor": "OHRTDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 1846914.673782107,
+   "expected": 1895405.6946880398,
+   "exposure": 405.75,
+   "a_e": 0.9744165478441733
+  },
+  {
+   "factor": "all",
+   "level": "all",
+   "segment": "all",
+   "period": "2022 test",
+   "actual": 9748983.247105736,
+   "expected": 9018813.655801767,
+   "exposure": 4100.333333333333,
+   "a_e": 1.0809607138112065
+  },
+  {
+   "factor": "age",
+   "level": "00-04",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 454059.93,
+   "expected": 482191.41588134214,
+   "exposure": 741.9166666666666,
+   "a_e": 0.941659090239249
+  },
+  {
+   "factor": "age",
+   "level": "05-14",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 1234800.12,
+   "expected": 1055936.6947327636,
+   "exposure": 2083.0,
+   "a_e": 1.1693883981487199
+  },
+  {
+   "factor": "age",
+   "level": "15-17",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 680968.82,
+   "expected": 679981.12235512,
+   "exposure": 669.5833333333334,
+   "a_e": 1.001452536860816
+  },
+  {
+   "factor": "age",
+   "level": "18-24",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 928796.9400000001,
+   "expected": 824230.0370686369,
+   "exposure": 1215.75,
+   "a_e": 1.1268661638482067
+  },
+  {
+   "factor": "age",
+   "level": "25-29",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 750794.4700000001,
+   "expected": 930596.4117071494,
+   "exposure": 912.8333333333334,
+   "a_e": 0.806788485915921
+  },
+  {
+   "factor": "age",
+   "level": "30-34",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 1249907.72,
+   "expected": 1429916.9550373089,
+   "exposure": 1057.1666666666667,
+   "a_e": 0.8741121053197022
+  },
+  {
+   "factor": "age",
+   "level": "35-39",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 2147487.18,
+   "expected": 2028239.0872541757,
+   "exposure": 1222.75,
+   "a_e": 1.0587939032903968
+  },
+  {
+   "factor": "age",
+   "level": "40-44",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 1828281.46,
+   "expected": 2145956.8289380935,
+   "exposure": 1117.6666666666667,
+   "a_e": 0.8519656291989377
+  },
+  {
+   "factor": "age",
+   "level": "45-49",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 2378353.51,
+   "expected": 2217715.565277134,
+   "exposure": 1041.0,
+   "a_e": 1.0724339709014
+  },
+  {
+   "factor": "age",
+   "level": "50-54",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 3179559.13,
+   "expected": 2849046.494662419,
+   "exposure": 1137.5833333333333,
+   "a_e": 1.1160081578018415
+  },
+  {
+   "factor": "age",
+   "level": "55-59",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 3983877.66,
+   "expected": 3708808.1563691767,
+   "exposure": 1248.9166666666667,
+   "a_e": 1.074166549477207
+  },
+  {
+   "factor": "age",
+   "level": "60-64",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 5245669.4399999995,
+   "expected": 4723813.464384106,
+   "exposure": 1318.0,
+   "a_e": 1.1104734510688248
+  },
+  {
+   "factor": "age",
+   "level": "65-69",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 6609487.79,
+   "expected": 5582836.191282223,
+   "exposure": 1428.6666666666667,
+   "a_e": 1.1838942722913717
+  },
+  {
+   "factor": "age",
+   "level": "70-74",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 6315601.55,
+   "expected": 4940073.97624497,
+   "exposure": 1145.9166666666667,
+   "a_e": 1.2784427076131744
+  },
+  {
+   "factor": "age",
+   "level": "75-79",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 4915842.32,
+   "expected": 4541084.2960219765,
+   "exposure": 930.25,
+   "a_e": 1.0825261104063437
+  },
+  {
+   "factor": "age",
+   "level": "80+",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 4801205.46,
+   "expected": 5107661.677351812,
+   "exposure": 1030.25,
+   "a_e": 0.9400006819733797
+  },
+  {
+   "factor": "region",
+   "level": "1",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 9106297.85,
+   "expected": 7605131.7954542795,
+   "exposure": 2837.75,
+   "a_e": 1.1973885653688465
+  },
+  {
+   "factor": "region",
+   "level": "2",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 10825739.47,
+   "expected": 10012321.5301784,
+   "exposure": 3749.75,
+   "a_e": 1.081241691786451
+  },
+  {
+   "factor": "region",
+   "level": "3",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 15821943.83,
+   "expected": 15213113.421433438,
+   "exposure": 7182.666666666667,
+   "a_e": 1.0400201057929925
+  },
+  {
+   "factor": "region",
+   "level": "4",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 10950712.35,
+   "expected": 10417521.62750229,
+   "exposure": 4531.083333333333,
+   "a_e": 1.051182108524746
+  },
+  {
+   "factor": "HIBPDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 20561603.04,
+   "expected": 21077987.311985437,
+   "exposure": 12735.583333333334,
+   "a_e": 0.9755012533055369
+  },
+  {
+   "factor": "HIBPDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 26143090.46,
+   "expected": 22170101.06258297,
+   "exposure": 5565.666666666667,
+   "a_e": 1.179204839265363
+  },
+  {
+   "factor": "CHDDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 39865075.73,
+   "expected": 37719662.07124783,
+   "exposure": 17442.416666666668,
+   "a_e": 1.0568778600057376
+  },
+  {
+   "factor": "CHDDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 6839617.77,
+   "expected": 5528426.3033205755,
+   "exposure": 858.8333333333334,
+   "a_e": 1.2371726409542394
+  },
+  {
+   "factor": "CANCERDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 32331146.43,
+   "expected": 30860627.404389706,
+   "exposure": 16254.916666666666,
+   "a_e": 1.047650328243201
+  },
+  {
+   "factor": "CANCERDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 14373547.07,
+   "expected": 12387460.970178703,
+   "exposure": 2046.3333333333333,
+   "a_e": 1.1603303618556342
+  },
+  {
+   "factor": "ARTHDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 22443098.91,
+   "expected": 21573423.765080903,
+   "exposure": 13953.916666666666,
+   "a_e": 1.0403123377350407
+  },
+  {
+   "factor": "ARTHDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 24261594.59,
+   "expected": 21674664.609487504,
+   "exposure": 4347.333333333333,
+   "a_e": 1.1193527109702144
+  },
+  {
+   "factor": "ASTHDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 39025477.62,
+   "expected": 35290580.01652723,
+   "exposure": 15906.833333333334,
+   "a_e": 1.1058327066804696
+  },
+  {
+   "factor": "ASTHDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 7679215.88,
+   "expected": 7957508.358041183,
+   "exposure": 2394.4166666666665,
+   "a_e": 0.9650276863661771
+  },
+  {
+   "factor": "CHOLDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 23379171.37,
+   "expected": 22782078.396412294,
+   "exposure": 13015.666666666666,
+   "a_e": 1.0262088894260735
+  },
+  {
+   "factor": "CHOLDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 23325522.13,
+   "expected": 20466009.978156116,
+   "exposure": 5285.583333333333,
+   "a_e": 1.1397200604756819
+  },
+  {
+   "factor": "OHRTDX",
+   "level": "0",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 34430984.5,
+   "expected": 34032828.84885747,
+   "exposure": 16509.916666666668,
+   "a_e": 1.011699164148557
+  },
+  {
+   "factor": "OHRTDX",
+   "level": "1",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 12273709.0,
+   "expected": 9215259.52571094,
+   "exposure": 1791.3333333333333,
+   "a_e": 1.331889673400501
+  },
+  {
+   "factor": "all",
+   "level": "all",
+   "segment": "all",
+   "period": "2023 out-of-time",
+   "actual": 46704693.5,
+   "expected": 43248088.3745684,
+   "exposure": 18301.25,
+   "a_e": 1.0799250384316228
+  }
+ ],
+ "psi": [
+  {
+   "factor": "age",
+   "period": "2023 vs 2022 train",
+   "psi": 0.0019847165070657363
+  },
+  {
+   "factor": "region",
+   "period": "2023 vs 2022 train",
+   "psi": 0.0006014570585440888
+  },
+  {
+   "factor": "HIBPDX",
+   "period": "2023 vs 2022 train",
+   "psi": 9.182976266946475e-07
+  },
+  {
+   "factor": "CHDDX",
+   "period": "2023 vs 2022 train",
+   "psi": 3.581377512473809e-05
+  },
+  {
+   "factor": "OHRTDX",
+   "period": "2023 vs 2022 train",
+   "psi": 3.1047589347438167e-06
+  },
+  {
+   "factor": "CHOLDX",
+   "period": "2023 vs 2022 train",
+   "psi": 9.216180323444349e-06
+  },
+  {
+   "factor": "CANCERDX",
+   "period": "2023 vs 2022 train",
+   "psi": 0.00026077225596541395
+  },
+  {
+   "factor": "ARTHDX",
+   "period": "2023 vs 2022 train",
+   "psi": 3.291068450568482e-05
+  },
+  {
+   "factor": "ASTHDX",
+   "period": "2023 vs 2022 train",
+   "psi": 0.0007839275027942608
+  }
+ ]
+}

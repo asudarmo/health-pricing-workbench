@@ -1,0 +1,2906 @@
+{
+ "G01": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1465.0109627217414,
+   "premium_illustrative_gbp": 357.4626749041049,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G02": {
+  "request": {
+   "age": 0.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 593.215390621668,
+   "premium_illustrative_gbp": 144.74455531168698,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "00-04",
+     "factor": 0.3003970412145234
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G03": {
+  "request": {
+   "age": 5.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 456.0981668072349,
+   "premium_illustrative_gbp": 111.28795270096532,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "05-14",
+     "factor": 0.23096255083449457
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G04": {
+  "request": {
+   "age": 15.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 905.4333861109709,
+   "premium_illustrative_gbp": 220.9257462110769,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "15-17",
+     "factor": 0.45850042750837566
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G05": {
+  "request": {
+   "age": 18.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 591.195411814212,
+   "premium_illustrative_gbp": 144.25168048266772,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "18-24",
+     "factor": 0.29937414857439837
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G06": {
+  "request": {
+   "age": 25.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 852.3579403888289,
+   "premium_illustrative_gbp": 207.97533745487425,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "25-29",
+     "factor": 0.43162366890073894
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G07": {
+  "request": {
+   "age": 30.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1091.9823664534372,
+   "premium_illustrative_gbp": 266.4436974146387,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "30-34",
+     "factor": 0.5529665567127049
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G08": {
+  "request": {
+   "age": 35.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1317.4541417367684,
+   "premium_illustrative_gbp": 321.4588105837715,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "35-39",
+     "factor": 0.6671427147208763
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G09": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1465.0109627217414,
+   "premium_illustrative_gbp": 357.4626749041049,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G10": {
+  "request": {
+   "age": 45.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1543.1153191975695,
+   "premium_illustrative_gbp": 376.520137884207,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "45-49",
+     "factor": 0.7814147836824905
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G11": {
+  "request": {
+   "age": 50.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1628.8957294191969,
+   "premium_illustrative_gbp": 397.45055797828405,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "50-54",
+     "factor": 0.8248529375674408
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G12": {
+  "request": {
+   "age": 55.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1760.5484803752267,
+   "premium_illustrative_gbp": 429.57382921155533,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "55-59",
+     "factor": 0.8915202855158798
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G13": {
+  "request": {
+   "age": 60.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1900.782205509642,
+   "premium_illustrative_gbp": 463.7908581443526,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "60-64",
+     "factor": 0.9625329341673633
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G14": {
+  "request": {
+   "age": 65.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1900.782205509642,
+   "premium_illustrative_gbp": 463.7908581443526,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "65-69",
+     "factor": 0.9625329341673633
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G15": {
+  "request": {
+   "age": 70.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1900.782205509642,
+   "premium_illustrative_gbp": 463.7908581443526,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "70-74",
+     "factor": 0.9625329341673633
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G16": {
+  "request": {
+   "age": 75.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1900.782205509642,
+   "premium_illustrative_gbp": 463.7908581443526,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "75-79",
+     "factor": 0.9625329341673633
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G17": {
+  "request": {
+   "age": 80.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1900.782205509642,
+   "premium_illustrative_gbp": 463.7908581443526,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "80+",
+     "factor": 0.9625329341673633
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G18": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1465.0109627217414,
+   "premium_illustrative_gbp": 357.4626749041049,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G19": {
+  "request": {
+   "age": 40.0,
+   "region": "1",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1688.275420884412,
+   "premium_illustrative_gbp": 411.9392026957965,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "1",
+     "factor": 1.1523978071453356
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G20": {
+  "request": {
+   "age": 40.0,
+   "region": "2",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1738.7731281854265,
+   "premium_illustrative_gbp": 424.26064327724407,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "2",
+     "factor": 1.1868669739884277
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G21": {
+  "request": {
+   "age": 40.0,
+   "region": "4",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1597.5269739357582,
+   "premium_illustrative_gbp": 389.796581640325,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "4",
+     "factor": 1.0904539382885057
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G22": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "1",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1623.6905232919821,
+   "premium_illustrative_gbp": 396.18048768324365,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "1",
+     "factor": 1.1083128827073356
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G23": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "1",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 2025.169028991757,
+   "premium_illustrative_gbp": 494.1412430739887,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "1",
+     "factor": 1.3823575935768677
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G24": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "1",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 2588.9791921702626,
+   "premium_illustrative_gbp": 631.7109228895441,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "1",
+     "factor": 1.767208067412942
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G25": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "1",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 2452.1858876920205,
+   "premium_illustrative_gbp": 598.333356596853,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "1",
+     "factor": 1.673834496867024
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G26": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "1",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1870.9650448223895,
+   "premium_illustrative_gbp": 456.515470936663,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "1",
+     "factor": 1.2770996889650945
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G27": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "1",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1458.4824253298352,
+   "premium_illustrative_gbp": 355.8697117804798,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "1",
+     "factor": 0.9955436938302651
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G28": {
+  "request": {
+   "age": 40.0,
+   "region": "3",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "1"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 1795.9215066877803,
+   "premium_illustrative_gbp": 438.2048476318184,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "40-44",
+     "factor": 0.7418636898264873
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "1",
+     "factor": 1.2258758141654198
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G29": {
+  "request": {
+   "age": 8.0,
+   "region": "1",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "1",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 671.2519324966669,
+   "premium_illustrative_gbp": 163.7854715291867,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "05-14",
+     "factor": 0.23096255083449457
+    },
+    {
+     "step": "region",
+     "level": "1",
+     "factor": 1.1523978071453356
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "1",
+     "factor": 1.2770996889650945
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G30": {
+  "request": {
+   "age": 72.0,
+   "region": "2",
+   "HIBPDX": "1",
+   "CHDDX": "1",
+   "CANCERDX": "0",
+   "ARTHDX": "1",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 5785.350840334357,
+   "premium_illustrative_gbp": 1411.625605041583,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "70-74",
+     "factor": 0.9625329341673633
+    },
+    {
+     "step": "region",
+     "level": "2",
+     "factor": 1.1868669739884277
+    },
+    {
+     "step": "HIBPDX",
+     "level": "1",
+     "factor": 1.1083128827073356
+    },
+    {
+     "step": "CHDDX",
+     "level": "1",
+     "factor": 1.3823575935768677
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "1",
+     "factor": 1.673834496867024
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G31": {
+  "request": {
+   "age": 95.0,
+   "region": "4",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "1",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 3662.9194502475266,
+   "premium_illustrative_gbp": 893.7523458603964,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "80+",
+     "factor": 0.9625329341673633
+    },
+    {
+     "step": "region",
+     "level": "4",
+     "factor": 1.0904539382885057
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "1",
+     "factor": 1.767208067412942
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G32": {
+  "request": {
+   "age": 55.0,
+   "region": "3",
+   "HIBPDX": "1",
+   "CHDDX": "1",
+   "CANCERDX": "1",
+   "ARTHDX": "1",
+   "ASTHDX": "1",
+   "CHOLDX": "1",
+   "OHRTDX": "1"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 12435.480588669912,
+   "premium_illustrative_gbp": 3034.2572636354585,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "55-59",
+     "factor": 0.8915202855158798
+    },
+    {
+     "step": "region",
+     "level": "3",
+     "factor": 1.0
+    },
+    {
+     "step": "HIBPDX",
+     "level": "1",
+     "factor": 1.1083128827073356
+    },
+    {
+     "step": "CHDDX",
+     "level": "1",
+     "factor": 1.3823575935768677
+    },
+    {
+     "step": "OHRTDX",
+     "level": "1",
+     "factor": 1.2258758141654198
+    },
+    {
+     "step": "CHOLDX",
+     "level": "1",
+     "factor": 0.9955436938302651
+    },
+    {
+     "step": "CANCERDX",
+     "level": "1",
+     "factor": 1.767208067412942
+    },
+    {
+     "step": "ARTHDX",
+     "level": "1",
+     "factor": 1.673834496867024
+    },
+    {
+     "step": "ASTHDX",
+     "level": "1",
+     "factor": 1.2770996889650945
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ },
+ "G33": {
+  "request": {
+   "age": 22.0,
+   "region": "4",
+   "HIBPDX": "0",
+   "CHDDX": "0",
+   "CANCERDX": "0",
+   "ARTHDX": "0",
+   "ASTHDX": "0",
+   "CHOLDX": "0",
+   "OHRTDX": "0"
+  },
+  "response": {
+   "model_version": "v1",
+   "premium_usd": 644.6713651109025,
+   "premium_illustrative_gbp": 157.2998130870602,
+   "illustrative_label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+   "exposure": 1.0,
+   "breakdown": [
+    {
+     "step": "base rate at 2022 level",
+     "level": "",
+     "factor": 1828.2547481875408
+    },
+    {
+     "step": "age",
+     "level": "18-24",
+     "factor": 0.29937414857439837
+    },
+    {
+     "step": "region",
+     "level": "4",
+     "factor": 1.0904539382885057
+    },
+    {
+     "step": "HIBPDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHDDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "OHRTDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CHOLDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "CANCERDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ARTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "ASTHDX",
+     "level": "0",
+     "factor": 1.0
+    },
+    {
+     "step": "forecast trend",
+     "level": "",
+     "factor": 1.019
+    },
+    {
+     "step": "rebase",
+     "level": "",
+     "factor": 1.06
+    },
+    {
+     "step": "scaling to risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+     "level": "",
+     "factor": 0.244
+    }
+   ],
+   "priced_at_reference": []
+  }
+ }
+}

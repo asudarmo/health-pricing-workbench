@@ -1,0 +1,308 @@
+{
+ "model_version": "v1",
+ "base_rate": [
+  {
+   "component": "base rate at 2022 level",
+   "value": 1828.2547481875408
+  },
+  {
+   "component": "forecast trend",
+   "value": 1.019
+  },
+  {
+   "component": "rebase",
+   "value": 1.06
+  },
+  {
+   "component": "base rate",
+   "value": 1974.77108370729
+  }
+ ],
+ "uk_scaling": {
+  "gbp_per_usd_premium": 0.244,
+  "label": "risk premium (expected claims cost), illustrative GBP, excluding expenses and margin",
+  "basis": "UK PMI claims paid per covered life, all covered lives, 2023",
+  "claims_paid_gbp": 3570000000.0,
+  "people_covered": 6200000.0,
+  "gbp_per_covered_life": 576,
+  "model_mean_usd_rating_level": 2358,
+  "includes_exchange_rate": true,
+  "source": "ABI press release, 6 November 2024, private medical insurance data for 2023 (https://www.abi.org.uk/media-hub/news-post/private-medical-insurers-report-record-47-million-covered-by-employer-health-schemes)",
+  "decided": "2026-11-05, gate 8, option A",
+  "illustrative": true
+ },
+ "relativities": [
+  {
+   "factor": "age",
+   "level": "05-14",
+   "relativity": 0.23096255083449457,
+   "exposure": 2002.4166666666667,
+   "lower_95": 0.1641498778416696,
+   "upper_95": 0.32496947661105813
+  },
+  {
+   "factor": "age",
+   "level": "00-04",
+   "relativity": 0.3003970412145234,
+   "exposure": 693.25,
+   "lower_95": 0.17712341962019384,
+   "upper_95": 0.509466125732771
+  },
+  {
+   "factor": "age",
+   "level": "15-17",
+   "relativity": 0.45850042750837566,
+   "exposure": 634.0,
+   "lower_95": 0.28868475419357276,
+   "upper_95": 0.7282083274976207
+  },
+  {
+   "factor": "age",
+   "level": "18-24",
+   "relativity": 0.29937414857439837,
+   "exposure": 1168.9166666666665,
+   "lower_95": 0.2046549590929071,
+   "upper_95": 0.43793163494249354
+  },
+  {
+   "factor": "age",
+   "level": "25-29",
+   "relativity": 0.43162366890073894,
+   "exposure": 944.6666666666666,
+   "lower_95": 0.29225928158791203,
+   "upper_95": 0.6374442260417854
+  },
+  {
+   "factor": "age",
+   "level": "30-34",
+   "relativity": 0.5529665567127049,
+   "exposure": 1019.5833333333334,
+   "lower_95": 0.3892755544034687,
+   "upper_95": 0.7854898911165236
+  },
+  {
+   "factor": "age",
+   "level": "35-39",
+   "relativity": 0.6671427147208763,
+   "exposure": 1115.5,
+   "lower_95": 0.4774025250867374,
+   "upper_95": 0.932293773947416
+  },
+  {
+   "factor": "age",
+   "level": "40-44",
+   "relativity": 0.7418636898264873,
+   "exposure": 1046.1666666666665,
+   "lower_95": 0.5373013214681189,
+   "upper_95": 1.0243074273094384
+  },
+  {
+   "factor": "age",
+   "level": "45-49",
+   "relativity": 0.7814147836824905,
+   "exposure": 994.3333333333333,
+   "lower_95": 0.5699445999748849,
+   "upper_95": 1.071348099770505
+  },
+  {
+   "factor": "age",
+   "level": "50-54",
+   "relativity": 0.8248529375674408,
+   "exposure": 1126.8333333333335,
+   "lower_95": 0.6192838334305307,
+   "upper_95": 1.098659987367424
+  },
+  {
+   "factor": "age",
+   "level": "55-59",
+   "relativity": 0.8915202855158798,
+   "exposure": 1220.8333333333335,
+   "lower_95": 0.6816041629184055,
+   "upper_95": 1.1660850427955234
+  },
+  {
+   "factor": "age",
+   "level": "60-64",
+   "relativity": 0.9625329341673633,
+   "exposure": 1282.75,
+   "lower_95": 0.7468083994068954,
+   "upper_95": 1.240572079923877
+  },
+  {
+   "factor": "age",
+   "level": "65-69",
+   "relativity": 0.9625329341673633,
+   "exposure": 1300.3333333333333,
+   "lower_95": null,
+   "upper_95": null
+  },
+  {
+   "factor": "age",
+   "level": "70-74",
+   "relativity": 0.9625329341673633,
+   "exposure": 1167.9166666666665,
+   "lower_95": 0.7516620846337754,
+   "upper_95": 1.23256137072316
+  },
+  {
+   "factor": "age",
+   "level": "75-79",
+   "relativity": 0.9625329341673633,
+   "exposure": 784.8333333333333,
+   "lower_95": 0.7314794934899197,
+   "upper_95": 1.2665695451510308
+  },
+  {
+   "factor": "age",
+   "level": "80+",
+   "relativity": 0.9625329341673633,
+   "exposure": 938.4166666666667,
+   "lower_95": 0.7362291299952471,
+   "upper_95": 1.2583985224312089
+  },
+  {
+   "factor": "region",
+   "level": "3",
+   "relativity": 1.0,
+   "exposure": 6704.333333333334,
+   "lower_95": 1.0,
+   "upper_95": 1.0
+  },
+  {
+   "factor": "region",
+   "level": "1",
+   "relativity": 1.1523978071453356,
+   "exposure": 2771.25,
+   "lower_95": 0.9718363208546247,
+   "upper_95": 1.3665065581676634
+  },
+  {
+   "factor": "region",
+   "level": "2",
+   "relativity": 1.1868669739884277,
+   "exposure": 3504.916666666667,
+   "lower_95": 1.009111767876562,
+   "upper_95": 1.3959337892854289
+  },
+  {
+   "factor": "region",
+   "level": "4",
+   "relativity": 1.0904539382885057,
+   "exposure": 4460.25,
+   "lower_95": 0.9354783761480672,
+   "upper_95": 1.2711034502209633
+  },
+  {
+   "factor": "HIBPDX",
+   "level": "0",
+   "relativity": 1.0,
+   "exposure": 12129.083333333334,
+   "lower_95": 1.0,
+   "upper_95": 1.0
+  },
+  {
+   "factor": "HIBPDX",
+   "level": "1",
+   "relativity": 1.1083128827073356,
+   "exposure": 5311.666666666667,
+   "lower_95": 0.9591563661249468,
+   "upper_95": 1.280664435286696
+  },
+  {
+   "factor": "CHDDX",
+   "level": "0",
+   "relativity": 1.0,
+   "exposure": 16600.083333333332,
+   "lower_95": 1.0,
+   "upper_95": 1.0
+  },
+  {
+   "factor": "CHDDX",
+   "level": "1",
+   "relativity": 1.3823575935768677,
+   "exposure": 840.6666666666666,
+   "lower_95": 1.0963225462496309,
+   "upper_95": 1.7430203575185041
+  },
+  {
+   "factor": "OHRTDX",
+   "level": "0",
+   "relativity": 1.0,
+   "exposure": 15724.5,
+   "lower_95": 1.0,
+   "upper_95": 1.0
+  },
+  {
+   "factor": "OHRTDX",
+   "level": "1",
+   "relativity": 1.2258758141654198,
+   "exposure": 1716.25,
+   "lower_95": 1.0342589885444742,
+   "upper_95": 1.4529934265986897
+  },
+  {
+   "factor": "CHOLDX",
+   "level": "0",
+   "relativity": 1.0,
+   "exposure": 12427.666666666668,
+   "lower_95": 1.0,
+   "upper_95": 1.0
+  },
+  {
+   "factor": "CHOLDX",
+   "level": "1",
+   "relativity": 0.9955436938302651,
+   "exposure": 5013.083333333333,
+   "lower_95": 0.8641464482118767,
+   "upper_95": 1.146920465131858
+  },
+  {
+   "factor": "CANCERDX",
+   "level": "0",
+   "relativity": 1.0,
+   "exposure": 15578.5,
+   "lower_95": 1.0,
+   "upper_95": 1.0
+  },
+  {
+   "factor": "CANCERDX",
+   "level": "1",
+   "relativity": 1.767208067412942,
+   "exposure": 1862.25,
+   "lower_95": 1.5050903365807702,
+   "upper_95": 2.0749746893094807
+  },
+  {
+   "factor": "ARTHDX",
+   "level": "0",
+   "relativity": 1.0,
+   "exposure": 13255.166666666666,
+   "lower_95": 1.0,
+   "upper_95": 1.0
+  },
+  {
+   "factor": "ARTHDX",
+   "level": "1",
+   "relativity": 1.673834496867024,
+   "exposure": 4185.583333333334,
+   "lower_95": 1.4526906077486892,
+   "upper_95": 1.9286432416907124
+  },
+  {
+   "factor": "ASTHDX",
+   "level": "0",
+   "relativity": 1.0,
+   "exposure": 14991.75,
+   "lower_95": 1.0,
+   "upper_95": 1.0
+  },
+  {
+   "factor": "ASTHDX",
+   "level": "1",
+   "relativity": 1.2770996889650945,
+   "exposure": 2449.0,
+   "lower_95": 1.0908246545150055,
+   "upper_95": 1.4951840415450615
+  }
+ ]
+}
