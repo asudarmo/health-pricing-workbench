@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+# Node
+node_modules/
+dist/
+# Env and secrets
+.env
+.env.*
+!.env.example
+# Local data and OS
+*.db
+*.sqlite3
+.DS_Store
+Thumbs.db
+.claude/settings.local.json
