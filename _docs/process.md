@@ -29,6 +29,15 @@
 
 - Full QA applies only to scenario impact and the approval workflow, plus any task the user flags.
 - Everything else gets the engineer's tests plus a recorded self-check.
+
+## QA subagent (standing rule, set 8 Nov 2026)
+
+- For a task in QA scope, the engineer spawns the QA subagent automatically, without asking the user.
+- Related QA tasks may be batched into one QA pass, run after the last task of the batch is built. The batch
+  and the reason are noted on each issue.
+- QA works in a fresh context, reads the issues' acceptance criteria and the code, runs the tests and tries the
+  awkward cases. It does not fix code. It posts PASS or FAIL per criterion as a comment on each issue.
+- A QA-scope issue is closed only after a PASS. After two FAIL rounds, stop and escalate to the user.
 - Style and grammar notes are never blocking.
 
 ## Token-saving tactics

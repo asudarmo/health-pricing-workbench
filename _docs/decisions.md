@@ -88,3 +88,25 @@
   the plan, so no password is needed.
 - **Alternatives:** Signing tokens with the standard library (more code to get right); storing users only via
   the seed (task 10) which would make login depend on seeding.
+
+## 2026-11-08 Draft editing: any signed-in user (gate 2)
+
+- **Decision:** Any signed-in user can edit any Draft scenario, not only its author.
+- **Why:** Lets analysts and reviewers refine drafts created by others, and later by the AI assistant. Drafts
+  carry no pricing decision until submitted, and every edit is in the audit trail.
+- **Alternatives:** Author-only editing (blocks hand-over and AI-created drafts).
+
+## 2026-11-08 Four-eyes rule on approval (gate 2)
+
+- **Decision:** A reviewer cannot approve or reject a scenario they created, edited or submitted (403, with a
+  test). Task 9 enforces it from the audit trail. The user specified "edited or submitted"; creating the draft
+  is treated as authoring, so it is included. Say if you want creation excluded.
+- **Why:** A second person must review what the first person proposed.
+- **Alternatives:** Block only the submitter (a reviewer who edited the numbers could still approve them).
+
+## 2026-11-08 QA runs through a subagent, batched
+
+- **Decision:** For tasks in QA scope the engineer spawns the QA subagent without asking. Related QA tasks may
+  share one pass. First batch: tasks 7, 8 and 9, after task 9.
+- **Why:** Saves round trips and tokens while keeping QA separate from the engineer. See `process.md`.
+- **Alternatives:** One QA session per task (more cost, same coverage).
