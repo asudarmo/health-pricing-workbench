@@ -20,7 +20,9 @@
 2. Engineer implements it, with tests
 3. If the task is in QA scope, QA verifies it. On FAIL, back to step 2 with the QA comment as input. After two
    FAIL rounds, stop and escalate to the user
-4. Otherwise, the engineer records a self-check against the criteria in a comment on the task
+4. Otherwise, the engineer records a self-check against each criterion as a comment on the GitHub issue
+   (`gh issue comment`). This is the course evidence that agents used the tracker. QA tasks also get the QA
+   verdict as a comment
 5. Close the task
 
 ## QA scope (lite)

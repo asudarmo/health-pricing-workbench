@@ -41,3 +41,13 @@
   Cloud SQL (about £8-10 a month).
 - **Also decided:** The frontend becomes a static SPA build, served by Caddy, as its own backlog task. Approved
   dependencies: SQLAlchemy, Alembic, Caddy (image).
+
+## 2026-11-08 Scope change after reading the course rubric
+
+- **Decision:** MCP server, agent pack and security scan move to Future to-do (not scored). Added observability,
+  an alert on user impact and a stretch on-call agent. CI/CD targets 2 of 3 points. Tests cover unit, frontend
+  and integration with one command. Each task records its self-check as an issue comment. Timeline starts 8 Nov.
+- **Why:** The rubric (12 criteria, 24 points, 10 to pass) scores observability, alerting and the on-call agent
+  and does not score MCP or security scanning.
+- **Alternatives:** Keep the MCP server as an unscored demo feature; build a dev/prod split for 3 CI/CD points
+  (needs a second VM, not free).

@@ -72,7 +72,7 @@ The analyst saves the scenario with a name and rationale.
 A reviewer opens a submitted scenario, reads the rationale and impact, and marks it **Approved** or
 **Rejected** with a comment. Every status change is recorded in an audit trail.
 
-### 7. Ask the AI assistant
+### 7. Ask the AI assistant (moved to Future to-do on 8 Nov 2026)
 
 Through an MCP server, a coding or chat agent can call the app's pricing tools:
 
@@ -219,7 +219,6 @@ Can:
 - Get quotes
 - Explore rating factors and monitoring
 - Create, edit and submit scenarios
-- Use the AI assistant to draft scenarios
 
 ### Reviewer
 
@@ -259,6 +258,11 @@ if time allows after submission.
 - CSV download of quotes, relativity tables and scenario impact
 - Home: recent audit events across all scenarios (the MVP shows the audit trail on each scenario's review page)
 
+- MCP server (read tools and draft scenario creation), moved from the MVP on 8 Nov 2026. Not scored by the course
+  rubric. The "AI output is always a draft" decision above applies when it is built.
+- Agent extension pack: a reusable skill and subagent definitions
+- Security and audit: dependency and code scanning, AI usage policy
+
 ## Explicitly excluded from the MVP
 
 - Fitting, refitting or recalibrating models in the app
@@ -270,23 +274,27 @@ if time allows after submission.
 - Organisations, teams or fine-grained permissions
 - AI actions beyond reading data and creating draft scenarios
 
-## Course requirements to cover (AI Dev Tools Zoomcamp)
+## Course rubric (AI Dev Tools Zoomcamp)
 
-Confirm against the official project page before starting.
+Source: https://github.com/DataTalksClub/ai-dev-tools-zoomcamp/tree/main/project (checked 8 Nov 2026).
+12 criteria, 24 points, 10 to pass.
 
-- Problem description in the README
-- Frontend
-- Backend
-- OpenAPI contract between frontend and backend
-- Database / persistent storage (scenarios, audit trail, published model tables)
-- Unit, integration and end-to-end tests
-- Containerised with Docker Compose
-- Deployed so others can try it (public demo login)
-- CI/CD pipeline
-- Documentation of AI-assisted workflow: spec, `AGENTS.md`, roles, prompts, MCP
-- Agent extension pack: MCP server, a reusable skill, subagent definitions
-- Security and audit: dependency and code scanning, AI usage policy
-- One-command reproducibility
+| # | Criterion | Max | Full marks need | Covered by |
+|---|---|---|---|---|
+| 1 | Problem description | 2 | README states the problem, functionality and expected behaviour | Task 20 |
+| 2 | Product specification | 2 | Spec, public task tracker, acceptance criteria, evidence agents used the tracker | `plan.md`, GitHub issues, self-check comment on each issue |
+| 3 | Agent team specification | 2 | Agent team and how it works together | `process.md` (Engineer, QA), Task 20 |
+| 4 | Context management | 2 | `AGENTS.md` pointing to modular docs | `AGENTS.md`, `_docs/` |
+| 5 | Application | 2 | Frontend, backend, database end to end; runs locally with one command | Tasks 4 to 11, 13 |
+| 6 | Testing | 2 | Unit and integration tests, one command, passing | Task 12 |
+| 7 | Containerisation | 2 | Whole system including database via Docker Compose, one command | Task 13 |
+| 8 | Deployment | 2 | Public URL | Task 14 |
+| 9 | CI/CD | 3 | 1: tests on every PR. 2: plus automatic deploy. 3: plus dev deploy and manual prod deploy | Task 15 (aim for 2) |
+| 10 | Observability | 2 | Metrics, traces and structured logs sharing a trace ID for a key journey; no customer data in telemetry; viewable in a UI | Task 16 |
+| 11 | Alerting on user impact | 1 | At least one alert | Task 17 |
+| 12 | On-call agent | 2 | Agent wakes on an alert and fixes the issue (no half marks) | Task 18 (stretch) |
+
+Target: 21 of 24 (2 of 3 on CI/CD, and the stretch on-call agent excluded). Pass mark: 10.
 
 ## Suggested success metrics
 
@@ -295,11 +303,10 @@ Confirm against the official project page before starting.
 - Scenario impact on the full in-force book returns in under 3 seconds
 - A new model version can be published and used without code changes
 - A reviewer can understand a scenario's impact from its review page alone
-- The AI assistant's draft scenario rationale cites the A/E and exposure figures it used
 
 ## MVP definition
 
-The MVP is successful when someone can:
+The MVP is successful when someone can (item 7, the AI assistant, moved to Future to-do on 8 Nov 2026):
 
 1. See the active model version (v1) and its metadata
 2. Quote a customer and see the factor breakdown
@@ -307,7 +314,6 @@ The MVP is successful when someone can:
 4. See A/E and drift with recalibration flags
 5. Create a rate-change scenario and see its impact and dislocation
 6. Submit it, and have a reviewer approve or reject it with an audit trail
-7. Ask the AI assistant, through MCP, to explain drift and draft a scenario
 
 ## Key scope principle
 
@@ -317,9 +323,9 @@ system or a BI tool.
 ## Timeline
 
 - Phase 1 (modelling, v1-lite tariff and M10 pricing service): 1–9 Nov 2026
-- Phase 2 (this app): 10–15 Nov 2026, submit by 16 Nov
+- Phase 2 (this app): 8–15 Nov 2026, submit by 16 Nov
 - Token-saving build: generate the frontend with Lovable or a similar UI tool (outside the Claude Code
   budget), then wire it to the OpenAPI contract with Claude Code. Full QA only for scenario impact and the
   approval workflow. Everything else gets tests plus a self-check
 - Suggested order: spec and stack choice → backlog → frontend with mocked API → OpenAPI → backend →
-  database → tests → Docker → deploy → CI/CD → MCP server and agent pack → security scan → README
+  database → tests → Docker → deploy → CI/CD → observability → alert → README (on-call agent is a stretch)

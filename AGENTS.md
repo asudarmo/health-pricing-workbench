@@ -22,7 +22,7 @@ To be added as each part is built. Keep this section accurate.
 - `frontend/` - React UI generated with Lovable, then wired to the backend. All API calls go through one client
   module.
 - `backend/` - FastAPI app. Owns auth, scenarios and the audit trail, and calls the pricing service.
-- `mcp-server/` - MCP server exposing read tools and draft scenario creation.
+- `mcp-server/` - future: MCP server (moved to Future to-do on 8 Nov 2026).
 - `_docs/` - plan, process, decisions, log and prompts.
 
 ## Rules
@@ -33,8 +33,8 @@ To be added as each part is built. Keep this section accurate.
 - Every premium screen shows the illustrative-premium banner.
 - Scenarios are editable while Draft only. Submitted, Approved and Rejected scenarios are immutable. Every
   status change writes to the audit trail.
-- The AI assistant can read data and create Draft scenarios. It can never submit, approve or change a model
-  version.
+- When the AI assistant is built (future): it can read data and create Draft scenarios. It can never submit,
+  approve or change a model version.
 - Tests use a mock of the pricing service built from its OpenAPI schema. Local `docker-compose` uses the
   published pricing-service image.
 - Do not add a dependency without asking.
@@ -65,4 +65,5 @@ Present the options, recommend one, and wait:
 - `_docs/writing-style.md` - writing rules for all prose
 - `_docs/decisions.md` - decision log
 - `_docs/log.md` - session log
+- `_docs/backlog.md` - backlog; the tracker is GitHub issues
 - `_docs/prompts/` - prompts used for AI-generated work, kept for the course write-up

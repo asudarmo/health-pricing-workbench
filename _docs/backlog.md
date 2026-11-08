@@ -67,9 +67,12 @@ Each task follows `task-template.md`. Dependencies need asking first unless name
 - [ ] `VITE_USE_MOCKS=false` works against local backend through relative `/api`
 - [ ] Each of the 7 MVP steps in `plan.md` can be walked through by hand; checklist recorded
 
-## 12. End-to-end test
-- [ ] One test covers login, quote, create scenario, submit, approve, audit visible
-- Constraint: asks before adding a test runner.
+## 12. Tests: unit, frontend and integration, one command
+- Goal: `make test` (or equivalent) runs all suites and passes.
+- [ ] Backend unit tests (mapping, status transitions) and integration tests (API + SQLite + pricing mock)
+- [ ] Frontend tests (vitest) run in the same command
+- [ ] One command, non-zero exit on any failure; the command is in the README
+- Constraint: asks before adding a test dependency not already present.
 
 ## 13. Local docker-compose
 - [ ] `docker compose up` starts Caddy, backend and published pricing image; SPA loads at localhost
@@ -80,22 +83,29 @@ Each task follows `task-template.md`. Dependencies need asking first unless name
 - [ ] HTTPS on an sslip.io hostname; budget alert £1 created
 - [ ] Costs recorded in `decisions.md`; demo logins work from another network
 
-## 15. CI/CD
-- [ ] GitHub Actions run backend tests, frontend build and tests, on every push
-- [ ] Deploy job to the VM on main after tests pass, with secrets in GitHub only
+## 15. CI/CD (target 2 of 3 points)
+- [ ] GitHub Actions run the Task 12 command on every pull request
+- [ ] On merge to main, after tests pass, the VM deploys automatically; secrets only in GitHub
+- [ ] Rollback: one documented command redeploys the previous image tag; tested once
+- [ ] `decisions.md` notes what a dev/prod split would cost on the e2-micro (not built)
 
-## 16. MCP server
-- [ ] Tools: model metadata, relativities, quote, A/E and drift report, create draft scenario
-- [ ] No submit, approve or version-change tool exists (test lists tools)
-- [ ] Draft rationale cites A/E and exposure figures
+## 16. Observability
+- Goal: Quote and scenario journeys emit metrics, traces and structured logs sharing a trace ID.
+- [ ] OpenTelemetry in the backend; each response carries the trace ID; log lines include it
+- [ ] A test shows no profile fields, tokens or passwords in logs, spans or metrics
+- [ ] Signals reach the chosen free hosted UI; one trace shown linked to its logs
+- [ ] Memory with backend and pricing service running stays inside the 1 GB budget (measured)
+- Gate 4: hosted UI choice, see decisions.md. Asks before adding OpenTelemetry packages.
 
-## 17. Agent pack and AI usage policy
-- [ ] One reusable skill, two subagent definitions (engineer, QA), AI usage policy page
-- [ ] Prompts in `_docs/prompts/` indexed
+## 17. Alert on user impact
+- [ ] One alert rule, for example 5xx rate or p95 latency on `/api/quotes`, stored as code or exported config
+- [ ] Alert fired once on purpose and the notification seen; evidence on the issue
 
-## 18. Security scanning
-- [ ] Dependency and code scanning in CI; findings triaged in a short note
-- [ ] No secrets in history (scan result recorded)
+## 18. On-call agent (stretch, 2 points, all or nothing)
+- [ ] The alert calls a webhook that starts an agent with the alert details
+- [ ] The agent opens a pull request with a fix for a planted, reproducible fault
+- [ ] A human merges; the agent never deploys or merges itself
+- Only start if tasks 1 to 17 are done.
 
 ## 19. Adopt the new pricing image
 - [ ] When the change request is delivered: pin new image tag, remove "proposed" markers, rerun tasks 3, 6, 8 tests
