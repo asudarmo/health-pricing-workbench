@@ -1,6 +1,7 @@
 """Submit, approve and reject: roles, allowed transitions, comments, audit trail and the four-eyes rule."""
 
 import unittest
+from concurrent.futures import ThreadPoolExecutor
 
 from sqlalchemy.orm import Session
 
@@ -133,6 +134,19 @@ class WorkflowTest(unittest.TestCase):
             self.stack.post(f"/api/scenarios/{scenario_id}/submit")
             status, body = self.stack.post(f"/api/scenarios/{scenario_id}/{verb}", {"comment": "Reviewed."}, role="Reviewer")
             self.assertEqual((status, body["status"]), (200, expected))
+
+    def test_simultaneous_decisions_only_one_wins(self) -> None:
+        scenario_id = self.draft()
+        self.stack.post(f"/api/scenarios/{scenario_id}/submit")
+        token = self.stack.token("Reviewer")
+
+        def decide(verb: str) -> int:
+            return request(self.stack.base, "POST", f"/api/scenarios/{scenario_id}/{verb}", {"comment": "Go."}, token=token)[0]
+
+        with ThreadPoolExecutor(6) as pool:
+            codes = list(pool.map(decide, ["approve", "reject"] * 3))
+        self.assertEqual(sorted(codes), [200, 409, 409, 409, 409, 409])
+        self.assertEqual(len(self.audit(scenario_id)), 3)  # created, submitted, one decision
 
     def test_unknown_scenario_and_missing_token(self) -> None:
         self.assertEqual(self.stack.post("/api/scenarios/sc-999999/submit")[0], 404)

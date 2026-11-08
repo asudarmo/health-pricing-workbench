@@ -7,7 +7,9 @@ Every change writes an audit entry in the same transaction. Status changes arriv
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel, Field
+from typing import Annotated
+
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
 
@@ -21,12 +23,16 @@ router = APIRouter(prefix="/api/scenarios", tags=["scenarios"])
 
 
 class RelativityChange(BaseModel):
+    model_config = ConfigDict(allow_inf_nan=False)
+
     factor: str = Field(min_length=1, max_length=60)
     level: str = Field(min_length=1, max_length=60)
     newRelativity: float = Field(gt=0)
 
 
 class ScenarioParams(BaseModel):
+    model_config = ConfigDict(allow_inf_nan=False)
+
     baseRateChangePct: float = Field(ge=-50, le=100)
     relativityChanges: list[RelativityChange] = Field(default=[], max_length=200)
     capPct: float = Field(ge=0, le=100, description="Maximum individual increase, %")
@@ -34,7 +40,7 @@ class ScenarioParams(BaseModel):
 
 
 class ScenarioInput(BaseModel):
-    name: str = Field(min_length=1, max_length=200)
+    name: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)]
     rationale: str = Field(default="", max_length=10000)
     params: ScenarioParams
 
@@ -89,7 +95,8 @@ def record_audit(db: Session, scenario: Scenario, actor: str, action: str, from_
 
 def get_scenario(db: Session, scenario_id: str) -> Scenario:
     prefix, _, number = scenario_id.partition("-")
-    scenario = db.get(Scenario, int(number)) if prefix == "sc" and number.isdigit() else None
+    valid = prefix == "sc" and number.isascii() and number.isdigit() and len(number) <= 12
+    scenario = db.get(Scenario, int(number)) if valid else None
     if scenario is None:
         raise HTTPException(status_code=404, detail="Scenario not found")
     return scenario

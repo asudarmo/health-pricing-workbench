@@ -63,7 +63,7 @@ class ScenarioTest(unittest.TestCase):
         self.assertEqual(set(rows[0]), {"id", "name", "status", "author", "updatedAt"})
         status, one = self.stack.get(f"/api/scenarios/{created['id']}")
         self.assertEqual((status, one["name"], one["rationale"]), (200, "Listed one", BODY["rationale"]))
-        for bad in ("sc-999999", "nonsense", "sc-abc"):
+        for bad in ("sc-999999", "nonsense", "sc-abc", "sc-%C2%B2", "sc-" + "9" * 23, "sc--1", "sc-1e3"):
             self.assertEqual(self.stack.get(f"/api/scenarios/{bad}")[0], 404, bad)
 
     def test_create_writes_audit_entry(self) -> None:
@@ -116,6 +116,9 @@ class ScenarioTest(unittest.TestCase):
             {**BODY, "params": {**PARAMS, "floorPct": 101}},
             {**BODY, "params": {**PARAMS, "relativityChanges": [{"factor": "age", "level": "80+", "newRelativity": 0}]}},
             {"name": "No params"},
+            {**BODY, "name": "   "},
+            {**BODY, "params": {**PARAMS, "baseRateChangePct": float("nan")}},
+            {**BODY, "params": {**PARAMS, "capPct": float("inf")}},
         ]
         for body in bad_bodies:
             self.assertEqual(self.stack.post("/api/scenarios", body)[0], 422, body)
