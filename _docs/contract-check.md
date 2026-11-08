@@ -32,4 +32,20 @@ so the mock must be built from the shapes read in `service/app.py`.
    from `/monitoring` and `totals`, which is a calculation.
 5. **Headline A/E** (`headlineAE`). Not returned. Derivable from the overall `ae` rows.
 
-Gaps 1 to 5 are decision gate 3.
+Gaps 1 to 5 were decision gate 3. Decided 8 Nov 2026: option A, ask the pricing service to supply them.
+
+## Change request for the pricing service (proposed contract)
+
+Until a new image exists, the frontend mock and the backend tests follow this proposal. The published `v1`
+image stays the reference for the existing endpoints.
+
+1. **New `GET /model`**: `id`, `date`, `data_years` (fit, out_of_time, cost_basis), `trend_assumptions`
+   (forecast_trend, rebase), `permitted_rating_factors` with levels, `headline_ae` (overall A/E on the latest
+   period) and `recalibration_flags`: list of `{segment, a_e, exposure, gap_type: "level shift" | "change in
+   shape", note}`, evaluated by the rule in `recalibration-rule.md`.
+2. **`POST /scenario-impact`**: add `histogram` (list of `{bucket, exposure}` of individual premium changes,
+   fixed bucket edges stated in the response) and `projected_ae` (actual / expected after the change).
+3. Type the responses of `/relativities`, `/monitoring` and `/scenario-impact` in the OpenAPI schema.
+
+Fallback if bucket counts are hard: the UI charts the existing percentiles (p05 to p95) per segment instead of a
+histogram. This is a frontend change only.
