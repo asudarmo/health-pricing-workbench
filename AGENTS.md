@@ -15,7 +15,14 @@ HTTP. This repo contains no modelling code. Both READMEs must say how the two pr
 
 ## Commands
 
-To be added as each part is built. Keep this section accurate.
+To be extended as each part is built. Keep this section accurate.
+
+Frontend (`frontend/`, Node 26): `npm install`, `npm run build` (static SPA in `dist/client`), `npm run check:spa`,
+`npm test`.
+
+Backend (`backend/`, Python 3.12, venv in `backend/.venv`): from `backend/`, `python -m unittest discover -s tests -t .`;
+`alembic upgrade head`; `uvicorn app.main:app`. Settings come from environment variables (`DATABASE_URL`,
+`PRICING_SERVICE_URL`). Docker: `docker build -t hpw-backend backend`.
 
 ## Structure
 
