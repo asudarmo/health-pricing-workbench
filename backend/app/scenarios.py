@@ -8,10 +8,10 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
-from sqlalchemy import select
+from sqlalchemy import select, update
 from sqlalchemy.orm import Session
 
-from app.auth import CurrentUser, current_user, get_db
+from app.auth import CurrentUser, current_user, get_db, require_role
 from app.impact import compute_impact
 from app.models import AuditEntry, Scenario
 from app.pricing import PricingClient, PricingUnavailable
@@ -172,3 +172,65 @@ def update_scenario(
 @router.get("/{scenario_id}/audit")
 def read_audit(scenario_id: str, _: CurrentUser = Depends(current_user), db: Session = Depends(get_db)) -> list[dict]:
     return [audit_out(a) for a in get_scenario(db, scenario_id).audit]
+
+
+class Decision(BaseModel):
+    comment: str = Field(min_length=1, max_length=5000)
+
+
+def change_status(db: Session, scenario: Scenario, user: CurrentUser, to: str, action: str, comment: str | None = None) -> dict:
+    """Move a scenario to a new status. The update only applies if the status is still what we read."""
+    expected, now = scenario.status, datetime.now(timezone.utc)
+    values = {"status": to, "updated_at": now}
+    if comment is not None:
+        values["review_comment"] = comment
+    result = db.execute(update(Scenario).where(Scenario.id == scenario.id, Scenario.status == expected).values(**values))
+    if result.rowcount != 1:  # someone else changed it first
+        db.rollback()
+        raise HTTPException(status_code=409, detail="The scenario status changed; reload and try again")
+    db.refresh(scenario)
+    record_audit(db, scenario, user.name, action, expected, comment)
+    db.commit()
+    return full(scenario)
+
+
+def check_four_eyes(scenario: Scenario, user: CurrentUser) -> None:
+    """A reviewer cannot decide on a scenario they created, edited or submitted."""
+    involved = {a.actor for a in scenario.audit if a.action in ("Created draft", "Edited draft", "Submitted for review")}
+    if user.name == scenario.author or user.name in involved:
+        raise HTTPException(status_code=403, detail="Four-eyes rule: you created, edited or submitted this scenario")
+
+
+@router.post("/{scenario_id}/submit")
+def submit_scenario(
+    scenario_id: str, user: CurrentUser = Depends(require_role("Analyst")), db: Session = Depends(get_db)
+) -> dict:
+    scenario = get_scenario(db, scenario_id)
+    if scenario.status != "Draft":
+        raise HTTPException(status_code=409, detail=f"A {scenario.status} scenario cannot be submitted")
+    return change_status(db, scenario, user, "Submitted", "Submitted for review")
+
+
+def decide(scenario_id: str, body: Decision, user: CurrentUser, db: Session, to: str, action: str) -> dict:
+    scenario = get_scenario(db, scenario_id)
+    if scenario.status != "Submitted":
+        raise HTTPException(status_code=409, detail=f"Only a Submitted scenario can be decided; this one is {scenario.status}")
+    check_four_eyes(scenario, user)
+    comment = body.comment.strip()
+    if not comment:
+        raise HTTPException(status_code=422, detail="A comment is required")
+    return change_status(db, scenario, user, to, action, comment)
+
+
+@router.post("/{scenario_id}/approve")
+def approve_scenario(
+    scenario_id: str, body: Decision, user: CurrentUser = Depends(require_role("Reviewer")), db: Session = Depends(get_db)
+) -> dict:
+    return decide(scenario_id, body, user, db, "Approved", "Approved")
+
+
+@router.post("/{scenario_id}/reject")
+def reject_scenario(
+    scenario_id: str, body: Decision, user: CurrentUser = Depends(require_role("Reviewer")), db: Session = Depends(get_db)
+) -> dict:
+    return decide(scenario_id, body, user, db, "Rejected", "Rejected")
