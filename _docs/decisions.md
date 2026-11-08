@@ -22,3 +22,22 @@
 - **Why:** Keeps monitoring and rating-adjacent logic out of this repo.
 - **Alternatives:** Backend derives them (breaks the no-rating-logic rule); drop the UI fields (loses plan
   features).
+
+## 2026-11-08 Hosting: always-free e2-micro VM with docker-compose (portable)
+
+- **Decision:** One always-free GCP e2-micro VM in a free-tier US region (us-west1, us-central1 or us-east1),
+  running docker-compose with three services: Caddy (static SPA build, reverse proxy of `/api`, automatic HTTPS
+  on a free sslip.io hostname), the backend (SQLite on a mounted volume on the VM's persistent disk), and the
+  published pricing-service image, reachable on the compose network only. A 1 GB swap file is added. Budget
+  alert at £1.
+- **Portability rules:** all config through environment variables; the frontend calls relative `/api` paths;
+  schema changes only through Alembic migrations; everything VM-specific lives in `deploy/`.
+- **Why:** Lowest cost, SQLite data persists across restarts, and the same compose file runs locally and for peer
+  reviewers. Measured pricing service memory is about 70 MiB, so 1 GB plus swap should fit.
+- **Costs (checked 8 Nov 2026):** VM and 30 GB standard disk are free. Not free: the external IPv4 address,
+  about $0.005 per hour (about $3.65 a month, about $7.30 for two months); egress beyond 1 GB a month (small
+  for a demo). Prices from secondary sources, to be confirmed on the billing page when the VM is created.
+- **Alternatives:** Cloud Run with a sidecar and reseeded SQLite (cheaper in effort, data resets); Cloud Run with
+  Cloud SQL (about £8-10 a month).
+- **Also decided:** The frontend becomes a static SPA build, served by Caddy, as its own backlog task. Approved
+  dependencies: SQLAlchemy, Alembic, Caddy (image).
