@@ -78,3 +78,13 @@
   (dev) stack would fit. Target: 2 of 3 CI/CD points.
 - **Why:** The same tag mechanism supports a later dev/prod split with no pipeline redesign.
 - **Alternatives:** Build on the VM (slow on an e2-micro, no rollback artefact).
+
+## 2026-11-08 Auth implementation: PyJWT, HS256, demo users created on first login
+
+- **Decision:** Add PyJWT. Tokens are HS256, 8 hours, claims `sub` (demo user name) and `role`. The secret comes
+  from `JWT_SECRET`; if unset, a random per-process secret is used and a warning is logged. Demo users
+  ("Demo Analyst", "Demo Reviewer") are created in `users` on first login. Role is read from the token.
+- **Why:** The user approved JWT; a maintained library avoids hand-written signature checks. Roles are fixed by
+  the plan, so no password is needed.
+- **Alternatives:** Signing tokens with the standard library (more code to get right); storing users only via
+  the seed (task 10) which would make login depend on seeding.
