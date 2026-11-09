@@ -25,3 +25,12 @@
 - **Open questions:** The published pricing image lacks the proposed fields, so `/api/scenarios/impact`, saving
   scenarios and the seed work against the mock only (clean 502 against v1). Task 19 and the change request decide
   when this ends. "Capped lives" counts cells, not policies.
+
+## 2026-11-09 Session 2 (continued): tasks 2, 13, 11, 12
+
+- **Done:** task 2 (OpenAPI contract, JSON, drift checks both sides); task 13 (local compose: Caddy + SPA, backend, published
+  pricing image; only port 8080 published; SQLite volume survives restart); task 12 (`python scripts/test.py`); task 11
+  partly (live API walk passes against the stack with the pricing mock; mock override added).
+- **Next:** user ticks the Screen column in `_docs/walkthrough-checklist.md`, then close #11. Then task 14 (deploy).
+- **Open:** the mock only knows the seeded scenario requests, so new scenarios with other parameters fail in the browser
+  until task 19.
