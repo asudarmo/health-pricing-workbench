@@ -16,6 +16,26 @@ It is the capstone for the DataTalksClub AI Dev Tools Zoomcamp.
 
 See `_docs/plan.md` for the scope.
 
+## Run the tests
+
+One command from the repo root runs the backend tests (unit and integration, SQLite and the pricing mock), the
+frontend tests and the API contract check. It exits non-zero if any step fails.
+
+```
+python scripts/test.py
+```
+
+It needs Python 3.12 with the backend virtual environment (`backend/.venv`) and Node 26.
+
+## Run locally
+
+```
+docker compose up --build
+```
+
+Then open http://localhost:8080. Only the web container is published. Until the pricing service delivers the
+proposed contract, add the mock: `docker compose -f docker-compose.yml -f docker-compose.mock.yml up --build`.
+
 ## Limitations
 
 - **Authentication is demo-only.** There are two fixed logins (Analyst and Reviewer) and no passwords. There is

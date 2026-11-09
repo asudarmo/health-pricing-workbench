@@ -118,3 +118,14 @@
 - **Why:** QA round 1 found the four moves into Draft return 404 because no route exists. A route that only
   returns 409 would add API surface for an action that must never happen.
 - **Alternatives:** Add a dummy route returning 409 for moves to Draft.
+
+## 2026-11-09: Local stack, mock override and the one test command
+
+- **Decision:** `docker-compose.yml` builds the web image (Node build stage, then Caddy) and the backend, and pulls the
+  published pricing image. Only Caddy is published (port 8080). `docker-compose.mock.yml` swaps the pricing service for the
+  test mock. `python scripts/test.py` is the one test command (no `make`, which Windows lacks). The web build sets
+  `NODE_OPTIONS=--dns-result-order=ipv4first` because the SPA prerender step failed in the container otherwise.
+- **Why:** the published image lacks the proposed fields, so the mock override is the only way to walk the whole app until
+  task 19. A Python script needs no new dependency and works on Windows and Linux.
+- **Alternatives:** a Makefile (not portable to the author's machine); an npm root script (the backend would need a
+  wrapper); a Vite dev proxy (does not test the Caddy path).

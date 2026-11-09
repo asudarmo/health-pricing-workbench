@@ -17,6 +17,8 @@ HTTP. This repo contains no modelling code. Both READMEs must say how the two pr
 
 To be extended as each part is built. Keep this section accurate.
 
+All tests, one command (repo root): `python scripts/test.py` (backend unittest, frontend vitest, contract check).
+Live walk of the MVP steps against a running stack: see `_docs/walkthrough-checklist.md`.
 Frontend (`frontend/`, Node 26): `npm install`, `npm run build` (static SPA in `dist/client`), `npm run check:spa`,
 `npm test`.
 
@@ -28,6 +30,7 @@ response model; a backend test fails if it is stale). `npm run check:contract` i
 `src/api/types.ts` or `client.ts` drift.
 Demo data: `python -m app.seed` (adds what is missing), `python -m app.seed --reset` (deletes ALL scenarios, reloads
 the four seeds; needs the pricing service with the proposed contract, so mock-only until task 19).
+Local stack with the pricing mock (proposed contract): add `-f docker-compose.yml -f docker-compose.mock.yml`.
 Local stack: `docker compose up --build` (needs Docker), then open http://localhost:8080. Only Caddy is published; the backend
 and the published pricing image are on the compose network. SQLite lives in the `workbench-data` volume. `docker compose down -v`
 deletes it. Until task 19, `/api/model`, `/api/monitoring` and impact calls return 502 against the published image.
