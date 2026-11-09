@@ -110,3 +110,11 @@
   share one pass. First batch: tasks 7, 8 and 9, after task 9.
 - **Why:** Saves round trips and tokens while keeping QA separate from the engineer. See `process.md`.
 - **Alternatives:** One QA session per task (more cost, same coverage).
+
+## 2026-11-09 Task 9 criterion amended: moves to Draft have no endpoint
+
+- **Decision:** The criterion "every other transition returns 409" now reads: "Every other transition returns 409.
+  Moves to Draft are not possible and have no endpoint (404), with a test for each of the four."
+- **Why:** QA round 1 found the four moves into Draft return 404 because no route exists. A route that only
+  returns 409 would add API surface for an action that must never happen.
+- **Alternatives:** Add a dummy route returning 409 for moves to Draft.
