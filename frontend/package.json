@@ -8,6 +8,7 @@
     "build": "vite build -c vite.spa.config.ts",
     "build:lovable": "vite build",
     "check:spa": "node scripts/check-spa.mjs",
+    "check:contract": "node scripts/check-contract.mjs",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",

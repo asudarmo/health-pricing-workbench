@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from app import factors as fx
 from app.auth import CurrentUser, current_user
 from app.pricing import PricingClient, PricingUnavailable
+from app.schemas import ModelInfo, Monitoring, QuoteResponse, Relativity, errors, roles
 
 router = APIRouter(prefix="/api", tags=["model"])
 
@@ -25,7 +26,8 @@ class QuoteRequest(BaseModel):
     selections: dict[str, str] = {}
 
 
-@router.get("/model")
+@router.get("/model", response_model=ModelInfo, responses=errors(401, 502), openapi_extra=roles("Analyst", "Reviewer"),
+            summary="Active model version, base rate and factor list")
 def get_model(_: CurrentUser = Depends(current_user), client: PricingClient = Depends(pricing)) -> dict:
     try:
         model, rel = client.model(), client.relativities()
@@ -63,7 +65,8 @@ def get_model(_: CurrentUser = Depends(current_user), client: PricingClient = De
     }
 
 
-@router.get("/relativities")
+@router.get("/relativities", response_model=list[Relativity], responses=errors(401, 502), openapi_extra=roles("Analyst", "Reviewer"),
+            summary="Relativity, exposure and confidence bounds for every factor level")
 def get_relativities(_: CurrentUser = Depends(current_user), client: PricingClient = Depends(pricing)) -> list[dict]:
     try:
         rel = client.relativities()
@@ -82,7 +85,8 @@ def get_relativities(_: CurrentUser = Depends(current_user), client: PricingClie
     ]
 
 
-@router.get("/monitoring")
+@router.get("/monitoring", response_model=Monitoring, responses=errors(401, 502), openapi_extra=roles("Analyst", "Reviewer"),
+            summary="A/E, PSI and recalibration flags")
 def get_monitoring(_: CurrentUser = Depends(current_user), client: PricingClient = Depends(pricing)) -> dict:
     try:
         mon, model = client.monitoring(), client.model()
@@ -117,7 +121,8 @@ def get_monitoring(_: CurrentUser = Depends(current_user), client: PricingClient
     }
 
 
-@router.post("/quotes")
+@router.post("/quotes", response_model=QuoteResponse, responses=errors(401, 422, 502), openapi_extra=roles("Analyst", "Reviewer"),
+             summary="Risk premium (expected claims cost), illustrative GBP, with the factor breakdown")
 def create_quote(
     body: QuoteRequest, _: CurrentUser = Depends(current_user), client: PricingClient = Depends(pricing)
 ) -> dict:

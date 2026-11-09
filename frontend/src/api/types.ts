@@ -36,6 +36,7 @@ export interface ModelInfo {
   baseRate: number;
   currency: string;
   scalingNote: string;
+  illustrativeLabel: string;
   factors: Factor[];
   headlineAE: number;
   recalibrationFlagCount: number;
@@ -57,6 +58,8 @@ export interface QuoteResponse {
   baseRate: number;
   steps: QuoteStep[];
   riskPremium: number;
+  illustrativeLabel: string;
+  modelVersion: string;
 }
 
 export interface Relativity {

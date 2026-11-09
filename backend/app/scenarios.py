@@ -7,9 +7,7 @@ Every change writes an audit entry in the same transaction. Status changes arriv
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
-from typing import Annotated
-
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints
+from pydantic import BaseModel, Field
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
 
@@ -18,31 +16,10 @@ from app.impact import compute_impact
 from app.models import AuditEntry, Scenario
 from app.pricing import PricingClient, PricingUnavailable
 from app.routes_read import pricing
+from app.schemas import AuditEntry as AuditOut
+from app.schemas import Impact, RelativityChange, Scenario as ScenarioOut, ScenarioInput, ScenarioParams, ScenarioSummary, errors, roles
 
 router = APIRouter(prefix="/api/scenarios", tags=["scenarios"])
-
-
-class RelativityChange(BaseModel):
-    model_config = ConfigDict(allow_inf_nan=False)
-
-    factor: str = Field(min_length=1, max_length=60)
-    level: str = Field(min_length=1, max_length=60)
-    newRelativity: float = Field(gt=0)
-
-
-class ScenarioParams(BaseModel):
-    model_config = ConfigDict(allow_inf_nan=False)
-
-    baseRateChangePct: float = Field(ge=-50, le=100)
-    relativityChanges: list[RelativityChange] = Field(default=[], max_length=200)
-    capPct: float = Field(ge=0, le=100, description="Maximum individual increase, %")
-    floorPct: float = Field(ge=0, le=100, description="Maximum individual decrease, % (positive number)")
-
-
-class ScenarioInput(BaseModel):
-    name: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)]
-    rationale: str = Field(default="", max_length=10000)
-    params: ScenarioParams
 
 
 def iso(value: datetime) -> str:
@@ -113,25 +90,29 @@ def impact_for(client: PricingClient, params: ScenarioParams) -> dict:
         raise HTTPException(status_code=502, detail="Pricing service unavailable") from None
 
 
-@router.post("/impact")
+@router.post("/impact", response_model=Impact, responses=errors(401, 422, 502), openapi_extra=roles("Analyst", "Reviewer"),
+             summary="Impact of a rate change on the in-force book (nothing is saved)")
 def scenario_impact(
     body: ImpactRequest, _: CurrentUser = Depends(current_user), client: PricingClient = Depends(pricing)
 ) -> dict:
     return impact_for(client, body.params)
 
 
-@router.get("")
+@router.get("", response_model=list[ScenarioSummary], responses=errors(401), openapi_extra=roles("Analyst", "Reviewer"),
+            summary="All scenarios, newest first")
 def list_scenarios(_: CurrentUser = Depends(current_user), db: Session = Depends(get_db)) -> list[dict]:
     rows = db.scalars(select(Scenario).order_by(Scenario.updated_at.desc(), Scenario.id.desc()))
     return [summary(s) for s in rows]
 
 
-@router.get("/{scenario_id}")
+@router.get("/{scenario_id}", response_model=ScenarioOut, responses=errors(401, 404), openapi_extra=roles("Analyst", "Reviewer"),
+            summary="One scenario with parameters, rationale, impact and review comment")
 def read_scenario(scenario_id: str, _: CurrentUser = Depends(current_user), db: Session = Depends(get_db)) -> dict:
     return full(get_scenario(db, scenario_id))
 
 
-@router.post("", status_code=201)
+@router.post("", status_code=201, response_model=ScenarioOut, responses=errors(401, 422, 502), openapi_extra=roles("Analyst", "Reviewer"),
+             summary="Create a Draft scenario; impact is computed and saved with it")
 def create_scenario(
     body: ScenarioInput,
     user: CurrentUser = Depends(current_user),
@@ -155,7 +136,8 @@ def create_scenario(
     return full(scenario)
 
 
-@router.put("/{scenario_id}")
+@router.put("/{scenario_id}", response_model=ScenarioOut, responses=errors(401, 404, 409, 422, 502), openapi_extra=roles("Analyst", "Reviewer"),
+            summary="Edit a scenario. Draft only; any other status returns 409")
 def update_scenario(
     scenario_id: str,
     body: ScenarioInput,
@@ -176,7 +158,8 @@ def update_scenario(
     return full(scenario)
 
 
-@router.get("/{scenario_id}/audit")
+@router.get("/{scenario_id}/audit", response_model=list[AuditOut], responses=errors(401, 404), openapi_extra=roles("Analyst", "Reviewer"),
+            summary="Audit trail, oldest first")
 def read_audit(scenario_id: str, _: CurrentUser = Depends(current_user), db: Session = Depends(get_db)) -> list[dict]:
     return [audit_out(a) for a in get_scenario(db, scenario_id).audit]
 
@@ -208,7 +191,8 @@ def check_four_eyes(scenario: Scenario, user: CurrentUser) -> None:
         raise HTTPException(status_code=403, detail="Four-eyes rule: you created, edited or submitted this scenario")
 
 
-@router.post("/{scenario_id}/submit")
+@router.post("/{scenario_id}/submit", response_model=ScenarioOut, responses=errors(401, 403, 404, 409), openapi_extra=roles("Analyst"),
+             summary="Submit a Draft for review (Analyst only)")
 def submit_scenario(
     scenario_id: str, user: CurrentUser = Depends(require_role("Analyst")), db: Session = Depends(get_db)
 ) -> dict:
@@ -229,14 +213,16 @@ def decide(scenario_id: str, body: Decision, user: CurrentUser, db: Session, to:
     return change_status(db, scenario, user, to, action, comment)
 
 
-@router.post("/{scenario_id}/approve")
+@router.post("/{scenario_id}/approve", response_model=ScenarioOut, responses=errors(401, 403, 404, 409, 422), openapi_extra=roles("Reviewer"),
+             summary="Approve a Submitted scenario with a comment (Reviewer only; four-eyes rule)")
 def approve_scenario(
     scenario_id: str, body: Decision, user: CurrentUser = Depends(require_role("Reviewer")), db: Session = Depends(get_db)
 ) -> dict:
     return decide(scenario_id, body, user, db, "Approved", "Approved")
 
 
-@router.post("/{scenario_id}/reject")
+@router.post("/{scenario_id}/reject", response_model=ScenarioOut, responses=errors(401, 403, 404, 409, 422), openapi_extra=roles("Reviewer"),
+             summary="Reject a Submitted scenario with a comment (Reviewer only; four-eyes rule)")
 def reject_scenario(
     scenario_id: str, body: Decision, user: CurrentUser = Depends(require_role("Reviewer")), db: Session = Depends(get_db)
 ) -> dict:

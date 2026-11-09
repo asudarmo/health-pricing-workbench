@@ -2,8 +2,6 @@
 
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
-from typing import Literal
-
 import jwt
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
@@ -11,9 +9,9 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.config import Settings
-from app.models import User
+from app.models import User as UserRow
+from app.schemas import LoginResponse, Role, User, errors, roles
 
-Role = Literal["Analyst", "Reviewer"]
 DEMO_USERS: dict[str, str] = {"Analyst": "Demo Analyst", "Reviewer": "Demo Reviewer"}
 ALGORITHM = "HS256"
 
@@ -26,16 +24,6 @@ class CurrentUser:
 
 class LoginRequest(BaseModel):
     role: Role
-
-
-class UserOut(BaseModel):
-    name: str
-    role: Role
-
-
-class LoginResponse(BaseModel):
-    token: str
-    user: UserOut
 
 
 def create_token(settings: Settings, name: str, role: str) -> str:
@@ -74,16 +62,18 @@ def require_role(*roles: str):
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 
-@router.post("/login", response_model=LoginResponse)
+@router.post("/login", response_model=LoginResponse, responses=errors(422), openapi_extra=roles(),
+             summary="Demo login (public). Pick a role; there are no passwords.")
 def login(body: LoginRequest, request: Request, db: Session = Depends(get_db)) -> LoginResponse:
     name = DEMO_USERS[body.role]
-    if db.scalar(select(User).where(User.name == name)) is None:
-        db.add(User(name=name, role=body.role))
+    if db.scalar(select(UserRow).where(UserRow.name == name)) is None:
+        db.add(UserRow(name=name, role=body.role))
         db.commit()
     token = create_token(request.app.state.settings, name, body.role)
-    return LoginResponse(token=token, user=UserOut(name=name, role=body.role))
+    return LoginResponse(token=token, user=User(name=name, role=body.role))
 
 
-@router.get("/me", response_model=UserOut)
-def me(user: CurrentUser = Depends(current_user)) -> UserOut:
-    return UserOut(name=user.name, role=user.role)
+@router.get("/me", response_model=User, responses=errors(401), openapi_extra=roles("Analyst", "Reviewer"),
+            summary="The signed-in user")
+def me(user: CurrentUser = Depends(current_user)) -> User:
+    return User(name=user.name, role=user.role)

@@ -1,0 +1,1964 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Health Pricing Workbench API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Demo login (public). Pick a role; there are no passwords.",
+        "operationId": "login_api_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input rejected (the detail is a message, or a list of problems for request-shape errors)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": []
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "The signed-in user",
+        "operationId": "me_api_auth_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/model": {
+      "get": {
+        "tags": [
+          "model"
+        ],
+        "summary": "Active model version, base rate and factor list",
+        "operationId": "get_model_api_model_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelInfo"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "The pricing service is unavailable or lacks a field this app needs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/relativities": {
+      "get": {
+        "tags": [
+          "model"
+        ],
+        "summary": "Relativity, exposure and confidence bounds for every factor level",
+        "operationId": "get_relativities_api_relativities_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Relativity"
+                  },
+                  "type": "array",
+                  "title": "Response Get Relativities Api Relativities Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "The pricing service is unavailable or lacks a field this app needs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/monitoring": {
+      "get": {
+        "tags": [
+          "model"
+        ],
+        "summary": "A/E, PSI and recalibration flags",
+        "operationId": "get_monitoring_api_monitoring_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Monitoring"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "The pricing service is unavailable or lacks a field this app needs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/quotes": {
+      "post": {
+        "tags": [
+          "model"
+        ],
+        "summary": "Risk premium (expected claims cost), illustrative GBP, with the factor breakdown",
+        "operationId": "create_quote_api_quotes_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input rejected (the detail is a message, or a list of problems for request-shape errors)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "The pricing service is unavailable or lacks a field this app needs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/scenarios/impact": {
+      "post": {
+        "tags": [
+          "scenarios"
+        ],
+        "summary": "Impact of a rate change on the in-force book (nothing is saved)",
+        "operationId": "scenario_impact_api_scenarios_impact_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImpactRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Impact"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input rejected (the detail is a message, or a list of problems for request-shape errors)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "The pricing service is unavailable or lacks a field this app needs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/scenarios": {
+      "get": {
+        "tags": [
+          "scenarios"
+        ],
+        "summary": "All scenarios, newest first",
+        "operationId": "list_scenarios_api_scenarios_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ScenarioSummary"
+                  },
+                  "type": "array",
+                  "title": "Response List Scenarios Api Scenarios Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      },
+      "post": {
+        "tags": [
+          "scenarios"
+        ],
+        "summary": "Create a Draft scenario; impact is computed and saved with it",
+        "operationId": "create_scenario_api_scenarios_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScenarioInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scenario"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input rejected (the detail is a message, or a list of problems for request-shape errors)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "The pricing service is unavailable or lacks a field this app needs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/scenarios/{scenario_id}": {
+      "get": {
+        "tags": [
+          "scenarios"
+        ],
+        "summary": "One scenario with parameters, rationale, impact and review comment",
+        "operationId": "read_scenario_api_scenarios__scenario_id__get",
+        "parameters": [
+          {
+            "name": "scenario_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Scenario Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scenario"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      },
+      "put": {
+        "tags": [
+          "scenarios"
+        ],
+        "summary": "Edit a scenario. Draft only; any other status returns 409",
+        "operationId": "update_scenario_api_scenarios__scenario_id__put",
+        "parameters": [
+          {
+            "name": "scenario_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Scenario Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScenarioInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scenario"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The scenario status does not allow this",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input rejected (the detail is a message, or a list of problems for request-shape errors)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "The pricing service is unavailable or lacks a field this app needs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/scenarios/{scenario_id}/audit": {
+      "get": {
+        "tags": [
+          "scenarios"
+        ],
+        "summary": "Audit trail, oldest first",
+        "operationId": "read_audit_api_scenarios__scenario_id__audit_get",
+        "parameters": [
+          {
+            "name": "scenario_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Scenario Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditEntry"
+                  },
+                  "title": "Response Read Audit Api Scenarios  Scenario Id  Audit Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst",
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/scenarios/{scenario_id}/submit": {
+      "post": {
+        "tags": [
+          "scenarios"
+        ],
+        "summary": "Submit a Draft for review (Analyst only)",
+        "operationId": "submit_scenario_api_scenarios__scenario_id__submit_post",
+        "parameters": [
+          {
+            "name": "scenario_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Scenario Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scenario"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Signed in, but the role (or the four-eyes rule) does not allow this",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The scenario status does not allow this",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Analyst"
+        ]
+      }
+    },
+    "/api/scenarios/{scenario_id}/approve": {
+      "post": {
+        "tags": [
+          "scenarios"
+        ],
+        "summary": "Approve a Submitted scenario with a comment (Reviewer only; four-eyes rule)",
+        "operationId": "approve_scenario_api_scenarios__scenario_id__approve_post",
+        "parameters": [
+          {
+            "name": "scenario_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Scenario Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Decision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scenario"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Signed in, but the role (or the four-eyes rule) does not allow this",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The scenario status does not allow this",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input rejected (the detail is a message, or a list of problems for request-shape errors)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/scenarios/{scenario_id}/reject": {
+      "post": {
+        "tags": [
+          "scenarios"
+        ],
+        "summary": "Reject a Submitted scenario with a comment (Reviewer only; four-eyes rule)",
+        "operationId": "reject_scenario_api_scenarios__scenario_id__reject_post",
+        "parameters": [
+          {
+            "name": "scenario_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Scenario Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Decision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scenario"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in, or the token is invalid or expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Signed in, but the role (or the four-eyes rule) does not allow this",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The scenario status does not allow this",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input rejected (the detail is a message, or a list of problems for request-shape errors)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-roles": [
+          "Reviewer"
+        ]
+      }
+    },
+    "/api/health": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Health",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health Api Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AERow": {
+        "properties": {
+          "factor": {
+            "type": "string",
+            "title": "Factor"
+          },
+          "level": {
+            "type": "string",
+            "title": "Level"
+          },
+          "segment": {
+            "type": "string",
+            "title": "Segment"
+          },
+          "period": {
+            "type": "string",
+            "title": "Period"
+          },
+          "actual": {
+            "type": "number",
+            "title": "Actual"
+          },
+          "expected": {
+            "type": "number",
+            "title": "Expected"
+          },
+          "exposure": {
+            "type": "number",
+            "title": "Exposure"
+          },
+          "ae": {
+            "type": "number",
+            "title": "Ae"
+          }
+        },
+        "type": "object",
+        "required": [
+          "factor",
+          "level",
+          "segment",
+          "period",
+          "actual",
+          "expected",
+          "exposure",
+          "ae"
+        ],
+        "title": "AERow"
+      },
+      "AffectedSegment": {
+        "properties": {
+          "segment": {
+            "type": "string",
+            "title": "Segment"
+          },
+          "averageChangePct": {
+            "type": "number",
+            "title": "Averagechangepct"
+          }
+        },
+        "type": "object",
+        "required": [
+          "segment",
+          "averageChangePct"
+        ],
+        "title": "AffectedSegment"
+      },
+      "AuditEntry": {
+        "properties": {
+          "at": {
+            "type": "string",
+            "title": "At"
+          },
+          "actor": {
+            "type": "string",
+            "title": "Actor"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "fromStatus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "Draft",
+                  "Submitted",
+                  "Approved",
+                  "Rejected"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fromstatus"
+          },
+          "toStatus": {
+            "type": "string",
+            "enum": [
+              "Draft",
+              "Submitted",
+              "Approved",
+              "Rejected"
+            ],
+            "title": "Tostatus"
+          },
+          "comment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "at",
+          "actor",
+          "action",
+          "fromStatus",
+          "toStatus",
+          "comment"
+        ],
+        "title": "AuditEntry"
+      },
+      "Decision": {
+        "properties": {
+          "comment": {
+            "type": "string",
+            "maxLength": 5000,
+            "minLength": 1,
+            "title": "Comment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "comment"
+        ],
+        "title": "Decision"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "ErrorResponse"
+      },
+      "Factor": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "group": {
+            "type": "string",
+            "enum": [
+              "age",
+              "region",
+              "condition"
+            ],
+            "title": "Group"
+          },
+          "levels": {
+            "items": {
+              "$ref": "#/components/schemas/FactorLevel"
+            },
+            "type": "array",
+            "title": "Levels"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "group",
+          "levels"
+        ],
+        "title": "Factor"
+      },
+      "FactorLevel": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value",
+          "label"
+        ],
+        "title": "FactorLevel"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HistogramBucket": {
+        "properties": {
+          "bucket": {
+            "type": "string",
+            "title": "Bucket"
+          },
+          "policies": {
+            "type": "number",
+            "title": "Policies"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bucket",
+          "policies"
+        ],
+        "title": "HistogramBucket"
+      },
+      "Impact": {
+        "properties": {
+          "averageChangePct": {
+            "type": "number",
+            "title": "Averagechangepct"
+          },
+          "histogram": {
+            "items": {
+              "$ref": "#/components/schemas/HistogramBucket"
+            },
+            "type": "array",
+            "title": "Histogram"
+          },
+          "cappedPolicies": {
+            "type": "integer",
+            "title": "Cappedpolicies"
+          },
+          "flooredPolicies": {
+            "type": "integer",
+            "title": "Flooredpolicies"
+          },
+          "projectedAE": {
+            "type": "number",
+            "title": "Projectedae"
+          },
+          "affectedSegments": {
+            "items": {
+              "$ref": "#/components/schemas/AffectedSegment"
+            },
+            "type": "array",
+            "title": "Affectedsegments"
+          }
+        },
+        "type": "object",
+        "required": [
+          "averageChangePct",
+          "histogram",
+          "cappedPolicies",
+          "flooredPolicies",
+          "projectedAE",
+          "affectedSegments"
+        ],
+        "title": "Impact"
+      },
+      "ImpactRequest": {
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/ScenarioParams"
+          }
+        },
+        "type": "object",
+        "required": [
+          "params"
+        ],
+        "title": "ImpactRequest"
+      },
+      "LoginRequest": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "Analyst",
+              "Reviewer"
+            ],
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "role"
+        ],
+        "title": "LoginRequest"
+      },
+      "LoginResponse": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "title": "Token"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token",
+          "user"
+        ],
+        "title": "LoginResponse"
+      },
+      "ModelInfo": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "dataYears": {
+            "type": "string",
+            "title": "Datayears"
+          },
+          "trend": {
+            "type": "number",
+            "title": "Trend"
+          },
+          "rebase": {
+            "type": "number",
+            "title": "Rebase"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/Validation"
+          },
+          "baseRate": {
+            "type": "number",
+            "title": "Baserate"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          },
+          "scalingNote": {
+            "type": "string",
+            "title": "Scalingnote"
+          },
+          "illustrativeLabel": {
+            "type": "string",
+            "title": "Illustrativelabel"
+          },
+          "factors": {
+            "items": {
+              "$ref": "#/components/schemas/Factor"
+            },
+            "type": "array",
+            "title": "Factors"
+          },
+          "headlineAE": {
+            "type": "number",
+            "title": "Headlineae"
+          },
+          "recalibrationFlagCount": {
+            "type": "integer",
+            "title": "Recalibrationflagcount"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "date",
+          "dataYears",
+          "trend",
+          "rebase",
+          "validation",
+          "baseRate",
+          "currency",
+          "scalingNote",
+          "illustrativeLabel",
+          "factors",
+          "headlineAE",
+          "recalibrationFlagCount"
+        ],
+        "title": "ModelInfo"
+      },
+      "Monitoring": {
+        "properties": {
+          "ae": {
+            "items": {
+              "$ref": "#/components/schemas/AERow"
+            },
+            "type": "array",
+            "title": "Ae"
+          },
+          "psi": {
+            "items": {
+              "$ref": "#/components/schemas/PSIRow"
+            },
+            "type": "array",
+            "title": "Psi"
+          },
+          "flags": {
+            "items": {
+              "$ref": "#/components/schemas/MonitoringFlag"
+            },
+            "type": "array",
+            "title": "Flags"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ae",
+          "psi",
+          "flags"
+        ],
+        "title": "Monitoring"
+      },
+      "MonitoringFlag": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "segment": {
+            "type": "string",
+            "title": "Segment"
+          },
+          "ae": {
+            "type": "number",
+            "title": "Ae"
+          },
+          "exposure": {
+            "type": "number",
+            "title": "Exposure"
+          },
+          "gapType": {
+            "type": "string",
+            "enum": [
+              "level shift",
+              "change in shape"
+            ],
+            "title": "Gaptype"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "segment",
+          "ae",
+          "exposure",
+          "gapType",
+          "note"
+        ],
+        "title": "MonitoringFlag"
+      },
+      "PSIRow": {
+        "properties": {
+          "factor": {
+            "type": "string",
+            "title": "Factor"
+          },
+          "period": {
+            "type": "string",
+            "title": "Period"
+          },
+          "psi": {
+            "type": "number",
+            "title": "Psi"
+          }
+        },
+        "type": "object",
+        "required": [
+          "factor",
+          "period",
+          "psi"
+        ],
+        "title": "PSIRow"
+      },
+      "QuoteRequest": {
+        "properties": {
+          "age": {
+            "type": "number",
+            "title": "Age"
+          },
+          "selections": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Selections",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "age"
+        ],
+        "title": "QuoteRequest"
+      },
+      "QuoteResponse": {
+        "properties": {
+          "baseRate": {
+            "type": "number",
+            "title": "Baserate"
+          },
+          "steps": {
+            "items": {
+              "$ref": "#/components/schemas/QuoteStep"
+            },
+            "type": "array",
+            "title": "Steps"
+          },
+          "riskPremium": {
+            "type": "number",
+            "title": "Riskpremium"
+          },
+          "illustrativeLabel": {
+            "type": "string",
+            "title": "Illustrativelabel"
+          },
+          "modelVersion": {
+            "type": "string",
+            "title": "Modelversion"
+          }
+        },
+        "type": "object",
+        "required": [
+          "baseRate",
+          "steps",
+          "riskPremium",
+          "illustrativeLabel",
+          "modelVersion"
+        ],
+        "title": "QuoteResponse"
+      },
+      "QuoteStep": {
+        "properties": {
+          "factor": {
+            "type": "string",
+            "title": "Factor"
+          },
+          "level": {
+            "type": "string",
+            "title": "Level"
+          },
+          "relativity": {
+            "type": "number",
+            "title": "Relativity"
+          },
+          "runningAmount": {
+            "type": "number",
+            "title": "Runningamount"
+          }
+        },
+        "type": "object",
+        "required": [
+          "factor",
+          "level",
+          "relativity",
+          "runningAmount"
+        ],
+        "title": "QuoteStep"
+      },
+      "Relativity": {
+        "properties": {
+          "factor": {
+            "type": "string",
+            "title": "Factor"
+          },
+          "level": {
+            "type": "string",
+            "title": "Level"
+          },
+          "relativity": {
+            "type": "number",
+            "title": "Relativity"
+          },
+          "exposure": {
+            "type": "number",
+            "title": "Exposure"
+          },
+          "lower": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lower"
+          },
+          "upper": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Upper"
+          }
+        },
+        "type": "object",
+        "required": [
+          "factor",
+          "level",
+          "relativity",
+          "exposure",
+          "lower",
+          "upper"
+        ],
+        "title": "Relativity"
+      },
+      "RelativityChange": {
+        "properties": {
+          "factor": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1,
+            "title": "Factor"
+          },
+          "level": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1,
+            "title": "Level"
+          },
+          "newRelativity": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Newrelativity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "factor",
+          "level",
+          "newRelativity"
+        ],
+        "title": "RelativityChange"
+      },
+      "Scenario": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Draft",
+              "Submitted",
+              "Approved",
+              "Rejected"
+            ],
+            "title": "Status"
+          },
+          "author": {
+            "type": "string",
+            "title": "Author"
+          },
+          "updatedAt": {
+            "type": "string",
+            "title": "Updatedat"
+          },
+          "params": {
+            "$ref": "#/components/schemas/ScenarioParams"
+          },
+          "rationale": {
+            "type": "string",
+            "title": "Rationale"
+          },
+          "impact": {
+            "$ref": "#/components/schemas/Impact"
+          },
+          "reviewComment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reviewcomment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "status",
+          "author",
+          "updatedAt",
+          "params",
+          "rationale",
+          "impact",
+          "reviewComment"
+        ],
+        "title": "Scenario"
+      },
+      "ScenarioInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "rationale": {
+            "type": "string",
+            "maxLength": 10000,
+            "title": "Rationale",
+            "default": ""
+          },
+          "params": {
+            "$ref": "#/components/schemas/ScenarioParams"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "params"
+        ],
+        "title": "ScenarioInput"
+      },
+      "ScenarioParams": {
+        "properties": {
+          "baseRateChangePct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": -50.0,
+            "title": "Baseratechangepct"
+          },
+          "relativityChanges": {
+            "items": {
+              "$ref": "#/components/schemas/RelativityChange"
+            },
+            "type": "array",
+            "maxItems": 200,
+            "title": "Relativitychanges",
+            "default": []
+          },
+          "capPct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Cappct",
+            "description": "Maximum individual increase, %"
+          },
+          "floorPct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Floorpct",
+            "description": "Maximum individual decrease, % (positive number)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "baseRateChangePct",
+          "capPct",
+          "floorPct"
+        ],
+        "title": "ScenarioParams"
+      },
+      "ScenarioSummary": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Draft",
+              "Submitted",
+              "Approved",
+              "Rejected"
+            ],
+            "title": "Status"
+          },
+          "author": {
+            "type": "string",
+            "title": "Author"
+          },
+          "updatedAt": {
+            "type": "string",
+            "title": "Updatedat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "status",
+          "author",
+          "updatedAt"
+        ],
+        "title": "ScenarioSummary"
+      },
+      "User": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Analyst",
+              "Reviewer"
+            ],
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "role"
+        ],
+        "title": "User"
+      },
+      "Validation": {
+        "properties": {
+          "deviance": {
+            "type": "number",
+            "title": "Deviance"
+          },
+          "gini": {
+            "type": "number",
+            "title": "Gini"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deviance",
+          "gini"
+        ],
+        "title": "Validation"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "ValidationErrorResponse": {
+        "properties": {
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ValidationProblem"
+                },
+                "type": "array"
+              }
+            ],
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "ValidationErrorResponse",
+        "description": "422: a message when a rule rejects the input, or a list of problems when the request shape is wrong."
+      },
+      "ValidationProblem": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Loc"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Msg"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationProblem"
+      }
+    }
+  }
+}
