@@ -93,5 +93,27 @@ class ImpactEndpointTest(unittest.TestCase):
             self.assertEqual(down.get("/api/scenarios")[1], [])
 
 
+class OlderPricingServiceTest(unittest.TestCase):
+    def test_service_without_proposed_fields_gives_502_not_500(self) -> None:
+        from fastapi import FastAPI
+
+        from tests.pricing_mock.server import running
+
+        plain = FastAPI()
+
+        @plain.get("/relativities")
+        def relativities() -> dict:
+            return json.loads((Path(__file__).parent / "pricing_mock" / "fixtures" / "relativities.json").read_text())
+
+        @plain.post("/scenario-impact")
+        def impact(body: dict) -> dict:
+            return {"model_version": "v1", "totals": {"change_pct": 0.0}, "dislocation": []}  # published v1 shape
+
+        with running(plain) as url, Stack(pricing_url=url) as stack:
+            status, body = stack.post("/api/scenarios/impact", {"params": ZERO_PARAMS})
+            self.assertEqual((status, body["detail"]), (502, "Pricing service unavailable"))
+            self.assertEqual(stack.get("/api/model")[0], 502)  # no GET /model on the older image
+
+
 if __name__ == "__main__":
     unittest.main()

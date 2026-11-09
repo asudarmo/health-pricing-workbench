@@ -25,6 +25,8 @@ class PricingClient:
             with urllib.request.urlopen(request, timeout=self.timeout) as response:
                 return json.load(response)
         except urllib.error.HTTPError as error:
+            if error.code == 404:  # the endpoint itself is missing (older pricing service image)
+                raise PricingUnavailable(f"pricing service has no {path}") from None
             if 400 <= error.code < 500:
                 try:
                     detail = json.load(error).get("detail", "Rejected by the pricing service")

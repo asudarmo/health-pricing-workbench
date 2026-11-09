@@ -6,7 +6,7 @@ Translation only. The pricing service applies the scenario to the in-force book.
 from fastapi import HTTPException
 
 from app import factors as fx
-from app.pricing import PricingClient
+from app.pricing import PricingClient, PricingUnavailable
 
 
 def current_relativities(client: PricingClient) -> dict[tuple[str, str], float]:
@@ -55,4 +55,8 @@ def from_service_response(result: dict) -> dict:
 
 def compute_impact(client: PricingClient, params: dict) -> dict:
     request = to_service_request(params, current_relativities(client) if params["relativityChanges"] else {})
-    return from_service_response(client.scenario_impact(request))
+    result = client.scenario_impact(request)
+    missing = [k for k in ("totals", "dislocation", "histogram", "projected_ae") if k not in result]
+    if missing:  # the published v1 image lacks the proposed fields until the change request is delivered
+        raise PricingUnavailable(f"pricing service response lacks: {', '.join(missing)}")
+    return from_service_response(result)

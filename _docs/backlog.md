@@ -60,7 +60,12 @@ Each task follows `task-template.md`. Dependencies need asking first unless name
 - [ ] Each change writes actor, time, from, to and comment; approve/reject needs a comment
 
 ## 10. Demo seed and reset
-- [ ] Seed command creates 2 users and 4 scenarios, one per status, idempotent
+- [ ] `python -m app.seed` creates the 2 fixed demo users (Demo Analyst, Demo Reviewer) and 4 scenarios, one per status:
+  Draft "60+ level shift uplift", Submitted "Trend refresh +1.9%", Approved "Cancer loading +5%", Rejected
+  "Base +8% with a wide cap". Authors and audit trails follow the four-eyes rule. Impacts come from the pricing service.
+- [ ] Idempotent: running it twice creates nothing new
+- [ ] `python -m app.seed --reset` deletes all scenarios and audit entries, then loads the four seeds (manual, VM)
+- No sign-up, no admin role, no AI-authored draft.
 - [ ] Runs from a documented command; no real credentials
 
 ## 11. Wire the frontend to the backend
@@ -82,6 +87,8 @@ Each task follows `task-template.md`. Dependencies need asking first unless name
 - [ ] `deploy/` holds compose override, Caddyfile, swap setup script, runbook
 - [ ] HTTPS on an sslip.io hostname; budget alert £1 created
 - [ ] Costs recorded in `decisions.md`; demo logins work from another network
+- [ ] Nightly cron job on the VM: if no scenario, by any author, is in Submitted status, add one new copy of the Submitted seed scenario. It never modifies or deletes existing scenarios. Tested both ways (none Submitted, one Submitted)
+- [ ] Full reset is the manual command `python -m app.seed --reset`, run by the owner on the VM; documented in the runbook
 
 ## 15. CI/CD (target 2 of 3 points)
 - [ ] GitHub Actions run the Task 12 command on every pull request
@@ -114,3 +121,6 @@ Each task follows `task-template.md`. Dependencies need asking first unless name
 ## 20. README and course write-up
 - [ ] Problem description, relation to modelling project, one-command run, screenshots
 - [ ] Each course requirement in `plan.md` mapped to evidence
+- [ ] README documents the nightly Submitted top-up and the manual full reset
+- [ ] README walkthrough: log in as Analyst, create and submit a scenario, log in as Reviewer, approve it
+- [ ] README keeps the Limitations section (demo-only authentication, single sign-on route)

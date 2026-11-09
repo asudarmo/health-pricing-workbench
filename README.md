@@ -15,3 +15,10 @@ It is the capstone for the DataTalksClub AI Dev Tools Zoomcamp.
   generated with Lovable and imported into `frontend/`.
 
 See `_docs/plan.md` for the scope.
+
+## Limitations
+
+- **Authentication is demo-only.** There are two fixed logins (Analyst and Reviewer) and no passwords. There is
+  no sign-up and no admin role. A production deployment would replace this with company single sign-on (for
+  example OIDC with Entra ID or Okta), mapping identity-provider groups to the Analyst and Reviewer roles. That
+  needs a login flow and token validation in the backend. The role checks and the audit trail stay as they are.

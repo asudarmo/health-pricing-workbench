@@ -23,6 +23,8 @@ Frontend (`frontend/`, Node 26): `npm install`, `npm run build` (static SPA in `
 Backend (`backend/`, Python 3.12, venv in `backend/.venv`): from `backend/`, `python -m unittest discover -s tests -t .`;
 `alembic upgrade head`; `uvicorn app.main:app`. Settings come from environment variables (`DATABASE_URL`, `JWT_SECRET`,
 `PRICING_SERVICE_URL`). Docker: `docker build -t hpw-backend backend`.
+Demo data: `python -m app.seed` (adds what is missing), `python -m app.seed --reset` (deletes ALL scenarios, reloads
+the four seeds; needs the pricing service with the proposed contract, so mock-only until task 19).
 Pricing mock: `backend/tests/pricing_mock/` (recorded from the published image; re-record with
 `backend/tools/record_fixtures.py <url>`). Fields marked proposed are not in the published image.
 

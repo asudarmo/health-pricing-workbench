@@ -53,6 +53,7 @@ class Stack:
         self.stack = ExitStack()
         folder = self.stack.enter_context(tempfile.TemporaryDirectory(ignore_cleanup_errors=True))
         pricing = self.pricing_url or self.stack.enter_context(running(create_mock_app()))
+        self.pricing = pricing
         settings = Settings(database_url=migrated_url(folder), pricing_service_url=pricing, jwt_secret=SECRET)
         self.app = create_app(settings)
         self.stack.callback(self.app.state.engine.dispose)

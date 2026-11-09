@@ -16,3 +16,12 @@
 - **Open questions:** Any signed-in user can edit a Draft (the plan does not limit edits to the author). Scenario
   `impact` is null until task 8 wires it into save. `/api/model` and `/api/monitoring` rely on the proposed
   pricing-service `GET /model`.
+
+## 2026-11-09 - Session 2
+
+- **Done:** Tasks 8 and 9 QA passed (two rounds for 9) and closed. Task 10 (demo seed) done. README Limitations
+  section added. Backlog and issues 10, 14, 20 updated (nightly Submitted top-up, manual reset, README walkthrough).
+- **Next:** Task 2 (OpenAPI), 13 (local compose), 11 (wire the frontend).
+- **Open questions:** The published pricing image lacks the proposed fields, so `/api/scenarios/impact`, saving
+  scenarios and the seed work against the mock only (clean 502 against v1). Task 19 and the change request decide
+  when this ends. "Capped lives" counts cells, not policies.

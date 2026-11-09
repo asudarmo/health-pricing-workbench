@@ -67,7 +67,13 @@ def main() -> None:
         sum(r["expected"] for r in monitoring["ae"] if r["segment"] == "all"), 1e-9
     )
     scenarios = []
+    age60 = [{"factor": "age", "level": lv, "change": 0.12} for lv in ("60-64", "65-69", "70-74", "75-79", "80+")]
     requests = [
+        # The four demo seed scenarios (app/seed.py): their impact is computed at seed time.
+        {"base_change": 0.0, "relativity_changes": age60, "cap": 0.15, "floor": -0.1, "include_cells": False},
+        {"base_change": 0.019, "relativity_changes": [], "cap": 0.1, "floor": -0.05, "include_cells": False},
+        {"base_change": 0.0, "relativity_changes": [{"factor": "CANCERDX", "level": "1", "change": 0.05}], "cap": 0.12, "floor": -0.05, "include_cells": False},
+        {"base_change": 0.08, "relativity_changes": [], "cap": 0.5, "floor": 0.0, "include_cells": False},
         # The frontend defaults: no change, cap 15 %, floor 10 %.
         {"base_change": 0.0, "relativity_changes": [], "cap": 0.15, "floor": -0.1, "include_cells": False},
         {"base_change": 0.0, "relativity_changes": [], "cap": None, "floor": None, "include_cells": False},
