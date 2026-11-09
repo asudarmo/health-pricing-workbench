@@ -1,0 +1,14 @@
+# SITE_ADDRESS is ":80" locally. On the VM it is the sslip.io hostname, and Caddy gets the certificate itself.
+{$SITE_ADDRESS::80} {
+	encode gzip
+
+	handle /api/* {
+		reverse_proxy backend:8000
+	}
+
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+}

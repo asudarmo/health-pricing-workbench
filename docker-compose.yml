@@ -1,0 +1,32 @@
+# Local stack: docker compose up --build   (then open http://localhost:8080)
+# Only Caddy is published. The backend and the pricing service are reachable on the compose network only.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.web
+    ports:
+      - "8080:80"
+    environment:
+      SITE_ADDRESS: ":80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  backend:
+    build: backend
+    environment:
+      DATABASE_URL: sqlite:////data/workbench.db
+      PRICING_SERVICE_URL: http://pricing:8000
+      # Local demo only. Set a real value in .env for anything shared.
+      JWT_SECRET: ${JWT_SECRET:-local-demo-secret-change-me-0123456789}
+    volumes:
+      - workbench-data:/data
+    depends_on:
+      - pricing
+
+  pricing:
+    image: ${PRICING_IMAGE:-ghcr.io/asudarmo/health-pricing-meps:v1}
+
+volumes:
+  workbench-data:

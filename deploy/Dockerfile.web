@@ -1,0 +1,13 @@
+# Web image: builds the static SPA, then serves it with Caddy. Build from the repo root.
+FROM node:26-slim AS build
+WORKDIR /app
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci
+COPY frontend/ ./
+ENV VITE_USE_MOCKS=false
+ENV NODE_OPTIONS=--dns-result-order=ipv4first
+RUN npm run build
+
+FROM caddy:2
+COPY --from=build /app/dist/client /srv
+COPY deploy/Caddyfile /etc/caddy/Caddyfile

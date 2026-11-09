@@ -28,6 +28,9 @@ response model; a backend test fails if it is stale). `npm run check:contract` i
 `src/api/types.ts` or `client.ts` drift.
 Demo data: `python -m app.seed` (adds what is missing), `python -m app.seed --reset` (deletes ALL scenarios, reloads
 the four seeds; needs the pricing service with the proposed contract, so mock-only until task 19).
+Local stack: `docker compose up --build` (needs Docker), then open http://localhost:8080. Only Caddy is published; the backend
+and the published pricing image are on the compose network. SQLite lives in the `workbench-data` volume. `docker compose down -v`
+deletes it. Until task 19, `/api/model`, `/api/monitoring` and impact calls return 502 against the published image.
 Pricing mock: `backend/tests/pricing_mock/` (recorded from the published image; re-record with
 `backend/tools/record_fixtures.py <url>`). Fields marked proposed are not in the published image.
 
