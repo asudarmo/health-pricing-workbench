@@ -1,4 +1,4 @@
-# Health Pricing Workbench — MVP Scope
+# Health Pricing Workbench: MVP Scope
 
 Phase 2 of the health pricing project (AI Dev Tools Zoomcamp capstone, due 16 Nov 2026).
 Copy this file to `_docs/plan.md` when bootstrapping the app repo. Phase 1 (modelling) is described in
@@ -121,7 +121,7 @@ service being awake.
 
 ### Approved scenarios are immutable
 
-**Decision:** Scenarios are editable while Draft. Once Submitted they are locked; Approved or Rejected
+**Decision:** Scenarios are editable while Draft. Once Submitted they are locked. Approved or Rejected
 scenarios cannot change. A change after rejection means a new scenario.
 
 **Why:** Pricing decisions need an audit trail of what was proposed, by whom, and what was approved.
@@ -156,7 +156,7 @@ and raises data questions.
 **Decision:** Premiums are shown in illustrative £, scaled from relativities to a stated UK base rate
 assumption. Every premium screen shows a banner saying so.
 
-**Why:** The model is fitted on US data. Relativities transfer; dollar levels do not.
+**Why:** The model is fitted on US data. Relativities transfer. Dollar levels do not.
 
 **Alternative considered:** Showing relativities only. Honest, but a quote calculator without a premium
 is hard to use.
@@ -285,12 +285,12 @@ Source: https://github.com/DataTalksClub/ai-dev-tools-zoomcamp/tree/main/project
 | 2 | Product specification | 2 | Spec, public task tracker, acceptance criteria, evidence agents used the tracker | `plan.md`, GitHub issues, self-check comment on each issue |
 | 3 | Agent team specification | 2 | Agent team and how it works together | `process.md` (Engineer, QA), Task 20 |
 | 4 | Context management | 2 | `AGENTS.md` pointing to modular docs | `AGENTS.md`, `_docs/` |
-| 5 | Application | 2 | Frontend, backend, database end to end; runs locally with one command | Tasks 4 to 11, 13 |
+| 5 | Application | 2 | Frontend, backend, database end to end · runs locally with one command | Tasks 4 to 11, 13 |
 | 6 | Testing | 2 | Unit and integration tests, one command, passing | Task 12 |
 | 7 | Containerisation | 2 | Whole system including database via Docker Compose, one command | Task 13 |
 | 8 | Deployment | 2 | Public URL | Task 14 |
 | 9 | CI/CD | 3 | 1: tests on every PR. 2: plus automatic deploy. 3: plus dev deploy and manual prod deploy | Task 15 (aim for 2) |
-| 10 | Observability | 2 | Metrics, traces and structured logs sharing a trace ID for a key journey; no customer data in telemetry; viewable in a UI | Task 16 |
+| 10 | Observability | 2 | Metrics, traces and structured logs sharing a trace ID for a key journey · no customer data in telemetry · viewable in a UI | Task 16 |
 | 11 | Alerting on user impact | 1 | At least one alert | Task 17 |
 | 12 | On-call agent | 2 | Agent wakes on an alert and fixes the issue (no half marks) | Task 18 (stretch) |
 

@@ -23,13 +23,13 @@ Each task follows `task-template.md`. Dependencies need asking first unless name
 
 ## 4. Backend skeleton, database and migrations
 - Goal: FastAPI app with env config, SQLAlchemy and an Alembic baseline, running in Docker.
-- [ ] `GET /api/health` returns ok; settings read only from environment variables
+- [ ] `GET /api/health` returns ok. Settings read only from environment variables
 - [ ] `alembic upgrade head` creates empty tables for users, scenarios, audit entries on SQLite
-- [ ] Backend Dockerfile builds; one test passes in CI-ready form
+- [ ] Backend Dockerfile builds. One test passes in CI-ready form
 
 ## 5. Auth and roles
 - Goal: Demo Analyst and Reviewer logins issue a signed JWT.
-- [ ] `POST /api/auth/login` returns token and user for both roles; unknown role gives 422
+- [ ] `POST /api/auth/login` returns token and user for both roles. Unknown role gives 422
 - [ ] Reviewer-only endpoint returns 403 for Analyst and 401 without token (test)
 - Constraint: asks before adding a JWT library.
 
@@ -37,27 +37,27 @@ Each task follows `task-template.md`. Dependencies need asking first unless name
 - Goal: Model, relativities, monitoring and quote endpoints pass through the pricing service.
 - [ ] Mapping per `contract-check.md` (selections to flags, `lower_95` to `lower`, running amount)
 - [ ] Quote request with sex, race, income or education is rejected (test)
-- [ ] Pricing service down gives a clear 502; every premium response carries the illustrative label
+- [ ] Pricing service down gives a clear 502. Every premium response carries the illustrative label
 - Gate: none if mock follows the proposed contract.
 
 ## 7. Scenario storage, editing rules and audit table  (QA: yes)
-- Goal: Create, list, read and update scenarios; only Draft is editable.
+- Goal: Create, list, read and update scenarios. Only Draft is editable.
 - [ ] Update of Submitted, Approved or Rejected returns 409 (one test per status)
-- [ ] Create and update write an audit entry; AI-created scenarios always start Draft
+- [ ] Create and update write an audit entry. AI-created scenarios always start Draft
 - [ ] Author and timestamps stored
 
 ## 8. Scenario impact  (QA: yes)
 - Goal: `POST /api/scenarios/impact` returns the impact via the pricing service.
 - [ ] Cap/floor and percent-to-fraction mapping tested (floor 5 % becomes -0.05)
 - [ ] Zero change returns 0 % average change and unchanged book
-- [ ] Response matches Impact type; histogram or percentile fallback per change-request outcome
+- [ ] Response matches Impact type. Histogram or percentile fallback per change-request outcome
 - [ ] Impact on full book returns in under 3 seconds (measured)
 
 ## 9. Submit, approve and reject  (QA: yes)
 - Goal: Status workflow with comments and audit.
-- [ ] Draft to Submitted by Analyst only; Submitted to Approved or Rejected by Reviewer only
+- [ ] Draft to Submitted by Analyst only. Submitted to Approved or Rejected by Reviewer only
 - [ ] Every other transition returns 409 (table-driven test over all 16 pairs)
-- [ ] Each change writes actor, time, from, to and comment; approve/reject needs a comment
+- [ ] Each change writes actor, time, from, to and comment. Approve/reject needs a comment
 
 ## 10. Demo seed and reset
 - [ ] `python -m app.seed` creates the 2 fixed demo users (Demo Analyst, Demo Reviewer) and 4 scenarios, one per status:
@@ -66,52 +66,52 @@ Each task follows `task-template.md`. Dependencies need asking first unless name
 - [ ] Idempotent: running it twice creates nothing new
 - [ ] `python -m app.seed --reset` deletes all scenarios and audit entries, then loads the four seeds (manual, VM)
 - No sign-up, no admin role, no AI-authored draft.
-- [ ] Runs from a documented command; no real credentials
+- [ ] Runs from a documented command. No real credentials
 
 ## 11. Wire the frontend to the backend
 - [ ] `VITE_USE_MOCKS=false` works against local backend through relative `/api`
-- [ ] Each of the 7 MVP steps in `plan.md` can be walked through by hand; checklist recorded
+- [ ] Each of the 7 MVP steps in `plan.md` can be walked through by hand. Checklist recorded
 
 ## 12. Tests: unit, frontend and integration, one command
 - Goal: `make test` (or equivalent) runs all suites and passes.
 - [ ] Backend unit tests (mapping, status transitions) and integration tests (API + SQLite + pricing mock)
 - [ ] Frontend tests (vitest) run in the same command
-- [ ] One command, non-zero exit on any failure; the command is in the README
+- [ ] One command, non-zero exit on any failure. The command is in the README
 - Constraint: asks before adding a test dependency not already present.
 
 ## 13. Local docker-compose
-- [ ] `docker compose up` starts Caddy, backend and published pricing image; SPA loads at localhost
-- [ ] Pricing service not published to host; SQLite on a named volume survives restart
+- [ ] `docker compose up` starts Caddy, backend and published pricing image. SPA loads at localhost
+- [ ] Pricing service not published to host. SQLite on a named volume survives restart
 
 ## 14. Deploy to e2-micro VM
 - [ ] `deploy/` holds compose override, Caddyfile, swap setup script, runbook
-- [ ] HTTPS on an sslip.io hostname; budget alert £1 created
-- [ ] Costs recorded in `decisions.md`; demo logins work from another network
+- [ ] HTTPS on an sslip.io hostname. Budget alert £1 created
+- [ ] Costs recorded in `decisions.md`. Demo logins work from another network
 - [ ] Nightly cron job on the VM: if no scenario, by any author, is in Submitted status, add one new copy of the Submitted seed scenario. It never modifies or deletes existing scenarios. Tested both ways (none Submitted, one Submitted)
-- [ ] Full reset is the manual command `python -m app.seed --reset`, run by the owner on the VM; documented in the runbook
+- [ ] Full reset is the manual command `python -m app.seed --reset`, run by the owner on the VM. Documented in the runbook
 
 ## 15. CI/CD (target 2 of 3 points)
 - [ ] GitHub Actions run the Task 12 command on every pull request
-- [ ] On merge to main, after tests pass, the VM deploys automatically; secrets only in GitHub
-- [ ] Rollback: one documented command redeploys the previous image tag; tested once
+- [ ] On merge to main, after tests pass, the VM deploys automatically. Secrets only in GitHub
+- [ ] Rollback: one documented command redeploys the previous image tag. Tested once
 - [ ] `decisions.md` notes what a dev/prod split would cost on the e2-micro (not built)
 
 ## 16. Observability
 - Goal: Quote and scenario journeys emit metrics, traces and structured logs sharing a trace ID.
-- [ ] OpenTelemetry in the backend; each response carries the trace ID; log lines include it
+- [ ] OpenTelemetry in the backend. Each response carries the trace ID. Log lines include it
 - [ ] A test shows no profile fields, tokens or passwords in logs, spans or metrics
-- [ ] Signals reach the chosen free hosted UI; one trace shown linked to its logs
+- [ ] Signals reach the chosen free hosted UI. One trace shown linked to its logs
 - [ ] Memory with backend and pricing service running stays inside the 1 GB budget (measured)
 - Gate 4: hosted UI choice, see decisions.md. Asks before adding OpenTelemetry packages.
 
 ## 17. Alert on user impact
 - [ ] One alert rule, for example 5xx rate or p95 latency on `/api/quotes`, stored as code or exported config
-- [ ] Alert fired once on purpose and the notification seen; evidence on the issue
+- [ ] Alert fired once on purpose and the notification seen. Evidence on the issue
 
 ## 18. On-call agent (stretch, 2 points, all or nothing)
 - [ ] The alert calls a webhook that starts an agent with the alert details
 - [ ] The agent opens a pull request with a fix for a planted, reproducible fault
-- [ ] A human merges; the agent never deploys or merges itself
+- [ ] A human merges. The agent never deploys or merges itself
 - Only start if tasks 1 to 17 are done.
 
 ## 19. Adopt the new pricing image

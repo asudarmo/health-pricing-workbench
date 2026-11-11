@@ -2,7 +2,7 @@
 
 ## 2026-11-08 - Session 1
 
-- **Done:** Repo set up and pushed (asudarmo/health-pricing-workbench). Lovable UI imported; build verified.
+- **Done:** Repo set up and pushed (asudarmo/health-pricing-workbench). Lovable UI imported. Build verified.
   Contract check and change request for the pricing service. Decisions: DB, auth, hosting, gate 3, rubric scope.
   Plan aligned with the course rubric. 20 issues created. Task 1 (static SPA build) done.
 - **Next:** Tasks 2, 3 and 4 have no dependencies. Start with 4 (backend skeleton) or 3 (pricing mock).
@@ -28,9 +28,9 @@
 
 ## 2026-11-09 Session 2 (continued): tasks 2, 13, 11, 12
 
-- **Done:** task 2 (OpenAPI contract, JSON, drift checks both sides); task 13 (local compose: Caddy + SPA, backend, published
-  pricing image; only port 8080 published; SQLite volume survives restart); task 12 (`python scripts/test.py`); task 11
-  partly (live API walk passes against the stack with the pricing mock; mock override added).
+- **Done:** task 2 (OpenAPI contract, JSON, drift checks both sides). Task 13 (local compose: Caddy + SPA, backend, published
+  pricing image. Only port 8080 published. SQLite volume survives restart). Task 12 (`python scripts/test.py`). Task 11
+  partly (live API walk passes against the stack with the pricing mock. Mock override added).
 - **Next:** user ticks the Screen column in `_docs/walkthrough-checklist.md`, then close #11. Then task 14 (deploy).
 - **Open:** the mock only knows the seeded scenario requests, so new scenarios with other parameters fail in the browser
   until task 19.
