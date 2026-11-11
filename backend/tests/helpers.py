@@ -46,8 +46,9 @@ def migrated_url(folder: str) -> str:
 class Stack:
     """A backend on a migrated temporary database, talking to the pricing mock (or to a given URL)."""
 
-    def __init__(self, pricing_url: str | None = None) -> None:
+    def __init__(self, pricing_url: str | None = None, telemetry=None) -> None:
         self.pricing_url = pricing_url
+        self.telemetry = telemetry
 
     def __enter__(self) -> "Stack":
         self.stack = ExitStack()
@@ -55,7 +56,7 @@ class Stack:
         pricing = self.pricing_url or self.stack.enter_context(running(create_mock_app()))
         self.pricing = pricing
         settings = Settings(database_url=migrated_url(folder), pricing_service_url=pricing, jwt_secret=SECRET)
-        self.app = create_app(settings)
+        self.app = create_app(settings, self.telemetry)
         self.stack.callback(self.app.state.engine.dispose)
         self.base = self.stack.enter_context(running(self.app))
         return self

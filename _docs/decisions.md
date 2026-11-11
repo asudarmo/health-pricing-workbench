@@ -129,3 +129,17 @@
   task 19. A Python script needs no new dependency and works on Windows and Linux.
 - **Alternatives:** a Makefile (not portable to the author's machine). An npm root script (the backend would need a
   wrapper). A Vite dev proxy (does not test the Caddy path).
+
+## 2026-11-11: OpenTelemetry in the backend
+
+- **Decision:** Three OpenTelemetry packages added (sdk, OTLP/HTTP exporter, FastAPI instrumentation), approved by the
+  user. The SQLAlchemy instrumentation package was not kept. It supports SQLAlchemy below 2.1 only and needs greenlet.
+  Traces cover each HTTP request and each pricing-service call. Metrics count quotes, scenario status changes and pricing
+  calls. Logs are JSON lines with the trace and span ID. Every response carries `X-Trace-Id`. Signals are exported over
+  OTLP only when `OTEL_EXPORTER_OTLP_ENDPOINT` is set (with the standard `OTEL_EXPORTER_OTLP_HEADERS`).
+- **Why:** One trace ID links the response, the spans and the log lines. Recording only the method, route template,
+  status and timings keeps customer data out. `tests/test_observability.py` fails if a token, scenario text or a quote
+  profile reaches any span, log line or metric.
+- **Alternatives:** Database spans (blocked by the version limit, low value on SQLite). A collector on the VM (memory).
+- **Measured locally:** backend 64 MiB, pricing mock 36 MiB, web 14 MiB. The real pricing image on the VM is still to
+  be measured (task 14).

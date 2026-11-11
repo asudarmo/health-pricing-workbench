@@ -8,13 +8,18 @@ from app import auth, routes_read, scenarios
 from app.config import Settings, get_settings
 from app.db import make_engine
 from app.pricing import PricingClient
+from app.telemetry import Telemetry, build_providers, instrument, setup_logging
 
 
-def create_app(settings: Settings | None = None) -> FastAPI:
+def create_app(settings: Settings | None = None, telemetry: Telemetry | None = None) -> FastAPI:
+    """Tests pass their own Telemetry (in-memory exporters). The real app builds it from OTEL_* variables."""
+    if telemetry is None:
+        telemetry = build_providers()
+        setup_logging(telemetry)
     app = FastAPI(title="Health Pricing Workbench API", version="0.1.0")
     app.state.settings = settings or get_settings()
     app.state.engine = make_engine(app.state.settings.database_url)
-    app.state.pricing = PricingClient(app.state.settings.pricing_service_url)
+    app.state.pricing = PricingClient(app.state.settings.pricing_service_url, telemetry=telemetry)
     app.include_router(auth.router)
     app.include_router(routes_read.router)
     app.include_router(scenarios.router)
@@ -29,6 +34,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def health() -> dict:
         return {"status": "ok"}
 
+    instrument(app, telemetry)
     return app
 
 

@@ -4,3 +4,7 @@ uvicorn==0.54.0
 sqlalchemy==2.1.8
 alembic==1.20.1
 pyjwt==2.15.1
+# Observability (OpenTelemetry), approved 11 Nov 2026
+opentelemetry-sdk==1.45.2
+opentelemetry-exporter-otlp-proto-http==1.45.2
+opentelemetry-instrumentation-fastapi==0.66b2
