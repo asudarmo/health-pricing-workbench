@@ -12,12 +12,12 @@ Step 7 of `plan.md` (AI assistant) moved to Future to-do, so there are six MVP s
 | Step | What to check | API | Screen |
 |---|---|---|---|
 | 1 Model version | Model id, data years, trend, base rate and the illustrative-premium banner show on Home | pass | |
-| 2 Quote | Age, region and seven conditions give a risk premium with factor-by-factor steps; no sex input; banner shown | pass | |
+| 2 Quote | Age, region and seven conditions give a risk premium with factor-by-factor steps · no sex input · banner shown | pass | |
 | 3 Factors | Relativities, exposure and intervals for every level | pass | |
 | 4 Monitoring | A/E table, PSI and the flagged segments with level shift or shape change | pass | |
 | 5 Scenario | Create a Draft, see impact (average change, histogram, capped and floored, projected A/E), save, edit | pass | |
-| 6 Review | Analyst submits; Reviewer approves or rejects with a comment; same person gets 403; audit trail lists each change; Submitted is read-only | pass | |
-| Auth | Login as Analyst and as Reviewer; reload keeps the session; a bad token returns to login | pass (401) | |
+| 6 Review | Analyst submits · Reviewer approves or rejects with a comment · same person gets 403 · audit trail lists each change · Submitted is read-only | pass | |
+| Auth | Login as Analyst and as Reviewer · reload keeps the session · a bad token returns to login | pass (401) | |
 
 Known: the mock only knows the four seeded scenario requests, so a new scenario with different parameters returns 422
 from the mock ("not recorded"). Against the real pricing service this limit does not exist.

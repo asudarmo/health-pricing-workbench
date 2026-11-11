@@ -10,7 +10,7 @@ Everything here is VM-specific. The app itself reads only environment variables 
 | e2-micro VM in us-west1, us-central1 or us-east1 (730 hours a month free) | free |
 | 30 GB standard persistent disk | free |
 | External IPv4 address | about $0.005 an hour, roughly $3.65 a month |
-| Egress to the internet | first 1 GB a month free from the US regions, then paid; demo traffic is small |
+| Egress to the internet | first 1 GB a month free from the US regions, then paid. Demo traffic is small |
 
 Expect about $3.65 a month, or about $7.30 for the two months to the deadline. Check the current prices before creating
 the VM.
@@ -33,7 +33,7 @@ gcloud compute instances describe hpw --project PROJECT --zone us-central1-a \
   --format="value(networkInterfaces[0].accessConfigs[0].natIP)"
 ```
 
-Budget alert. The budget must use the billing account's currency; if that is not GBP, use the equivalent of £1.
+Budget alert. The budget must use the billing account's currency. If that is not GBP, use the equivalent of £1.
 
 ```
 gcloud billing budgets create --billing-account BILLING_ACCOUNT_ID --display-name hpw-budget \
@@ -65,7 +65,7 @@ The images are public on GHCR, so no login is needed on the VM.
 ## Roll back
 
 Set `IMAGE_TAG` in `deploy/.env` to the previous git SHA, then run `$COMPOSE pull && $COMPOSE up -d`. The database is
-on a volume, so data stays. Migrations only add; if a migration must be undone, restore the database from a backup first.
+on a volume, so data stays. Migrations only add. If a migration must be undone, restore the database from a backup first.
 
 ## Nightly top-up (cron)
 
