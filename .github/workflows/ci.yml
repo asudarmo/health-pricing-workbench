@@ -41,9 +41,11 @@ jobs:
       - uses: actions/checkout@v4
       - run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
       - name: Build and push
+        env:
+          SRC: https://github.com/${{ github.repository }}
         run: |
           for image in backend web; do
-            if [ "$image" = backend ]; then docker build -t ghcr.io/asudarmo/hpw-backend:${GITHUB_SHA} backend
-            else docker build -f deploy/Dockerfile.web -t ghcr.io/asudarmo/hpw-web:${GITHUB_SHA} .; fi
+            if [ "$image" = backend ]; then docker build --label org.opencontainers.image.source=${SRC} -t ghcr.io/asudarmo/hpw-backend:${GITHUB_SHA} backend
+            else docker build --label org.opencontainers.image.source=${SRC} -f deploy/Dockerfile.web -t ghcr.io/asudarmo/hpw-web:${GITHUB_SHA} .; fi
             docker push ghcr.io/asudarmo/hpw-$image:${GITHUB_SHA}
           done
