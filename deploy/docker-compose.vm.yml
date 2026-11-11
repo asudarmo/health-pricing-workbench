@@ -1,0 +1,35 @@
+# VM override. Run from the repo root on the VM:
+#   docker compose -f docker-compose.yml -f docker-compose.mock.yml -f deploy/docker-compose.vm.yml --env-file deploy/.env up -d
+# (drop the mock file once the pricing service delivers the proposed contract, task 19).
+# Images come from GHCR at a pinned tag (IMAGE_TAG), so a rollback is a redeploy of the previous tag.
+services:
+  web:
+    image: ghcr.io/asudarmo/hpw-web:${IMAGE_TAG:?set IMAGE_TAG in deploy/.env}
+    build: !reset null
+    ports: !override
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?set SITE_ADDRESS in deploy/.env}
+    volumes:
+      - caddy-data:/data
+    restart: unless-stopped
+    mem_limit: 128m
+
+  backend:
+    image: ghcr.io/asudarmo/hpw-backend:${IMAGE_TAG}
+    build: !reset null
+    environment:
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in deploy/.env}
+    restart: unless-stopped
+    mem_limit: 256m
+
+  # Mock pricing service (the backend image ships it). Remove this block when the mock override is dropped (task 19).
+  pricing:
+    image: ghcr.io/asudarmo/hpw-backend:${IMAGE_TAG}
+    build: !reset null
+    restart: unless-stopped
+    mem_limit: 384m
+
+volumes:
+  caddy-data:

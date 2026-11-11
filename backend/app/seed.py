@@ -2,6 +2,8 @@
 
     python -m app.seed            add what is missing (safe to run twice)
     python -m app.seed --reset    delete ALL scenarios and audit entries, then load the four seeds
+    python -m app.seed --top-up   if no scenario (by any author) is Submitted, add one copy of the Submitted seed.
+                                  Only ever inserts: existing scenarios are never changed or deleted. Run nightly.
 
 Impacts come from the pricing service, so it must be reachable. Authors and audit trails follow the four-eyes
 rule: the Analyst creates and submits, the Reviewer decides. The text is illustrative demo data.
@@ -142,9 +144,27 @@ def seed(db: Session, client: PricingClient, reset: bool = False, now: datetime 
     return added
 
 
+def top_up(db: Session, client: PricingClient, now: datetime | None = None) -> str | None:
+    """Add one copy of the Submitted seed when nothing is waiting for review. Returns its name, or None."""
+    now = now or datetime.now(timezone.utc)
+    if db.scalar(select(Scenario.id).where(Scenario.status == "Submitted").limit(1)) is not None:
+        return None
+    ensure_users(db)
+    base = next(s for s in SEEDS if s["status"] == "Submitted")
+    copy = {**base, "name": f"{base['name']} (demo copy {now:%Y-%m-%d})", "days_ago": 0}
+    add_scenario(db, client, copy, current_relativities(client), now)
+    db.commit()
+    return copy["name"]
+
+
 def main() -> None:
     settings = get_settings()
     engine = make_engine(settings.database_url)
+    if "--top-up" in sys.argv:
+        with Session(engine) as db:
+            name = top_up(db, PricingClient(settings.pricing_service_url))
+        print(f"Added: {name}" if name else "A scenario is already Submitted: nothing added.")
+        return
     with Session(engine) as db:
         added = seed(db, PricingClient(settings.pricing_service_url), reset="--reset" in sys.argv)
     print(f"Added {len(added)} scenario(s): {', '.join(added) or 'none (already seeded)'}")

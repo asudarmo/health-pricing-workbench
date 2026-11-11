@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from app.models import AuditEntry, Scenario, User
 from app.pricing import PricingClient
-from app.seed import SEEDS, seed
+from app.seed import SEEDS, seed, top_up
 from tests.helpers import Stack
 from tests.test_scenarios import BODY
 
@@ -78,6 +78,49 @@ class SeedTest(unittest.TestCase):
         self.assertNotIn("To be deleted", names)
         # no audit entries left over from deleted scenarios: 1 + 2 + 3 + 3
         self.assertEqual(self.count(AuditEntry), 9)
+
+
+class TopUpTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.stack = Stack().__enter__()
+        self.addCleanup(self.stack.__exit__, None, None, None)
+        self.client = PricingClient(self.stack.pricing)
+
+    def rows(self) -> list[tuple]:
+        with Session(self.stack.app.state.engine) as db:
+            return sorted((r.id, r.name, r.status, r.updated_at) for r in db.scalars(select(Scenario)))
+
+    def top_up(self):
+        with Session(self.stack.app.state.engine) as db:
+            return top_up(db, self.client)
+
+    def test_adds_one_submitted_copy_when_none_is_submitted(self) -> None:
+        with Session(self.stack.app.state.engine) as db:
+            seed(db, self.client)
+        # Move the Submitted seed out of Submitted by approving it as the Reviewer.
+        sid = next(r["id"] for r in self.stack.get("/api/scenarios")[1] if r["status"] == "Submitted")
+        with Session(self.stack.app.state.engine) as db:
+            db.get(Scenario, int(sid.removeprefix("sc-"))).status = "Approved"
+            db.commit()
+        before = self.rows()
+        name = self.top_up()
+        after = self.rows()
+        self.assertIn("demo copy", name)
+        self.assertEqual(len(after), len(before) + 1)
+        self.assertEqual([r for r in after if r[0] in {b[0] for b in before}], before)  # nothing existing changed
+        self.assertEqual([r[2] for r in after if r[1] == name], ["Submitted"])
+
+    def test_adds_nothing_when_any_scenario_is_submitted(self) -> None:
+        with Session(self.stack.app.state.engine) as db:
+            seed(db, self.client)
+        before = self.rows()
+        self.assertIsNone(self.top_up())
+        self.assertEqual(self.rows(), before)
+
+    def test_works_on_an_empty_database(self) -> None:
+        self.assertIsNotNone(self.top_up())
+        self.assertEqual([r[2] for r in self.rows()], ["Submitted"])
+        self.assertIsNone(self.top_up())  # now one is Submitted
 
 
 if __name__ == "__main__":

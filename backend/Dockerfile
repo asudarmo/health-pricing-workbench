@@ -12,6 +12,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY alembic.ini .
 COPY app app
 COPY migrations migrations
+# The pricing mock ships in the image so a demo can run before the pricing service delivers the proposed contract (task 19).
+COPY tests/__init__.py tests/__init__.py
+COPY tests/pricing_mock tests/pricing_mock
 
 RUN useradd --create-home --uid 10002 backend && mkdir /data && chown backend /data
 USER backend
