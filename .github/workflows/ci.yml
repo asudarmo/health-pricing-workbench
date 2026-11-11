@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "26"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: pip install -r backend/requirements.txt
+      - run: npm ci
+        working-directory: frontend
+      # The same command as on a laptop: backend tests, frontend tests, API contract check.
+      - run: python scripts/test.py
+
+  images:
+    # On merge to main, after the tests pass: build both images and push them to GHCR, tagged with the git SHA.
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+      - name: Build and push
+        run: |
+          for image in backend web; do
+            if [ "$image" = backend ]; then docker build -t ghcr.io/asudarmo/hpw-backend:${GITHUB_SHA} backend
+            else docker build -f deploy/Dockerfile.web -t ghcr.io/asudarmo/hpw-web:${GITHUB_SHA} .; fi
+            docker push ghcr.io/asudarmo/hpw-$image:${GITHUB_SHA}
+          done
