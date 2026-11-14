@@ -33,28 +33,4 @@ services:
     mem_limit: 384m
 
 volumes:
-      - caddy-data:/data
-    restart: unless-stopped
-    mem_limit: 128m
-
-  backend:
-    image: ghcr.io/asudarmo/hpw-backend:${IMAGE_TAG}
-    build: !reset null
-    environment:
-      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in deploy/.env}
-      OTEL_EXPORTER_OTLP_PROTOCOL: ${OTEL_EXPORTER_OTLP_PROTOCOL:-http/protobuf}
-      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
-      OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS:-}
-      OTEL_RESOURCE_ATTRIBUTES: ${OTEL_RESOURCE_ATTRIBUTES:-}
-    restart: unless-stopped
-    mem_limit: 256m
-
-  # Mock pricing service (the backend image ships it). Remove this block when the mock override is dropped (task 19).
-  pricing:
-    image: ghcr.io/asudarmo/hpw-backend:${IMAGE_TAG}
-    build: !reset null
-    restart: unless-stopped
-    mem_limit: 384m
-
-volumes:
   caddy-data:
