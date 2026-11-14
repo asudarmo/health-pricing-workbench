@@ -1,9 +1,11 @@
+import type { ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { AlertTriangle } from "lucide-react";
 import { api } from "@/api/client";
 import { PageHeader, PremiumBanner } from "@/components/app-shell";
+import { byExposure, FlagCard } from "@/components/flag-list";
 import { SectionCard, StatusBadge } from "@/components/scenario-parts";
+import { Term } from "@/components/term";
 import { fmtDate, fmtGBP0, fmtNum } from "@/lib/format";
 import { useSession } from "@/lib/session";
 
@@ -19,7 +21,7 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-function Stat({ label, value, sub }: { label: string; value: string; sub?: string | undefined }) {
+function Stat({ label, value, sub }: { label: ReactNode; value: string; sub?: ReactNode }) {
   return (
     <div className="rounded-md border bg-card px-4 py-3">
       <div className="text-xs text-muted-foreground">{label}</div>
@@ -43,30 +45,26 @@ function HomePage() {
       <PremiumBanner />
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Stat label="Active model" value={m ? m.id : "…"} sub={m ? `Fitted ${fmtDate(m.date)} · data ${m.dataYears}` : undefined} />
-        <Stat label="Base rate (reference profile)" value={m ? fmtGBP0(m.baseRate) : "…"} sub="Book average about £576" />
-        <Stat label="Gini" value={m ? m.validation.gini.toFixed(3) : "…"} sub={m ? `Deviance ${fmtNum(m.validation.deviance)}` : undefined} />
-        <Stat label="Headline A/E" value={m ? m.headlineAE.toFixed(2) : "…"} sub={m ? `Trend ${m.trend} · rebase ${m.rebase}` : undefined} />
+        <Stat label={<Term k="baseRate">Base rate</Term>} value={m ? fmtGBP0(m.baseRate) : "…"} sub={<>For the reference profile. <Term k="bookAverage">Book average</Term> about £576</>} />
+        <Stat label={<Term k="gini">Gini</Term>} value={m ? m.validation.gini.toFixed(3) : "…"} sub={m ? <><Term k="deviance">Deviance</Term> {fmtNum(m.validation.deviance)}. Higher Gini is better</> : undefined} />
+        <Stat label={<Term k="headlineAE">Headline A/E</Term>} value={m ? m.headlineAE.toFixed(2) : "…"} sub={m ? <><Term k="trend">Trend</Term> {m.trend} · <Term k="rebase">rebase</Term> {m.rebase}</> : undefined} />
       </div>
-      {m && <p className="mt-2 text-xs text-muted-foreground">{m.scalingNote}.</p>}
+      {m && (
+        <p className="mt-2 text-xs text-muted-foreground">
+          {m.scalingNote}. <Term k="abi">What is the ABI?</Term>
+        </p>
+      )}
 
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
         <SectionCard
-          title={`Recalibration flags (${m?.recalibrationFlagCount ?? "…"})`}
-          action={<Link to="/monitoring" className="text-xs text-primary hover:underline">Monitoring</Link>}
+          title={`Largest recalibration flags (top ${Math.min(5, m?.recalibrationFlagCount ?? 5)} of ${m?.recalibrationFlagCount ?? "…"})`}
+          action={<Link to="/monitoring" className="text-xs text-primary hover:underline">View all</Link>}
         >
+          <p className="mb-2 text-xs text-muted-foreground">
+            A <Term k="recalibration">recalibration flag</Term> marks a group whose claims differ clearly from what the model expected. Ranked by exposure.
+          </p>
           <div className="space-y-2">
-            {monitoring.data?.flags.map((f) => (
-              <div key={f.id} className="flex gap-3 rounded-md border border-warning/50 bg-warning/10 p-3 text-sm">
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-warning-foreground" />
-                <div>
-                  <div className="font-medium">
-                    {f.segment}: A/E <span className="num">{f.ae.toFixed(2)}</span> · {f.gapType}
-                  </div>
-                  <div className="text-xs text-muted-foreground">Exposure {fmtNum(f.exposure)} lives</div>
-                  <p className="mt-1 text-sm">{f.note}</p>
-                </div>
-              </div>
-            ))}
+            {monitoring.data && byExposure(monitoring.data.flags).slice(0, 5).map((f) => <FlagCard key={f.id} flag={f} compact />)}
           </div>
         </SectionCard>
         <SectionCard

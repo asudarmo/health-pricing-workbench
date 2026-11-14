@@ -4,6 +4,7 @@ import { Bar, CartesianGrid, ComposedChart, ErrorBar, Line, ResponsiveContainer,
 import { api } from "@/api/client";
 import type { Relativity } from "@/api/types";
 import { PageHeader } from "@/components/app-shell";
+import { Term } from "@/components/term";
 import { SectionCard } from "@/components/scenario-parts";
 import { fmtNum, fmtRel } from "@/lib/format";
 import { useSession } from "@/lib/session";
@@ -27,7 +28,8 @@ function FactorsPage() {
 
   return (
     <div className="mx-auto max-w-7xl">
-      <PageHeader title="Rating factors" description="Relativity with confidence band (line, left axis) and exposure in lives (bars, right axis)." />
+      <PageHeader title="Rating factors" description="How much more or less each level pays than the reference level. The line shows the relativity with its confidence band (left axis) and the bars show exposure in lives (right axis)." />
+      <p className="mb-3 text-xs text-muted-foreground"><Term k="relativity">What is a relativity?</Term> <Term k="exposure">What is exposure?</Term></p>
       <div className="grid gap-4 lg:grid-cols-2">
         {model.data?.factors.map((f) => {
           const rows = (rels.data ?? []).filter((r) => r.factor === f.key);

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "@/api/client";
 import type { Factor, FactorGroup } from "@/api/types";
 import { PageHeader, PremiumBanner } from "@/components/app-shell";
+import { Term } from "@/components/term";
 import { SectionCard, factorLabel } from "@/components/scenario-parts";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -137,13 +138,13 @@ function QuotePage() {
                 <TableRow>
                   <TableHead>Step</TableHead>
                   <TableHead>Level</TableHead>
-                  <TableHead className="text-right">Relativity</TableHead>
+                  <TableHead className="text-right"><Term k="relativity">Relativity</Term></TableHead>
                   <TableHead className="text-right">Running amount</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 <TableRow>
-                  <TableCell className="font-medium">Base rate</TableCell>
+                  <TableCell className="font-medium"><Term k="baseRate">Base rate</Term></TableCell>
                   <TableCell className="text-muted-foreground">Reference profile</TableCell>
                   <TableCell className="num text-right">—</TableCell>
                   <TableCell className="num text-right">{fmtGBP(quote.data.baseRate)}</TableCell>

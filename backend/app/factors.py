@@ -57,3 +57,18 @@ def level_to_service(key: str, level: str) -> str:
     if group == "condition":
         return CONDITION_LEVELS[level]
     return level
+
+
+def segment_label(segment: str) -> str:
+    """Plain wording for a segment named by the pricing service, such as 'HIBPDX 0' or 'age 70-74'."""
+    code, _, level = segment.partition(" ")
+    if segment == "all":
+        return "Whole book"
+    if code not in BY_CODE:
+        return segment
+    definition = BY_CODE[code]
+    if definition.group == "age":
+        return f"Age {level}"
+    if definition.group == "region":
+        return f"Region: {REGION_NAMES.get(level, level)}"
+    return f"{definition.label}: {'Yes' if level == '1' else 'No'}"

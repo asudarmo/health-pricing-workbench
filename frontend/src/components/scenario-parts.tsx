@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import type { AuditEntry, Impact, ModelInfo, ScenarioParams, ScenarioStatus } from "@/api/types";
+import { Term } from "@/components/term";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -28,7 +30,7 @@ export function factorLabel(model: ModelInfo | undefined, factor: string, level?
   return f?.group === "condition" ? `${fl} (${ll.toLowerCase()})` : `${fl}: ${ll}`;
 }
 
-function Metric({ label, value, tone }: { label: string; value: string; tone?: "up" | "down" | undefined }) {
+function Metric({ label, value, tone }: { label: ReactNode; value: string; tone?: "up" | "down" | undefined }) {
   return (
     <div className="rounded-md border bg-card px-3 py-2">
       <div className="text-xs text-muted-foreground">{label}</div>
@@ -46,7 +48,7 @@ export function ImpactView({ impact, loading }: { impact: Impact | undefined; lo
     <div className={`space-y-4 transition-opacity ${loading ? "opacity-60" : ""}`}>
       <div className="grid grid-cols-2 gap-2 xl:grid-cols-4">
         <Metric label="Average premium change" value={fmtPct(impact.averageChangePct, 2)} tone={tone(impact.averageChangePct)} />
-        <Metric label="Projected A/E" value={impact.projectedAE.toFixed(3)} />
+        <Metric label={<Term k="projectedAE">Projected A/E</Term>} value={impact.projectedAE.toFixed(3)} />
         <Metric label="Capped lives" value={fmtNum(impact.cappedPolicies)} />
         <Metric label="Floored lives" value={fmtNum(impact.flooredPolicies)} />
       </div>
@@ -96,8 +98,8 @@ export function ParamsView({
     <div className="space-y-3 text-sm">
       <div className="grid grid-cols-3 gap-2">
         <Metric label="Base rate change" value={fmtPct(params.baseRateChangePct, 1)} />
-        <Metric label="Cap (max increase)" value={`${params.capPct}%`} />
-        <Metric label="Floor (max decrease)" value={`${params.floorPct}%`} />
+        <Metric label={<><Term k="cap">Cap</Term> (max increase)</>} value={`${params.capPct}%`} />
+        <Metric label={<><Term k="floor">Floor</Term> (max decrease)</>} value={`${params.floorPct}%`} />
       </div>
       {params.relativityChanges.length === 0 ? (
         <p className="text-muted-foreground">No relativity changes.</p>

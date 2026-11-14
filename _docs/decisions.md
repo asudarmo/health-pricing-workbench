@@ -171,3 +171,14 @@
 - **Why:** meets the cost and portability rules, and keeps 2 of 3 CI/CD points honest (images and rollback, no separate
   environments).
 - **Alternatives:** second VM for dev (cost). Cloud Run (leaves the free VM plan).
+
+## 2026-11-14: Plain-language help and shorter flag lists
+
+- **Decision:** a glossary (`frontend/src/lib/glossary.ts`) feeds a `Term` component. Tap, click or press Enter on a dotted-underlined term
+  to see what it means and how to read it (for example, higher Gini is better). It covers A/E, headline A/E, base rate, book average, ABI,
+  Gini, deviance, trend, rebase, exposure, relativity, level shift, change in shape, PSI, cap, floor and projected A/E. Home shows the five
+  largest recalibration flags by exposure with a link to all of them. Monitoring groups flags by gap type. The backend turns codes such as
+  `HIBPDX 0` into "High blood pressure: No".
+- **Why:** the reviewers are course peers and laymen. Thirteen amber boxes with codes looked like a fault.
+- **Alternatives:** native `title` tooltips (do not work on touch screens). A separate glossary page (readers would leave the screen).
+  A new tooltip library (not needed, the Radix popover was already installed).

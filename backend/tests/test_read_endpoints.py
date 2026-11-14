@@ -48,6 +48,7 @@ class ReadEndpointsTest(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertEqual(set(mon["ae"][0]), {"factor", "level", "segment", "period", "actual", "expected", "exposure", "ae"})
         self.assertEqual(mon["flags"][0]["gapType"], "level shift")
+        self.assertEqual([f["segment"] for f in mon["flags"]][:5], ["Age 70-74", "Age 80+", "Region: Northeast", "High blood pressure: No", "High blood pressure: Yes"])
         self.assertTrue(mon["psi"])
 
     def test_quote_matches_golden_case_and_steps_multiply_through(self) -> None:

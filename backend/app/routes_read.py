@@ -110,7 +110,7 @@ def get_monitoring(_: CurrentUser = Depends(current_user), client: PricingClient
         "flags": [
             {
                 "id": f"flag-{i}",
-                "segment": f["segment"],
+                "segment": fx.segment_label(f["segment"]),
                 "ae": f["a_e"],
                 "exposure": f["exposure"],
                 "gapType": f["gap_type"],

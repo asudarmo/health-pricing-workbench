@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { AlertTriangle } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { api } from "@/api/client";
 import { PageHeader } from "@/components/app-shell";
+import { byExposure, FlagCard } from "@/components/flag-list";
 import { SectionCard } from "@/components/scenario-parts";
+import { Term } from "@/components/term";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { fmtGBP0, fmtNum } from "@/lib/format";
@@ -65,21 +66,26 @@ function MonitoringPage() {
       <PageHeader title="Monitoring" description="Aggregated experience only. A/E above 1.00 means claims ran higher than expected." />
 
       {mon.data && mon.data.flags.length > 0 && (
-        <div className="mb-4 grid gap-3 md:grid-cols-2">
-          {mon.data.flags.map((f) => (
-            <div key={f.id} className="flex gap-3 rounded-md border border-warning/50 bg-warning/10 p-4">
-              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-warning-foreground" />
-              <div className="text-sm">
-                <div className="font-semibold">Segment {f.segment}</div>
-                <div className="mt-1 flex gap-4">
-                  <span>A/E <span className="num font-semibold">{f.ae.toFixed(2)}</span></span>
-                  <span>Exposure <span className="num">{fmtNum(f.exposure)}</span></span>
-                  <span className="capitalize">{f.gapType}</span>
+        <div className="mb-5 space-y-4">
+          <p className="text-sm text-muted-foreground">
+            {mon.data.flags.length} <Term k="recalibration">recalibration flags</Term> from the pricing service, largest <Term k="exposure">exposure</Term> first.
+          </p>
+          {(["level shift", "change in shape"] as const).map((gap) => {
+            const group = byExposure(mon.data.flags.filter((f) => f.gapType === gap));
+            if (group.length === 0) return null;
+            return (
+              <section key={gap}>
+                <h2 className="mb-2 text-sm font-semibold">
+                  <Term k={gap === "level shift" ? "levelShift" : "changeInShape"}>{gap === "level shift" ? "Level shift" : "Change in shape"}</Term> ({group.length})
+                </h2>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {group.map((f) => (
+                    <FlagCard key={f.id} flag={f} />
+                  ))}
                 </div>
-                <p className="mt-1 text-muted-foreground">{f.note}</p>
-              </div>
-            </div>
-          ))}
+              </section>
+            );
+          })}
         </div>
       )}
 
@@ -113,10 +119,10 @@ function MonitoringPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Level</TableHead>
-                <TableHead className="text-right">Exposure</TableHead>
+                <TableHead className="text-right"><Term k="exposure">Exposure</Term></TableHead>
                 <TableHead className="text-right">Actual</TableHead>
                 <TableHead className="text-right">Expected</TableHead>
-                <TableHead className="text-right">A/E</TableHead>
+                <TableHead className="text-right"><Term k="ae">A/E</Term></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -136,6 +142,9 @@ function MonitoringPage() {
 
       <div className="mt-4 max-w-xl">
         <SectionCard title="Population stability index (PSI)">
+          <p className="mb-2 text-xs text-muted-foreground">
+            <Term k="psi">What does PSI show?</Term>
+          </p>
           <Table>
             <TableHeader>
               <TableRow>
