@@ -37,7 +37,7 @@ Budget alert. The budget must use the billing account's currency. If that is not
 
 ```
 gcloud billing budgets create --billing-account BILLING_ACCOUNT_ID --display-name hpw-budget \
-  --budget-amount 1GBP --threshold-rule percent=0.5 --threshold-rule percent=1.0
+  --budget-amount 1.7SGD --threshold-rule percent=0.5 --threshold-rule percent=1.0
 ```
 
 Email alerts go to the billing account administrators by default.

@@ -155,3 +155,19 @@
   must show. The change request is closed, so the 502 fallback for missing fields stays only as a guard.
 - **Alternatives:** keep the mock on the VM (free-form scenarios would return 422 in front of reviewers). Ask the pricing
   service to match our guess (it was already published).
+
+## 2026-11-14: VM live, memory measured, dev/prod split not built
+
+- **Decision:** one e2-micro VM (`hpw`, us-central1-a, project `dtc-aidev-2026`) runs web, backend and the v1.1 pricing image
+  at https://35-254-148-15.sslip.io. The external IP is kept (about $3.65 a month, approved by the project owner) so
+  reviewers get a stable HTTPS URL. A budget alert of S$1.70 (about 1 GBP) is set at 50 % and 100 %. Rollback is
+  tested: set `IMAGE_TAG` to the previous git SHA, `pull`, `up -d`. I rolled back to the earlier commit and forward
+  again, and `/api/health` returned 200 each time.
+- **Memory, 1 GB VM with 1 GB swap, after seeding and a live walk:** used 656 MB, 312 MB available, swap 14 MB.
+  Containers: web 37 MiB, backend 96 MiB, pricing 85 MiB (about 220 MiB in all).
+- **Dev/prod note:** a second stack would add about 220 MiB and leave about 90 MB free, so it would run on swap. It does not
+  fit comfortably. A dev environment would need a second e2-micro (not free) or a bigger VM (about 10 to 20 USD a month).
+  Not built. Production images are tagged by git SHA, and a dev stack would use the same images with its own `.env`.
+- **Why:** meets the cost and portability rules, and keeps 2 of 3 CI/CD points honest (images and rollback, no separate
+  environments).
+- **Alternatives:** second VM for dev (cost). Cloud Run (leaves the free VM plan).
