@@ -26,7 +26,7 @@ services:
       - pricing
 
   pricing:
-    image: ${PRICING_IMAGE:-ghcr.io/asudarmo/health-pricing-meps:v1}
+    image: ${PRICING_IMAGE:-ghcr.io/asudarmo/health-pricing-meps:v1.1}
 
 volumes:
   workbench-data:

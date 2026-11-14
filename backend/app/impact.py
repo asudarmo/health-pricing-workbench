@@ -36,11 +36,19 @@ def to_service_request(params: dict, current: dict[tuple[str, str], float]) -> d
     }
 
 
+def bucket_label(low: float | None, high: float | None) -> str:
+    if low is None:
+        return f"< {high:g}%"
+    if high is None:
+        return f">= {low:g}%"
+    return f"{low:g}% to {high:g}%"
+
+
 def from_service_response(result: dict) -> dict:
     totals = result["totals"]
     return {
         "averageChangePct": totals["change_pct"],
-        "histogram": [{"bucket": b["bucket"], "policies": round(b["exposure"], 1)} for b in result["histogram"]["buckets"]],
+        "histogram": [{"bucket": bucket_label(b["bucket_low"], b["bucket_high"]), "policies": round(b["exposure"], 1)} for b in result["histogram"]],
         # The service counts rating cells, not policies; shown under the frontend's existing field names.
         "cappedPolicies": totals["cells_capped"],
         "flooredPolicies": totals["cells_floored"],

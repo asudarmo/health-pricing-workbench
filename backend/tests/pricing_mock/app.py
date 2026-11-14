@@ -5,7 +5,6 @@ tools/record_fixtures.py). It holds no rating logic: a profile or scenario it ha
 
 PROPOSED contract (see _docs/contract-check.md): GET /model, and the histogram and projected_ae fields of
 POST /scenario-impact, are not in the published image. Responses carrying them have the header
-X-Proposed-Fields naming them.
 """
 
 import json
@@ -42,7 +41,6 @@ def create_mock_app() -> FastAPI:
 
     @app.get("/model")
     def model(response: Response) -> dict:
-        response.headers["X-Proposed-Fields"] = "all"
         return load("model.json")
 
     @app.get("/relativities")
@@ -84,7 +82,6 @@ def create_mock_app() -> FastAPI:
             raise HTTPException(status_code=422, detail="cap must not be below floor")
         for item in scenarios:
             if {k: item["request"][k] for k in wanted} == wanted:
-                response.headers["X-Proposed-Fields"] = "histogram,projected_ae"
                 return item["response"]
         raise HTTPException(status_code=422, detail="Scenario not recorded in the mock")
 

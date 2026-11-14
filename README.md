@@ -51,7 +51,7 @@ See `_docs/plan.md` for the scope.
 | Auth | Two demo logins that issue signed JWTs (see Limitations) |
 | Contract | `api/openapi.json`, generated from the backend and checked against the frontend client |
 | Serving | Caddy serves the app and proxies `/api` |
-| Pricing | The published image `ghcr.io/asudarmo/health-pricing-meps:v1`, or a mock built from its OpenAPI schema |
+| Pricing | The published image `ghcr.io/asudarmo/health-pricing-meps:v1.1`, or a mock built from its OpenAPI schema |
 
 ## How the agents worked
 
@@ -75,10 +75,9 @@ decision that changed scope, roles, the workflow or the hosting choice.
 docker compose up --build
 ```
 
-Then open http://localhost:8080. Only the web container is published. Until the pricing service delivers the
-proposed contract, add the mock: `docker compose -f docker-compose.yml -f docker-compose.mock.yml up --build`,
-then `docker compose -f docker-compose.yml -f docker-compose.mock.yml exec backend python -m app.seed` to load the
-demo scenarios.
+Then open http://localhost:8080 and run `docker compose exec backend python -m app.seed` to load the demo
+scenarios. Only the web container is published. The stack pulls the pricing service image v1.1. To run offline
+against the recorded mock instead, add `-f docker-compose.mock.yml` to each command.
 
 ## Demo data
 

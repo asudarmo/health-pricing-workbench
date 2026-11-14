@@ -1,5 +1,4 @@
 {
- "_proposed": "GET /model does not exist in the published image. Shape follows _docs/contract-check.md; values are illustrative where marked.",
  "id": "v1",
  "date": "2026-11-05",
  "description": "v1: 2022-fitted multiplicative tariff with a monotone adult age rule",
@@ -10,11 +9,11 @@
  },
  "trend_assumptions": {
   "forecast_trend": 1.019,
+  "rebase": 1.06,
   "forecast_trend_range": [
    1.008,
    1.031
   ],
-  "rebase": 1.06,
   "rebase_range": [
    1.025,
    1.145
@@ -22,107 +21,296 @@
   "rating_level_factor": 1.0801399999999999,
   "note": "v2 refits on pooled years and projects to a rating period"
  },
- "validation_metrics": {
-  "test_split_2022": {
-   "tweedie_deviance": 839170.0134496919,
-   "gini": 0.37630277975785686,
-   "a_e": 1.0809607138112065
-  },
-  "grouped_cross_validation_2022": {
-   "tweedie_deviance": 3085066.7820555493,
-   "gini": 0.4755947216036628
-  },
-  "a_e_2023_after_rating_level": 1.0799250384316228
- },
  "permitted_rating_factors": [
   {
    "factor": "age",
+   "label": "Age band",
    "levels": [
-    "05-14",
-    "00-04",
-    "15-17",
-    "18-24",
-    "25-29",
-    "30-34",
-    "35-39",
-    "40-44",
-    "45-49",
-    "50-54",
-    "55-59",
-    "60-64",
-    "65-69",
-    "70-74",
-    "75-79",
-    "80+"
+    {
+     "level": "05-14",
+     "label": "05-14"
+    },
+    {
+     "level": "00-04",
+     "label": "00-04"
+    },
+    {
+     "level": "15-17",
+     "label": "15-17"
+    },
+    {
+     "level": "18-24",
+     "label": "18-24"
+    },
+    {
+     "level": "25-29",
+     "label": "25-29"
+    },
+    {
+     "level": "30-34",
+     "label": "30-34"
+    },
+    {
+     "level": "35-39",
+     "label": "35-39"
+    },
+    {
+     "level": "40-44",
+     "label": "40-44"
+    },
+    {
+     "level": "45-49",
+     "label": "45-49"
+    },
+    {
+     "level": "50-54",
+     "label": "50-54"
+    },
+    {
+     "level": "55-59",
+     "label": "55-59"
+    },
+    {
+     "level": "60-64",
+     "label": "60-64"
+    },
+    {
+     "level": "65-69",
+     "label": "65-69"
+    },
+    {
+     "level": "70-74",
+     "label": "70-74"
+    },
+    {
+     "level": "75-79",
+     "label": "75-79"
+    },
+    {
+     "level": "80+",
+     "label": "80+"
+    }
    ]
   },
   {
    "factor": "region",
+   "label": "Region",
    "levels": [
-    "3",
-    "1",
-    "2",
-    "4"
+    {
+     "level": "3",
+     "label": "South"
+    },
+    {
+     "level": "1",
+     "label": "Northeast"
+    },
+    {
+     "level": "2",
+     "label": "Midwest"
+    },
+    {
+     "level": "4",
+     "label": "West"
+    }
    ]
   },
   {
    "factor": "HIBPDX",
+   "label": "High blood pressure",
    "levels": [
-    "0",
-    "1"
+    {
+     "level": "0",
+     "label": "No"
+    },
+    {
+     "level": "1",
+     "label": "Yes"
+    }
    ]
   },
   {
    "factor": "CHDDX",
+   "label": "Coronary heart disease",
    "levels": [
-    "0",
-    "1"
+    {
+     "level": "0",
+     "label": "No"
+    },
+    {
+     "level": "1",
+     "label": "Yes"
+    }
    ]
   },
   {
    "factor": "CANCERDX",
+   "label": "Cancer",
    "levels": [
-    "0",
-    "1"
+    {
+     "level": "0",
+     "label": "No"
+    },
+    {
+     "level": "1",
+     "label": "Yes"
+    }
    ]
   },
   {
    "factor": "ARTHDX",
+   "label": "Arthritis",
    "levels": [
-    "0",
-    "1"
+    {
+     "level": "0",
+     "label": "No"
+    },
+    {
+     "level": "1",
+     "label": "Yes"
+    }
    ]
   },
   {
    "factor": "ASTHDX",
+   "label": "Asthma",
    "levels": [
-    "0",
-    "1"
+    {
+     "level": "0",
+     "label": "No"
+    },
+    {
+     "level": "1",
+     "label": "Yes"
+    }
    ]
   },
   {
    "factor": "CHOLDX",
+   "label": "High cholesterol",
    "levels": [
-    "0",
-    "1"
+    {
+     "level": "0",
+     "label": "No"
+    },
+    {
+     "level": "1",
+     "label": "Yes"
+    }
    ]
   },
   {
    "factor": "OHRTDX",
+   "label": "Other heart disease",
    "levels": [
-    "0",
-    "1"
+    {
+     "level": "0",
+     "label": "No"
+    },
+    {
+     "level": "1",
+     "label": "Yes"
+    }
    ]
   }
  ],
- "headline_ae": 1.0801,
+ "headline_ae": {
+  "period": "2023 out-of-time",
+  "a_e": 1.0799250384316228,
+  "lower_95": 1.0131625290445565,
+  "upper_95": 1.1501061168475666,
+  "exposure": 18301.25
+ },
  "recalibration_flags": [
   {
-   "segment": "illustrative mock flag: age 65+",
-   "a_e": 1.14,
-   "exposure": 5228.1,
+   "segment": "age 70-74",
+   "a_e": 1.2784427076131744,
+   "exposure": 1145.9166666666667,
    "gap_type": "level shift",
-   "note": "Illustrative mock value, not produced by the recalibration rule."
+   "note": "A/E 1.278 with an interval of 1.036 to 1.549 excludes 1, as the book does."
+  },
+  {
+   "segment": "age 80+",
+   "a_e": 0.9400006819733797,
+   "exposure": 1030.25,
+   "gap_type": "change in shape",
+   "note": "A/E 0.940 is 0.870 of the book, and the interval of the relative A/E excludes 1."
+  },
+  {
+   "segment": "region 1",
+   "a_e": 1.1973885653688465,
+   "exposure": 2837.75,
+   "gap_type": "level shift",
+   "note": "A/E 1.197 with an interval of 1.028 to 1.400 excludes 1, as the book does."
+  },
+  {
+   "segment": "HIBPDX 0",
+   "a_e": 0.9755012533055369,
+   "exposure": 12735.583333333334,
+   "gap_type": "change in shape",
+   "note": "A/E 0.976 is 0.903 of the book, and the interval of the relative A/E excludes 1."
+  },
+  {
+   "segment": "HIBPDX 1",
+   "a_e": 1.179204839265363,
+   "exposure": 5565.666666666667,
+   "gap_type": "change in shape",
+   "note": "A/E 1.179 is 1.092 of the book, and the interval of the relative A/E excludes 1."
+  },
+  {
+   "segment": "CHDDX 1",
+   "a_e": 1.2371726409542394,
+   "exposure": 858.8333333333334,
+   "gap_type": "level shift",
+   "note": "A/E 1.237 with an interval of 1.051 to 1.441 excludes 1, as the book does."
+  },
+  {
+   "segment": "CANCERDX 1",
+   "a_e": 1.1603303618556342,
+   "exposure": 2046.3333333333333,
+   "gap_type": "level shift",
+   "note": "A/E 1.160 with an interval of 1.021 to 1.305 excludes 1, as the book does."
+  },
+  {
+   "segment": "ARTHDX 1",
+   "a_e": 1.1193527109702144,
+   "exposure": 4347.333333333333,
+   "gap_type": "level shift",
+   "note": "A/E 1.119 with an interval of 1.028 to 1.223 excludes 1, as the book does."
+  },
+  {
+   "segment": "ASTHDX 0",
+   "a_e": 1.1058327066804696,
+   "exposure": 15906.833333333334,
+   "gap_type": "level shift",
+   "note": "A/E 1.106 with an interval of 1.030 to 1.185 excludes 1, as the book does."
+  },
+  {
+   "segment": "CHOLDX 1",
+   "a_e": 1.1397200604756819,
+   "exposure": 5285.583333333333,
+   "gap_type": "level shift",
+   "note": "A/E 1.140 with an interval of 1.042 to 1.246 excludes 1, as the book does."
+  },
+  {
+   "segment": "OHRTDX 0",
+   "a_e": 1.011699164148557,
+   "exposure": 16509.916666666668,
+   "gap_type": "change in shape",
+   "note": "A/E 1.012 is 0.937 of the book, and the interval of the relative A/E excludes 1."
+  },
+  {
+   "segment": "OHRTDX 1",
+   "a_e": 1.331889673400501,
+   "exposure": 1791.3333333333333,
+   "gap_type": "change in shape",
+   "note": "A/E 1.332 is 1.233 of the book, and the interval of the relative A/E excludes 1."
+  },
+  {
+   "segment": "all",
+   "a_e": 1.0799250384316228,
+   "exposure": 18301.25,
+   "gap_type": "level shift",
+   "note": "A/E 1.080 with an interval of 1.013 to 1.150 excludes 1, as the book does."
   }
  ]
 }

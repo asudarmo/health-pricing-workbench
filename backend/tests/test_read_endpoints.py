@@ -39,7 +39,7 @@ class ReadEndpointsTest(unittest.TestCase):
         self.assertEqual((model["id"], model["currency"]), ("v1", "GBP"))
         self.assertAlmostEqual(model["baseRate"], 1974.77 * 0.244, places=1)
         self.assertEqual([f["key"] for f in model["factors"]][:3], ["age", "region", "cond_hbp"])
-        self.assertEqual(model["recalibrationFlagCount"], 1)
+        self.assertEqual(model["recalibrationFlagCount"], 13)
         self.assertIn("illustrative", model["illustrativeLabel"])
         self.assertIn("576", model["scalingNote"])
 

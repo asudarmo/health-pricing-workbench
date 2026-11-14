@@ -30,14 +30,14 @@ class QuoteRequest(BaseModel):
             summary="Active model version, base rate and factor list")
 def get_model(_: CurrentUser = Depends(current_user), client: PricingClient = Depends(pricing)) -> dict:
     try:
-        model, rel = client.model(), client.relativities()
+        model, rel, mon = client.model(), client.relativities(), client.monitoring()
     except PricingUnavailable as error:
         raise unavailable(error) from None
     scaling = rel["uk_scaling"]
     base = next(r["value"] for r in rel["base_rate"] if r["component"] == "base rate")
-    levels = {f["factor"]: f["levels"] for f in model["permitted_rating_factors"]}
+    levels = {f["factor"]: [lv["level"] for lv in f["levels"]] for f in model["permitted_rating_factors"]}
     years = model["data_years"]
-    metrics = model["validation_metrics"]["test_split_2022"]
+    metrics = mon["validation_metrics"]["test_split_2022"]
     out_factors = [
         {
             "key": d.key,
@@ -60,7 +60,7 @@ def get_model(_: CurrentUser = Depends(current_user), client: PricingClient = De
         "scalingNote": f"Scaled to a mean of about £{scaling['gbp_per_covered_life']} per life, ABI 2023, all covered lives",
         "illustrativeLabel": scaling.get("label") or DEFAULT_LABEL,
         "factors": out_factors,
-        "headlineAE": model["headline_ae"],
+        "headlineAE": model["headline_ae"]["a_e"],
         "recalibrationFlagCount": len(model["recalibration_flags"]),
     }
 

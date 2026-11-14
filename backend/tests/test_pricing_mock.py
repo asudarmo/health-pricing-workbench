@@ -1,4 +1,4 @@
-"""The pricing-service mock: golden cases, schema conformance and proposed-contract markers."""
+"""The pricing-service mock: golden cases, schema conformance and v1.1 fields."""
 
 import csv
 import json
@@ -61,9 +61,8 @@ class MockTest(unittest.TestCase):
         self.assertEqual(call(self.base, "POST", "/quote", {"age": 40, "region": "3", "sex": "1"})[0], 422)
         self.assertEqual(call(self.base, "POST", "/quote", {"age": 41.5, "region": "3"})[0], 422)
 
-    def test_proposed_fields_are_marked(self) -> None:
+    def test_model_and_impact_carry_the_v1_1_fields(self) -> None:
         _, headers, model = call(self.base, "GET", "/model")
-        self.assertEqual(headers["x-proposed-fields"], "all")
         self.assertIn("headline_ae", model)
         body = {
             "base_change": 0.04,
@@ -72,7 +71,6 @@ class MockTest(unittest.TestCase):
             "floor": 0.0,
         }
         _, headers, impact = call(self.base, "POST", "/scenario-impact", body)
-        self.assertEqual(headers["x-proposed-fields"], "histogram,projected_ae")
         for key in ("totals", "histogram", "projected_ae"):
             self.assertIn(key, impact)
 

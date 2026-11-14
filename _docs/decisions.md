@@ -143,3 +143,15 @@
 - **Alternatives:** Database spans (blocked by the version limit, low value on SQLite). A collector on the VM (memory).
 - **Measured locally:** backend 64 MiB, pricing mock 36 MiB, web 14 MiB. The real pricing image on the VM is still to
   be measured (task 14).
+
+## 2026-11-14: Adopt pricing service v1.1 (task 19)
+
+- **Decision:** the stack and the VM use `ghcr.io/asudarmo/health-pricing-meps:v1.1`. The mock fixtures are re-recorded from it
+  and stored as the service returns them. The backend now reads the real shapes: `histogram` is a list of `bucket_low`,
+  `bucket_high` and `exposure` (the backend builds the label), `headline_ae` is an object (we use `a_e`), factor levels are
+  objects, and deviance and Gini come from `/monitoring` because `/model` does not carry them. The proposed-field markers
+  and the mock's `X-Proposed-Fields` header are removed.
+- **Why:** the proposed contract was a guess. The real service differs in small ways and the real image is what the demo
+  must show. The change request is closed, so the 502 fallback for missing fields stays only as a guard.
+- **Alternatives:** keep the mock on the VM (free-form scenarios would return 422 in front of reviewers). Ask the pricing
+  service to match our guess (it was already published).

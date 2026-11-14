@@ -55,7 +55,7 @@ cp deploy/env.example deploy/.env  # set IMAGE_TAG, SITE_ADDRESS (<ip-with-dashe
 Deploy a tag:
 
 ```
-COMPOSE="docker compose -f docker-compose.yml -f docker-compose.mock.yml -f deploy/docker-compose.vm.yml --env-file deploy/.env"
+COMPOSE="docker compose -f docker-compose.yml -f deploy/docker-compose.vm.yml --env-file deploy/.env"
 $COMPOSE pull && $COMPOSE up -d
 $COMPOSE exec backend python -m app.seed      # first time only: loads the four demo scenarios
 ```

@@ -67,7 +67,7 @@ class ImpactEndpointTest(unittest.TestCase):
         self.assertEqual((impact["cappedPolicies"], impact["flooredPolicies"], impact["affectedSegments"]), (0, 0, []))
         zero_buckets = [b for b in impact["histogram"] if b["policies"] > 0]
         self.assertEqual(len(zero_buckets), 1)  # every cell sits in the 0 % bucket
-        self.assertEqual(zero_buckets[0]["bucket"], "0% to 2%")
+        self.assertEqual(zero_buckets[0]["bucket"], "0% to 2.5%")
 
     def test_unknown_factor_level_and_bad_relativity_are_422(self) -> None:
         bad = {**ZERO_PARAMS, "relativityChanges": [{"factor": "age", "level": "99+", "newRelativity": 1.0}]}

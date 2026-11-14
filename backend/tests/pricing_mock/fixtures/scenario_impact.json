@@ -43,6 +43,8 @@
     "cap_floor_cost": 0.0,
     "cells_capped": 0,
     "cells_floored": 0,
+    "exposure_capped": 0.0,
+    "exposure_floored": 0.0,
     "old_premium_gbp": 10678038.745609928,
     "new_premium_gbp": 11388363.039552316
    },
@@ -192,67 +194,82 @@
      "share_increase_over_10pct": 0.901228205788886
     }
    ],
-   "histogram": {
-    "edges_pct": [
-     -20,
-     -10,
-     -5,
-     -2,
-     0,
-     2,
-     5,
-     10,
-     15,
-     20
-    ],
-    "buckets": [
-     {
-      "bucket": "< -20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-20% to -10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-10% to -5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-5% to -2%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-2% to 0%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "0% to 2%",
-      "exposure": 14733.999999999996
-     },
-     {
-      "bucket": "2% to 5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "5% to 10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "10% to 15%",
-      "exposure": 6807.083333333333
-     },
-     {
-      "bucket": "15% to 20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": ">= 20%",
-      "exposure": 0.0
-     }
-    ]
-   },
-   "projected_ae": 1.0127346330441624
+   "histogram": [
+    {
+     "bucket_low": null,
+     "bucket_high": -20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -20.0,
+     "bucket_high": -10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -10.0,
+     "bucket_high": -5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -5.0,
+     "bucket_high": -2.5,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -2.5,
+     "bucket_high": 0.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 0.0,
+     "bucket_high": 2.5,
+     "exposure": 14733.999999999996
+    },
+    {
+     "bucket_low": 2.5,
+     "bucket_high": 5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 5.0,
+     "bucket_high": 10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 10.0,
+     "bucket_high": 15.0,
+     "exposure": 6807.083333333333
+    },
+    {
+     "bucket_low": 15.0,
+     "bucket_high": 20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 20.0,
+     "bucket_high": 30.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 30.0,
+     "bucket_high": null,
+     "exposure": 0.0
+    }
+   ],
+   "histogram_edges_pct": [
+    -20.0,
+    -10.0,
+    -5.0,
+    -2.5,
+    0.0,
+    2.5,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    30.0
+   ],
+   "projected_ae": 1.0125670706736154
   }
  },
  {
@@ -273,6 +290,8 @@
     "cap_floor_cost": 0.0,
     "cells_capped": 0,
     "cells_floored": 0,
+    "exposure_capped": 0.0,
+    "exposure_floored": 0.0,
     "old_premium_gbp": 10678038.745609928,
     "new_premium_gbp": 10880921.481776517
    },
@@ -422,67 +441,82 @@
      "share_increase_over_10pct": 0.0
     }
    ],
-   "histogram": {
-    "edges_pct": [
-     -20,
-     -10,
-     -5,
-     -2,
-     0,
-     2,
-     5,
-     10,
-     15,
-     20
-    ],
-    "buckets": [
-     {
-      "bucket": "< -20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-20% to -10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-10% to -5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-5% to -2%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-2% to 0%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "0% to 2%",
-      "exposure": 21541.083333333314
-     },
-     {
-      "bucket": "2% to 5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "5% to 10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "10% to 15%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "15% to 20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": ">= 20%",
-      "exposure": 0.0
-     }
-    ]
-   },
-   "projected_ae": 1.0599644233396004
+   "histogram": [
+    {
+     "bucket_low": null,
+     "bucket_high": -20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -20.0,
+     "bucket_high": -10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -10.0,
+     "bucket_high": -5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -5.0,
+     "bucket_high": -2.5,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -2.5,
+     "bucket_high": 0.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 0.0,
+     "bucket_high": 2.5,
+     "exposure": 21541.083333333314
+    },
+    {
+     "bucket_low": 2.5,
+     "bucket_high": 5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 5.0,
+     "bucket_high": 10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 10.0,
+     "bucket_high": 15.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 15.0,
+     "bucket_high": 20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 20.0,
+     "bucket_high": 30.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 30.0,
+     "bucket_high": null,
+     "exposure": 0.0
+    }
+   ],
+   "histogram_edges_pct": [
+    -20.0,
+    -10.0,
+    -5.0,
+    -2.5,
+    0.0,
+    2.5,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    30.0
+   ],
+   "projected_ae": 1.0597890465472253
   }
  },
  {
@@ -509,6 +543,8 @@
     "cap_floor_cost": -7.450580596923828e-09,
     "cells_capped": 0,
     "cells_floored": 0,
+    "exposure_capped": 0.0,
+    "exposure_floored": 0.0,
     "old_premium_gbp": 10678038.745609928,
     "new_premium_gbp": 10755936.471679175
    },
@@ -658,67 +694,82 @@
      "share_increase_over_10pct": 0.0
     }
    ],
-   "histogram": {
-    "edges_pct": [
-     -20,
-     -10,
-     -5,
-     -2,
-     0,
-     2,
-     5,
-     10,
-     15,
-     20
-    ],
-    "buckets": [
-     {
-      "bucket": "< -20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-20% to -10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-10% to -5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-5% to -2%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-2% to 0%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "0% to 2%",
-      "exposure": 20510.16666666665
-     },
-     {
-      "bucket": "2% to 5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "5% to 10%",
-      "exposure": 1030.9166666666667
-     },
-     {
-      "bucket": "10% to 15%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "15% to 20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": ">= 20%",
-      "exposure": 0.0
-     }
-    ]
-   },
-   "projected_ae": 1.0722813112742537
+   "histogram": [
+    {
+     "bucket_low": null,
+     "bucket_high": -20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -20.0,
+     "bucket_high": -10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -10.0,
+     "bucket_high": -5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -5.0,
+     "bucket_high": -2.5,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -2.5,
+     "bucket_high": 0.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 0.0,
+     "bucket_high": 2.5,
+     "exposure": 20510.16666666665
+    },
+    {
+     "bucket_low": 2.5,
+     "bucket_high": 5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 5.0,
+     "bucket_high": 10.0,
+     "exposure": 1030.9166666666667
+    },
+    {
+     "bucket_low": 10.0,
+     "bucket_high": 15.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 15.0,
+     "bucket_high": 20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 20.0,
+     "bucket_high": 30.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 30.0,
+     "bucket_high": null,
+     "exposure": 0.0
+    }
+   ],
+   "histogram_edges_pct": [
+    -20.0,
+    -10.0,
+    -5.0,
+    -2.5,
+    0.0,
+    2.5,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    30.0
+   ],
+   "projected_ae": 1.0721038965867848
   }
  },
  {
@@ -739,6 +790,8 @@
     "cap_floor_cost": 0.0,
     "cells_capped": 0,
     "cells_floored": 0,
+    "exposure_capped": 0.0,
+    "exposure_floored": 0.0,
     "old_premium_gbp": 10678038.745609928,
     "new_premium_gbp": 11532281.845258722
    },
@@ -888,67 +941,82 @@
      "share_increase_over_10pct": 0.0
     }
    ],
-   "histogram": {
-    "edges_pct": [
-     -20,
-     -10,
-     -5,
-     -2,
-     0,
-     2,
-     5,
-     10,
-     15,
-     20
-    ],
-    "buckets": [
-     {
-      "bucket": "< -20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-20% to -10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-10% to -5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-5% to -2%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-2% to 0%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "0% to 2%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "2% to 5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "5% to 10%",
-      "exposure": 21541.083333333314
-     },
-     {
-      "bucket": "10% to 15%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "15% to 20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": ">= 20%",
-      "exposure": 0.0
-     }
-    ]
-   },
-   "projected_ae": 1.0000960623917157
+   "histogram": [
+    {
+     "bucket_low": null,
+     "bucket_high": -20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -20.0,
+     "bucket_high": -10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -10.0,
+     "bucket_high": -5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -5.0,
+     "bucket_high": -2.5,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -2.5,
+     "bucket_high": 0.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 0.0,
+     "bucket_high": 2.5,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 2.5,
+     "bucket_high": 5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 5.0,
+     "bucket_high": 10.0,
+     "exposure": 21541.083333333314
+    },
+    {
+     "bucket_low": 10.0,
+     "bucket_high": 15.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 15.0,
+     "bucket_high": 20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 20.0,
+     "bucket_high": 30.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 30.0,
+     "bucket_high": null,
+     "exposure": 0.0
+    }
+   ],
+   "histogram_edges_pct": [
+    -20.0,
+    -10.0,
+    -5.0,
+    -2.5,
+    0.0,
+    2.5,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    30.0
+   ],
+   "projected_ae": 0.9999305911403914
   }
  },
  {
@@ -969,6 +1037,8 @@
     "cap_floor_cost": 0.0,
     "cells_capped": 0,
     "cells_floored": 0,
+    "exposure_capped": 0.0,
+    "exposure_floored": 0.0,
     "old_premium_gbp": 10678038.745609928,
     "new_premium_gbp": 10678038.745609928
    },
@@ -1118,67 +1188,82 @@
      "share_increase_over_10pct": 0.0
     }
    ],
-   "histogram": {
-    "edges_pct": [
-     -20,
-     -10,
-     -5,
-     -2,
-     0,
-     2,
-     5,
-     10,
-     15,
-     20
-    ],
-    "buckets": [
-     {
-      "bucket": "< -20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-20% to -10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-10% to -5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-5% to -2%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-2% to 0%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "0% to 2%",
-      "exposure": 21541.083333333314
-     },
-     {
-      "bucket": "2% to 5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "5% to 10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "10% to 15%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "15% to 20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": ">= 20%",
-      "exposure": 0.0
-     }
-    ]
-   },
-   "projected_ae": 1.080103747383053
+   "histogram": [
+    {
+     "bucket_low": null,
+     "bucket_high": -20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -20.0,
+     "bucket_high": -10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -10.0,
+     "bucket_high": -5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -5.0,
+     "bucket_high": -2.5,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -2.5,
+     "bucket_high": 0.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 0.0,
+     "bucket_high": 2.5,
+     "exposure": 21541.083333333314
+    },
+    {
+     "bucket_low": 2.5,
+     "bucket_high": 5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 5.0,
+     "bucket_high": 10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 10.0,
+     "bucket_high": 15.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 15.0,
+     "bucket_high": 20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 20.0,
+     "bucket_high": 30.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 30.0,
+     "bucket_high": null,
+     "exposure": 0.0
+    }
+   ],
+   "histogram_edges_pct": [
+    -20.0,
+    -10.0,
+    -5.0,
+    -2.5,
+    0.0,
+    2.5,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    30.0
+   ],
+   "projected_ae": 1.0799250384316228
   }
  },
  {
@@ -1199,6 +1284,8 @@
     "cap_floor_cost": 0.0,
     "cells_capped": 0,
     "cells_floored": 0,
+    "exposure_capped": 0.0,
+    "exposure_floored": 0.0,
     "old_premium_gbp": 10678038.745609928,
     "new_premium_gbp": 10678038.745609928
    },
@@ -1348,67 +1435,82 @@
      "share_increase_over_10pct": 0.0
     }
    ],
-   "histogram": {
-    "edges_pct": [
-     -20,
-     -10,
-     -5,
-     -2,
-     0,
-     2,
-     5,
-     10,
-     15,
-     20
-    ],
-    "buckets": [
-     {
-      "bucket": "< -20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-20% to -10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-10% to -5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-5% to -2%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-2% to 0%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "0% to 2%",
-      "exposure": 21541.083333333314
-     },
-     {
-      "bucket": "2% to 5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "5% to 10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "10% to 15%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "15% to 20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": ">= 20%",
-      "exposure": 0.0
-     }
-    ]
-   },
-   "projected_ae": 1.080103747383053
+   "histogram": [
+    {
+     "bucket_low": null,
+     "bucket_high": -20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -20.0,
+     "bucket_high": -10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -10.0,
+     "bucket_high": -5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -5.0,
+     "bucket_high": -2.5,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -2.5,
+     "bucket_high": 0.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 0.0,
+     "bucket_high": 2.5,
+     "exposure": 21541.083333333314
+    },
+    {
+     "bucket_low": 2.5,
+     "bucket_high": 5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 5.0,
+     "bucket_high": 10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 10.0,
+     "bucket_high": 15.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 15.0,
+     "bucket_high": 20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 20.0,
+     "bucket_high": 30.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 30.0,
+     "bucket_high": null,
+     "exposure": 0.0
+    }
+   ],
+   "histogram_edges_pct": [
+    -20.0,
+    -10.0,
+    -5.0,
+    -2.5,
+    0.0,
+    2.5,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    30.0
+   ],
+   "projected_ae": 1.0799250384316228
   }
  },
  {
@@ -1435,6 +1537,8 @@
     "cap_floor_cost": 123622.61422733963,
     "cells_capped": 34,
     "cells_floored": 0,
+    "exposure_capped": 1158.25,
+    "exposure_floored": 0.0,
     "old_premium_gbp": 10678038.745609928,
     "new_premium_gbp": 11205706.688339224
    },
@@ -1584,67 +1688,82 @@
      "share_increase_over_10pct": 0.22803401185261535
     }
    ],
-   "histogram": {
-    "edges_pct": [
-     -20,
-     -10,
-     -5,
-     -2,
-     0,
-     2,
-     5,
-     10,
-     15,
-     20
-    ],
-    "buckets": [
-     {
-      "bucket": "< -20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-20% to -10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-10% to -5%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-5% to -2%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "-2% to 0%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "0% to 2%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "2% to 5%",
-      "exposure": 20382.833333333314
-     },
-     {
-      "bucket": "5% to 10%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": "10% to 15%",
-      "exposure": 1158.25
-     },
-     {
-      "bucket": "15% to 20%",
-      "exposure": 0.0
-     },
-     {
-      "bucket": ">= 20%",
-      "exposure": 0.0
-     }
-    ]
-   },
-   "projected_ae": 1.0292425087153567
+   "histogram": [
+    {
+     "bucket_low": null,
+     "bucket_high": -20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -20.0,
+     "bucket_high": -10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -10.0,
+     "bucket_high": -5.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -5.0,
+     "bucket_high": -2.5,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": -2.5,
+     "bucket_high": 0.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 0.0,
+     "bucket_high": 2.5,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 2.5,
+     "bucket_high": 5.0,
+     "exposure": 20382.833333333314
+    },
+    {
+     "bucket_low": 5.0,
+     "bucket_high": 10.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 10.0,
+     "bucket_high": 15.0,
+     "exposure": 1158.25
+    },
+    {
+     "bucket_low": 15.0,
+     "bucket_high": 20.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 20.0,
+     "bucket_high": 30.0,
+     "exposure": 0.0
+    },
+    {
+     "bucket_low": 30.0,
+     "bucket_high": null,
+     "exposure": 0.0
+    }
+   ],
+   "histogram_edges_pct": [
+    -20.0,
+    -10.0,
+    -5.0,
+    -2.5,
+    0.0,
+    2.5,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    30.0
+   ],
+   "projected_ae": 1.0290722150283422
   }
  }
 ]

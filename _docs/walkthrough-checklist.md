@@ -1,8 +1,7 @@
 # Hand walk-through checklist (task 11)
 
-Stack: `docker compose -f docker-compose.yml -f docker-compose.mock.yml up -d --build`, then
-`docker compose -f docker-compose.yml -f docker-compose.mock.yml exec backend python -m app.seed`. Open http://localhost:8080.
-The mock override is needed until the pricing service delivers the proposed contract (task 19).
+Stack: `docker compose up -d --build`, then `docker compose exec backend python -m app.seed`. Open http://localhost:8080.
+It runs against the real pricing image v1.1 (task 19 done 14 Nov 2026).
 
 Step 7 of `plan.md` (AI assistant) moved to Future to-do, so there are six MVP steps.
 
@@ -22,4 +21,4 @@ Step 7 of `plan.md` (AI assistant) moved to Future to-do, so there are six MVP s
 Known: the mock only knows the four seeded scenario requests, so a new scenario with different parameters returns 422
 from the mock ("not recorded"). Against the real pricing service this limit does not exist.
 
-Screen column signed off by the project owner on 11 Nov 2026. Free-form scenario edits return 422 from the mock, which is expected until task 19.
+Screen column signed off by the project owner on 11 Nov 2026. Against the real v1.1 image, free-form scenario edits work (live walk re-run 14 Nov 2026).
