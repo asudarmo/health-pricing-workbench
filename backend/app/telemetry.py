@@ -46,6 +46,19 @@ class JsonFormatter(logging.Formatter):
         return json.dumps(entry)
 
 
+class PrivateLoggingHandler(LoggingHandler):
+    """OTLP log handler that sends the message and trace IDs only.
+
+    The stock handler also attaches the source file path (a local path), and the exception message and stack trace
+    (which can hold values). This keeps just the exception type. It overrides a private method of the pinned SDK
+    version, so re-check it when the version changes.
+    """
+
+    @staticmethod
+    def _get_attributes(record: logging.LogRecord) -> dict:
+        return {"exception.type": record.exc_info[0].__name__} if record.exc_info and record.exc_info[0] else {}
+
+
 @dataclass
 class Telemetry:
     tracer_provider: TracerProvider
@@ -96,7 +109,7 @@ def setup_logging(telemetry: Telemetry | None = None, stream=None) -> logging.Ha
     root.handlers = [h for h in root.handlers if not getattr(h, "_hpw", False)]
     root.addHandler(handler)
     if telemetry and telemetry.logger_provider:
-        root.addHandler(LoggingHandler(logger_provider=telemetry.logger_provider))
+        root.addHandler(PrivateLoggingHandler(logger_provider=telemetry.logger_provider))
     return handler
 
 

@@ -91,6 +91,17 @@ class ObservabilityTest(unittest.TestCase):
             self.assertNotIn(secret, everything, secret)
         self.assertNotIn('"age"', everything)
 
+    def test_otlp_log_handler_sends_no_paths_or_stack_traces(self) -> None:
+        import sys
+
+        from app.telemetry import PrivateLoggingHandler
+
+        try:
+            raise ValueError("ZZ-private-exception-value")
+        except ValueError:
+            record = logging.LogRecord("x", logging.ERROR, "/home/someone/app.py", 1, "failed", None, sys.exc_info())
+        self.assertEqual(PrivateLoggingHandler._get_attributes(record), {"exception.type": "ValueError"})
+
 
 if __name__ == "__main__":
     unittest.main()
