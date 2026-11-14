@@ -44,17 +44,24 @@ def bucket_label(low: float | None, high: float | None) -> str:
     return f"{low:g}% to {high:g}%"
 
 
+def segment_label(dimension: str, segment: str) -> str:
+    """'region' and 'region 1' become 'Region: Northeast'. Other dimensions keep the service's words, capitalised."""
+    if dimension == "region" and segment.startswith("region "):
+        return f"Region: {fx.REGION_NAMES.get(segment.split(' ', 1)[1], segment)}"
+    return f"{dimension.capitalize()}: {segment}"
+
+
 def from_service_response(result: dict) -> dict:
     totals = result["totals"]
     return {
         "averageChangePct": totals["change_pct"],
         "histogram": [{"bucket": bucket_label(b["bucket_low"], b["bucket_high"]), "policies": round(b["exposure"], 1)} for b in result["histogram"]],
-        # The service counts rating cells, not policies; shown under the frontend's existing field names.
-        "cappedPolicies": totals["cells_capped"],
-        "flooredPolicies": totals["cells_floored"],
+        # Lives (exposure) held at the cap or floor, rounded. Field names are the frontend's existing ones.
+        "cappedPolicies": round(totals["exposure_capped"]),
+        "flooredPolicies": round(totals["exposure_floored"]),
         "projectedAE": result["projected_ae"],
         "affectedSegments": [
-            {"segment": f"{d['dimension']}: {d['segment']}", "averageChangePct": d["mean_change_pct"]}
+            {"segment": segment_label(d["dimension"], d["segment"]), "averageChangePct": d["mean_change_pct"]}
             for d in result["dislocation"]
             if abs(d["mean_change_pct"]) >= 0.005
         ],

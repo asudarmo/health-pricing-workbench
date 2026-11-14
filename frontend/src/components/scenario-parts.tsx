@@ -47,13 +47,13 @@ export function ImpactView({ impact, loading }: { impact: Impact | undefined; lo
   return (
     <div className={`space-y-4 transition-opacity ${loading ? "opacity-60" : ""}`}>
       <div className="grid grid-cols-2 gap-2 xl:grid-cols-4">
-        <Metric label="Average premium change" value={fmtPct(impact.averageChangePct, 2)} tone={tone(impact.averageChangePct)} />
+        <Metric label={<Term k="averagePremiumChange">Average premium change</Term>} value={fmtPct(impact.averageChangePct, 2)} tone={tone(impact.averageChangePct)} />
         <Metric label={<Term k="projectedAE">Projected A/E</Term>} value={impact.projectedAE.toFixed(3)} />
-        <Metric label="Capped lives" value={fmtNum(impact.cappedPolicies)} />
-        <Metric label="Floored lives" value={fmtNum(impact.flooredPolicies)} />
+        <Metric label={<Term k="cappedLives">Capped lives</Term>} value={fmtNum(impact.cappedPolicies)} />
+        <Metric label={<Term k="flooredLives">Floored lives</Term>} value={fmtNum(impact.flooredPolicies)} />
       </div>
       <div>
-        <div className="mb-1 text-xs font-medium text-muted-foreground">Dislocation: lives by premium change</div>
+        <div className="mb-1 text-xs font-medium text-muted-foreground"><Term k="dislocation">Dislocation</Term>: lives by premium change</div>
         <div className="h-44">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={impact.histogram} margin={{ top: 4, right: 4, bottom: 0, left: -12 }}>
@@ -67,8 +67,14 @@ export function ImpactView({ impact, loading }: { impact: Impact | undefined; lo
         </div>
       </div>
       <div>
-        <div className="mb-1 text-xs font-medium text-muted-foreground">Affected segments</div>
+        <div className="mb-1 text-xs font-medium text-muted-foreground"><Term k="affectedSegments">Affected segments</Term></div>
         <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="h-8">Customer group</TableHead>
+              <TableHead className="h-8 text-right">Average premium change</TableHead>
+            </TableRow>
+          </TableHeader>
           <TableBody>
             {impact.affectedSegments.map((s) => (
               <TableRow key={s.segment}>
@@ -97,7 +103,7 @@ export function ParamsView({
   return (
     <div className="space-y-3 text-sm">
       <div className="grid grid-cols-3 gap-2">
-        <Metric label="Base rate change" value={fmtPct(params.baseRateChangePct, 1)} />
+        <Metric label={<Term k="baseRateChange">Base rate change</Term>} value={fmtPct(params.baseRateChangePct, 1)} />
         <Metric label={<><Term k="cap">Cap</Term> (max increase)</>} value={`${params.capPct}%`} />
         <Metric label={<><Term k="floor">Floor</Term> (max decrease)</>} value={`${params.floorPct}%`} />
       </div>

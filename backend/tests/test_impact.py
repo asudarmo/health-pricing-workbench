@@ -56,7 +56,7 @@ class ImpactEndpointTest(unittest.TestCase):
         self.assertAlmostEqual(impact["averageChangePct"], 4.94, places=2)
         self.assertEqual(set(impact["histogram"][0]), {"bucket", "policies"})
         self.assertAlmostEqual(sum(b["policies"] for b in impact["histogram"]), 21541.1, delta=0.5)  # the whole book
-        self.assertEqual((impact["cappedPolicies"], impact["flooredPolicies"]), (34, 0))
+        self.assertEqual((impact["cappedPolicies"], impact["flooredPolicies"]), (1158, 0))
         self.assertTrue(impact["affectedSegments"])
         self.assertEqual(set(impact["affectedSegments"][0]), {"segment", "averageChangePct"})
 

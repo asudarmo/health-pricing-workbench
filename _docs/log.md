@@ -34,3 +34,15 @@
 - **Next:** user ticks the Screen column in `_docs/walkthrough-checklist.md`, then close #11. Then task 14 (deploy).
 - **Open:** the mock only knows the seeded scenario requests, so new scenarios with other parameters fail in the browser
   until task 19.
+
+## 2026-11-14 Session 3: deployment, observability, v1.1, reviewer help
+
+- **Done:** task 15 (CI tests every push, SHA-tagged public images, rollback tested on the VM). Task 16 (OpenTelemetry traces, metrics
+  and logs in Grafana Cloud, privacy test, two screenshots). Task 14 (e2-micro VM, HTTPS at https://35-254-148-15.sslip.io, S$1.70
+  budget alert, nightly top-up cron, memory measured, dev stack judged not to fit). Task 19 (pricing service v1.1 adopted, backend
+  adapted, mock re-recorded). Style clean-up of the docs. Glossary popovers, readable and grouped recalibration flags, matching A/E
+  chart colours, capped lives in lives, and `docs/reviewer-guide.md`.
+- **Next:** task 17 (alert rule, fired once on purpose), task 20 (README screenshots and the course requirements table), then the
+  QA-free checks of the live site on a phone. Task 18 (on-call agent) only if time allows.
+- **Open:** the "Rebase" and "ABI" wording in the glossary should be checked against the pricing service. The OTLP log handler
+  override uses a private SDK method, so re-check it when the SDK version changes. The Grafana stack name shows in one screenshot.

@@ -60,6 +60,7 @@ function MonitoringPage() {
     [ae, factor, segment, period],
   );
   const aeTone = (v: number) => (v >= 1.08 ? "text-destructive font-semibold" : v <= 0.92 ? "text-success font-semibold" : "");
+  const aeFill = (v: number) => (v >= 1.08 ? "var(--destructive)" : v <= 0.92 ? "var(--success)" : "var(--foreground)");
 
   return (
     <div className="mx-auto max-w-7xl">
@@ -97,17 +98,22 @@ function MonitoringPage() {
 
       <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
         <SectionCard title="A/E by level">
+          <ul className="mb-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+            <li className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm bg-destructive" />1.08 or more: claims higher than expected, so prices may be too low</li>
+            <li className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm bg-foreground" />Between: close to expected</li>
+            <li className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm bg-success" />0.92 or less: claims lower than expected, so prices may be too high</li>
+          </ul>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={rows} margin={{ top: 8, right: 8, bottom: 0, left: -12 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="level" tick={{ fontSize: 11 }} />
-                <YAxis domain={[0.8, 1.2]} tick={{ fontSize: 11 }} />
+                <XAxis dataKey="level" tick={{ fontSize: 11 }} interval={0} />
+                <YAxis domain={[0.8, 1.2]} ticks={[0.8, 0.9, 1, 1.1, 1.2]} allowDataOverflow tick={{ fontSize: 11 }} />
                 <Tooltip formatter={(v: number) => [v.toFixed(3), "A/E"]} />
                 <ReferenceLine y={1} stroke="var(--foreground)" strokeDasharray="4 4" />
                 <Bar dataKey="ae" radius={[2, 2, 0, 0]}>
                   {rows.map((r) => (
-                    <Cell key={r.level} fill={r.ae >= 1.08 ? "var(--chart-5)" : "var(--chart-1)"} />
+                    <Cell key={r.level} fill={aeFill(r.ae)} />
                   ))}
                 </Bar>
               </BarChart>

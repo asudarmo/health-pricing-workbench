@@ -63,6 +63,8 @@ decision that changed scope, roles, the workflow or the hosting choice.
 
 ## Walkthrough
 
+Live demo: https://35-254-148-15.sslip.io. For a page-by-page checklist of what to try, see the [reviewer guide](docs/reviewer-guide.md).
+
 1. Open the app and sign in as the Analyst.
 2. Quote a customer, look at the rating factors and the monitoring page.
 3. Open Scenarios, create a scenario, check the impact, save it and submit it.

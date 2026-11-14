@@ -74,6 +74,35 @@ export const GLOSSARY = {
     meaning: "How much the mix of customers has changed compared with the data the model was built on.",
     read: "Under 0.10 is stable. 0.10 to 0.25 is a moderate shift. Above 0.25 is a significant shift.",
   },
+  baseRateChange: {
+    name: "Base rate change",
+    meaning: "A percentage change applied to every customer's premium, whatever their profile.",
+    read: "+2% raises all premiums by 2%. Negative values lower them.",
+  },
+  averagePremiumChange: {
+    name: "Average premium change",
+    meaning: "How much the premium for the whole book moves on average if this scenario goes ahead, weighted by exposure.",
+    read: "Red means customers pay more on average. Green means they pay less.",
+  },
+  dislocation: {
+    name: "Dislocation",
+    meaning: "How many customers see their own premium move, and by how much. It shows who is affected, not just the average.",
+    read: "A tall bar near 0% means few people notice the change. Bars far to the left or right mean some customers face large changes.",
+  },
+  affectedSegments: {
+    name: "Affected segments",
+    meaning: "Groups of customers whose average premium changes by at least 0.005%, with the average change for each group.",
+    read: "Red is an increase and green is a decrease.",
+  },
+  cappedLives: {
+    name: "Capped lives",
+    meaning: "Customers whose increase would have been larger, but is held at the cap. Counted in lives (rounded).",
+    read: "A high number means the cap is doing a lot of the work, so the full price rise is not being delivered.",
+  },
+  flooredLives: {
+    name: "Floored lives",
+    meaning: "Customers whose decrease would have been larger, but is held at the floor. Counted in lives (rounded).",
+  },
   cap: {
     name: "Cap",
     meaning: "The largest price increase any single customer group can get in this scenario.",

@@ -182,3 +182,13 @@
 - **Why:** the reviewers are course peers and laymen. Thirteen amber boxes with codes looked like a fault.
 - **Alternatives:** native `title` tooltips (do not work on touch screens). A separate glossary page (readers would leave the screen).
   A new tooltip library (not needed, the Radix popover was already installed).
+
+## 2026-11-14: More explanations, matching chart colours, lives at the cap
+
+- **Decision:** the glossary also covers base rate change, average premium change, dislocation, affected segments, capped lives and
+  floored lives. Affected segments gets column headers and readable region names. The Monitoring A/E chart uses the table's colours
+  (red from 1.08, green to 0.92, black between) with a legend. "Capped lives" and "floored lives" now come from the service's
+  `exposure_capped` and `exposure_floored` (lives, rounded), not the cell counts. `docs/reviewer-guide.md` is a page-by-page
+  checklist for reviewers, linked from the README.
+- **Why:** reviewers are laymen. v1.1 returns exposure, which removes the "cells, not lives" caveat in the contract check.
+- **Alternatives:** keep cell counts (wrong label). Change the contract field to a decimal (needs a contract regeneration for no gain).

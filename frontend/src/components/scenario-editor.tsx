@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { Term } from "@/components/term";
 import { Lock, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { api } from "@/api/client";
@@ -153,14 +154,14 @@ export function ScenarioEditor({ scenario }: { scenario?: Scenario }) {
           <SectionCard title="Parameters">
             <fieldset disabled={readOnly} className="space-y-4">
               <div className="grid grid-cols-3 gap-3">
-                <NumField label="Base rate change (%)" step={0.1} value={form.params.baseRateChangePct} onChange={(v) => setParams({ baseRateChangePct: v })} />
-                <NumField label="Cap: max increase (%)" step={1} min={0} value={form.params.capPct} onChange={(v) => setParams({ capPct: v })} />
-                <NumField label="Floor: max decrease (%)" step={1} min={0} value={form.params.floorPct} onChange={(v) => setParams({ floorPct: v })} />
+                <NumField label={<><Term k="baseRateChange">Base rate change</Term> (%)</>} step={0.1} value={form.params.baseRateChangePct} onChange={(v) => setParams({ baseRateChangePct: v })} />
+                <NumField label={<><Term k="cap">Cap</Term>: max increase (%)</>} step={1} min={0} value={form.params.capPct} onChange={(v) => setParams({ capPct: v })} />
+                <NumField label={<><Term k="floor">Floor</Term>: max decrease (%)</>} step={1} min={0} value={form.params.floorPct} onChange={(v) => setParams({ floorPct: v })} />
               </div>
 
               <div>
                 <div className="mb-2 flex items-center justify-between">
-                  <Label>Relativity changes</Label>
+                  <Label><Term k="relativity">Relativity</Term> changes</Label>
                   {!readOnly && (
                     <Button type="button" size="sm" variant="outline" onClick={addChange}>
                       <Plus className="h-3.5 w-3.5" /> Add change
@@ -251,7 +252,7 @@ export function ScenarioEditor({ scenario }: { scenario?: Scenario }) {
   );
 }
 
-function NumField({ label, value, onChange, step, min }: { label: string; value: number; onChange: (v: number) => void; step: number; min?: number }) {
+function NumField({ label, value, onChange, step, min }: { label: ReactNode; value: number; onChange: (v: number) => void; step: number; min?: number }) {
   return (
     <div className="space-y-1">
       <Label className="text-xs">{label}</Label>
