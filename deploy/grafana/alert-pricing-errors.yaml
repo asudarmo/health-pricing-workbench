@@ -1,0 +1,49 @@
+# Grafana alert rule: users cannot get quotes or impact because the pricing service calls are failing.
+# Grafana file-provisioning format. The datasource uid is the Grafana Cloud Prometheus one (check it under
+# Connections, Data sources). Metric hpw_pricing_calls_total comes from backend/app/telemetry.py.
+apiVersion: 1
+groups:
+  - orgId: 1
+    name: hpw
+    folder: Health Pricing Workbench
+    interval: 1m
+    rules:
+      - uid: hpw-pricing-errors
+        title: Pricing service calls failing
+        condition: C
+        for: 0m
+        noDataState: OK
+        execErrState: Error
+        labels:
+          service: hpw-backend
+          impact: users-cannot-quote
+        annotations:
+          summary: Calls from the backend to the pricing service failed in the last 5 minutes
+          description: Quotes and scenario impact return 502 to users. Check the pricing container first (docker compose ps on the VM), then the trace of a failed request.
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: grafanacloud-prom
+            model:
+              refId: A
+              instant: true
+              expr: sum(increase(hpw_pricing_calls_total{outcome="error"}[5m]))
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              refId: B
+              type: reduce
+              expression: A
+              reducer: last
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              refId: C
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator:
+                    type: gt
+                    params: [0]

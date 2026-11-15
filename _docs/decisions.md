@@ -192,3 +192,12 @@
   checklist for reviewers, linked from the README.
 - **Why:** reviewers are laymen. v1.1 returns exposure, which removes the "cells, not lives" caveat in the contract check.
 - **Alternatives:** keep cell counts (wrong label). Change the contract field to a decimal (needs a contract regeneration for no gain).
+
+## 2026-11-15: Alert on users failing to get a quote (task 17)
+
+- **Decision:** one Grafana alert rule, stored in `deploy/grafana/alert-pricing-errors.yaml`. It fires when the backend's calls to the
+  pricing service fail (`sum(increase(hpw_pricing_calls_total{outcome="error"}[5m])) > 0`), checked every minute. No data counts as OK.
+  To test it, stop the pricing container on the VM for a few minutes and request quotes.
+- **Why:** a failed pricing call is what turns into a 502 for the user on quotes, scenario impact, model and monitoring. The counter is
+  our own, so its name is known. The standard HTTP metric carries the status but its Prometheus name depends on the SDK version.
+- **Alternatives:** 5xx rate on `/api/quotes` from the HTTP server metric. p95 latency (no sensible threshold on a demo with little traffic).
