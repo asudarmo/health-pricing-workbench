@@ -53,6 +53,8 @@ See `_docs/plan.md` for the scope.
 | Serving | Caddy serves the app and proxies `/api` |
 | Pricing | The published image `ghcr.io/asudarmo/health-pricing-meps:v1.1`, or a mock built from its OpenAPI schema |
 
+Two version numbers appear in this project. Pricing service v1.1 is the software release (the image above, which added `/model`, the histogram and projected A/E). Model v1 is the pricing model it serves, the 2022-fitted tariff shown as "Active model" on the Home page. Pricing service v1.1 serves model v1.
+
 ## How the agents worked
 
 An engineer agent (Claude Code) built each task from a GitHub issue with written acceptance criteria and posted a
