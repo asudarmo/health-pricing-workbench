@@ -201,3 +201,11 @@
 - **Why:** a failed pricing call is what turns into a 502 for the user on quotes, scenario impact, model and monitoring. The counter is
   our own, so its name is known. The standard HTTP metric carries the status but its Prometheus name depends on the SDK version.
 - **Alternatives:** 5xx rate on `/api/quotes` from the HTTP server metric. p95 latency (no sensible threshold on a demo with little traffic).
+
+## 2026-11-16: Age bands youngest first, Monitoring default filters from the data
+
+- **Decision:** the backend sorts age bands youngest first in `/api/relativities`, `/api/monitoring` and the `/api/model` factor levels (the
+  pricing service lists "05-14" before "00-04"). Other factors keep the service's order. Monitoring now starts on the segment "all" and
+  the 2023 period taken from the data, not on the fixed strings "All" and "2023", which matched nothing in the real data.
+- **Why:** the age chart looked wrong to a reader, and the Monitoring page opened with an empty chart and table.
+- **Alternatives:** sort in the frontend (three screens would need it). Ask the pricing service to change its order (a contract change, too late).

@@ -43,7 +43,10 @@ def get_model(_: CurrentUser = Depends(current_user), client: PricingClient = De
             "key": d.key,
             "label": d.label,
             "group": d.group,
-            "levels": [{"value": fx.level_to_ui(d.code, lv), "label": fx.level_to_ui(d.code, lv).capitalize()} for lv in levels.get(d.code, [])],
+            "levels": [
+                {"value": fx.level_to_ui(d.code, lv), "label": fx.level_to_ui(d.code, lv).capitalize()}
+                for lv in (sorted(levels.get(d.code, []), key=fx.age_rank) if d.code == "age" else levels.get(d.code, []))
+            ],
         }
         for d in fx.FACTOR_DEFS
         if d.code in levels
@@ -72,7 +75,7 @@ def get_relativities(_: CurrentUser = Depends(current_user), client: PricingClie
         rel = client.relativities()
     except PricingUnavailable as error:
         raise unavailable(error) from None
-    return [
+    return fx.youngest_first([
         {
             "factor": fx.key_for(r["factor"]),
             "level": fx.level_to_ui(r["factor"], r["level"]),
@@ -82,7 +85,7 @@ def get_relativities(_: CurrentUser = Depends(current_user), client: PricingClie
             "upper": r.get("upper_95"),
         }
         for r in rel["relativities"]
-    ]
+    ])
 
 
 @router.get("/monitoring", response_model=Monitoring, responses=errors(401, 502), openapi_extra=roles("Analyst", "Reviewer"),
@@ -93,7 +96,7 @@ def get_monitoring(_: CurrentUser = Depends(current_user), client: PricingClient
     except PricingUnavailable as error:
         raise unavailable(error) from None
     return {
-        "ae": [
+        "ae": fx.youngest_first([
             {
                 "factor": fx.key_for(r["factor"]),
                 "level": fx.level_to_ui(r["factor"], r["level"]),
@@ -105,7 +108,7 @@ def get_monitoring(_: CurrentUser = Depends(current_user), client: PricingClient
                 "ae": r["a_e"],
             }
             for r in mon["ae"]
-        ],
+        ]),
         "psi": [{"factor": fx.key_for(r["factor"]), "period": r["period"], "psi": r["psi"]} for r in mon["psi"]],
         "flags": [
             {

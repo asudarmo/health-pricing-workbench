@@ -43,6 +43,15 @@ class ReadEndpointsTest(unittest.TestCase):
         self.assertIn("illustrative", model["illustrativeLabel"])
         self.assertIn("576", model["scalingNote"])
 
+    def test_age_bands_come_youngest_first(self) -> None:
+        ages = [r["level"] for r in self.stack.get("/api/relativities")[1] if r["factor"] == "age"]
+        self.assertEqual(ages[:3], ["00-04", "05-14", "15-17"])
+        self.assertEqual(ages[-1], "80+")
+        ae = [r["level"] for r in self.stack.get("/api/monitoring")[1]["ae"] if r["factor"] == "age" and r["segment"] == "all" and r["period"] == "2023 out-of-time"]
+        self.assertEqual(ae[:2], ["00-04", "05-14"])
+        model_ages = [lv["value"] for f in self.stack.get("/api/model")[1]["factors"] if f["key"] == "age" for lv in f["levels"]]
+        self.assertEqual(model_ages[:2], ["00-04", "05-14"])
+
     def test_monitoring_mapped(self) -> None:
         status, mon = self.stack.get("/api/monitoring")
         self.assertEqual(status, 200)

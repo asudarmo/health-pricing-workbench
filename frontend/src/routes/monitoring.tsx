@@ -38,7 +38,7 @@ function Filter({ label, value, options, onChange }: { label: string; value: str
         <SelectContent>
           {options.map((o) => (
             <SelectItem key={o} value={o}>
-              {FACTOR_LABEL[o] ?? o}
+              {FACTOR_LABEL[o] ?? (o === "all" ? "All" : o)}
             </SelectItem>
           ))}
         </SelectContent>
@@ -51,10 +51,15 @@ function MonitoringPage() {
   const session = useSession();
   const mon = useQuery({ queryKey: ["monitoring"], queryFn: api.getMonitoring, enabled: !!session });
   const [factor, setFactor] = useState("age");
-  const [segment, setSegment] = useState("All");
-  const [period, setPeriod] = useState("2023");
+  const [pickedSegment, setSegment] = useState<string | null>(null);
+  const [pickedPeriod, setPeriod] = useState<string | null>(null);
 
   const ae = mon.data?.ae ?? [];
+  // Start on the whole book and the latest out-of-time period, whatever the service calls them.
+  const segments = uniq(ae.map((r) => r.segment));
+  const periods = uniq(ae.map((r) => r.period));
+  const segment = pickedSegment ?? segments.find((x) => x.toLowerCase() === "all") ?? segments[0] ?? "";
+  const period = pickedPeriod ?? periods.find((x) => x.startsWith("2023")) ?? periods[periods.length - 1] ?? "";
   const rows = useMemo(
     () => ae.filter((r) => r.factor === factor && r.segment === segment && r.period === period),
     [ae, factor, segment, period],
@@ -92,8 +97,8 @@ function MonitoringPage() {
 
       <div className="mb-3 flex flex-wrap gap-4">
         <Filter label="Factor" value={factor} options={uniq(ae.map((r) => r.factor))} onChange={setFactor} />
-        <Filter label="Segment" value={segment} options={uniq(ae.map((r) => r.segment))} onChange={setSegment} />
-        <Filter label="Period" value={period} options={uniq(ae.map((r) => r.period))} onChange={setPeriod} />
+        <Filter label="Segment" value={segment} options={segments} onChange={setSegment} />
+        <Filter label="Period" value={period} options={periods} onChange={setPeriod} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">

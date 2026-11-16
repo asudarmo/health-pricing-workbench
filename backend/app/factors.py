@@ -72,3 +72,17 @@ def segment_label(segment: str) -> str:
     if definition.group == "region":
         return f"Region: {REGION_NAMES.get(level, level)}"
     return f"{definition.label}: {'Yes' if level == '1' else 'No'}"
+
+
+def age_rank(level: str) -> int:
+    """'00-04' is 0, '05-14' is 5, '80+' is 80. Other values sort first."""
+    digits = "".join(ch for ch in str(level).split("-")[0].rstrip("+") if ch.isdigit())
+    return int(digits) if digits else -1
+
+
+def youngest_first(rows: list[dict]) -> list[dict]:
+    """Put age bands in age order. The service lists '05-14' before '00-04'. Other factors and the factor order stay as they were."""
+    first: dict[str, int] = {}
+    for row in rows:
+        first.setdefault(row["factor"], len(first))
+    return sorted(rows, key=lambda r: (first[r["factor"]], age_rank(r["level"]) if r["factor"] == "age" else 0))
