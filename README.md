@@ -73,6 +73,36 @@ Live demo: https://35-254-148-15.sslip.io. For a page-by-page checklist of what 
 4. Sign out and sign in as the Reviewer. Open the submitted scenario and approve or reject it with a comment.
 5. Open the scenario again to see the audit trail. The Analyst can no longer edit it.
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Home with the active model, key figures and the largest recalibration flags](docs/screenshots/01-home.png) | ![Quote with the factor-by-factor premium](docs/screenshots/02-quote.png) |
+| Home. Each underlined term opens a plain-English explanation. | Quote. The premium builds up from the base rate, one factor at a time. |
+| ![Rating factors with confidence bands and exposure](docs/screenshots/03-factors.png) | ![Monitoring with recalibration flags grouped by type](docs/screenshots/04-monitoring.png) |
+| Rating factors, with confidence bands and exposure. | Monitoring. Flags are grouped into level shift and change in shape. |
+| ![Scenario editor with the live impact panel](docs/screenshots/05-scenario-impact.png) | ![A submitted scenario with its audit trail](docs/screenshots/06-review-audit.png) |
+| Scenario editor. The impact on the book updates as you change the inputs. | A submitted scenario, read-only, with its audit trail. |
+
+## Observability
+
+The backend sends traces, metrics and logs to Grafana Cloud over OpenTelemetry. Every response carries an `X-Trace-Id` header and every
+log line carries the same ID. No customer data, names or tokens go into any signal, and a test checks this.
+
+![A trace of a quote request in Grafana Tempo](docs/screenshots/grafana-trace-quote.png)
+
+![The same trace linked to its log line in Grafana Loki](docs/screenshots/grafana-trace-logs.png)
+
+One alert rule fires when calls to the pricing service fail, because users then cannot get quotes. It is stored in
+[deploy/grafana/alert-pricing-errors.yaml](deploy/grafana/alert-pricing-errors.yaml). I fired it once on purpose by stopping the pricing
+container on the VM for about five minutes.
+
+![The alert email](docs/screenshots/alert-email.png)
+
+![The rule in the Firing state](docs/screenshots/alert-firing.png)
+
+![The rule back to Normal after the pricing container restarted](docs/screenshots/alert-resolved.png)
+
 ## Run locally
 
 ```
@@ -100,6 +130,25 @@ python scripts/test.py
 ```
 
 It needs Python 3.12 with the backend virtual environment (`backend/.venv`) and Node 26.
+
+## Course requirements
+
+How the project meets each criterion of the [AI Dev Tools Zoomcamp rubric](https://github.com/DataTalksClub/ai-dev-tools-zoomcamp/tree/main/project).
+
+| Criterion | Evidence |
+|---|---|
+| Problem description | The sections above and [`_docs/plan.md`](_docs/plan.md) |
+| Product specification | [`_docs/plan.md`](_docs/plan.md) · [GitHub issues](https://github.com/asudarmo/health-pricing-workbench/issues) with acceptance criteria and a self-check comment on each |
+| Agent team specification | [`_docs/process.md`](_docs/process.md) (Engineer and QA agents) · "How the agents worked" above |
+| Context management | [`AGENTS.md`](AGENTS.md) points to the modular documents in [`_docs/`](_docs/) |
+| Application | Frontend, backend and database, one command to run locally ("Run locally" above) |
+| Testing | Unit and integration tests, `python scripts/test.py` |
+| Containerisation | `docker compose up --build` runs the whole system, database included |
+| Deployment | Public URL https://35-254-148-15.sslip.io on a free-tier GCP VM, steps in [`deploy/runbook.md`](deploy/runbook.md) |
+| CI/CD | GitHub Actions runs the tests on every pull request and push, and publishes SHA-tagged images on `main`. Rollback is a redeploy of the previous tag, tested once. There is no automatic deploy, so I claim 1 of 3 points |
+| Observability | Traces, metrics and logs share a trace ID, no customer data, viewable in Grafana ("Observability" above) |
+| Alerting on user impact | One alert rule, fired once on purpose, with the email and Grafana screenshots above |
+| On-call agent | Not built (stretch task) |
 
 ## Limitations
 
