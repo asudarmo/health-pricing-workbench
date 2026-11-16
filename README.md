@@ -81,8 +81,12 @@ Live demo: https://35-254-148-15.sslip.io. For a page-by-page checklist of what 
 | Home. Each underlined term opens a plain-English explanation. | Quote. The premium builds up from the base rate, one factor at a time. |
 | ![Rating factors with confidence bands and exposure](docs/screenshots/03-factors.png) | ![Monitoring with recalibration flags grouped by type](docs/screenshots/04-monitoring.png) |
 | Rating factors, with confidence bands and exposure. | Monitoring. Flags are grouped into level shift and change in shape. |
-| ![Scenario editor with the live impact panel](docs/screenshots/05-scenario-impact.png) | ![A submitted scenario with its audit trail](docs/screenshots/06-review-audit.png) |
-| Scenario editor. The impact on the book updates as you change the inputs. | A submitted scenario, read-only, with its audit trail. |
+| ![Scenario editor with the live impact panel](docs/screenshots/05-scenario-impact.png) | ![A submitted scenario in the Reviewer view with the decision form and audit trail](docs/screenshots/06-review-audit.png) |
+| Scenario editor. The impact on the book updates as you change the inputs. | A submitted scenario as the Reviewer, with approve and reject and the audit trail. |
+
+The Monitoring A/E chart uses the same colours as the table, so a bar is red when claims ran higher than expected.
+
+![Monitoring A/E chart and table](docs/screenshots/04b-monitoring-chart.png)
 
 ## Observability
 

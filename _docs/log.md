@@ -46,3 +46,11 @@
   QA-free checks of the live site on a phone. Task 18 (on-call agent) only if time allows.
 - **Open:** the "Rebase" and "ABI" wording in the glossary should be checked against the pricing service. The OTLP log handler
   override uses a private SDK method, so re-check it when the SDK version changes. The Grafana stack name shows in one screenshot.
+
+### 2026-11-16 update
+
+- **Done:** task 17 (alert rule as code, fired once on purpose, evidence on the issue). Age bands sorted youngest first and the Monitoring default
+  filters fixed. README screenshots, observability and course requirements sections. Reviewer guide.
+- **Next:** if the deadline is extended, add an automatic deploy step for the second CI/CD point (needs an SSH key as a GitHub secret). Close
+  issues 14 to 17, 19 and 20 after the owner's check. The pricing service gets its own deployment for ML Zoomcamp, outside this repo.
+- **Open:** CI/CD is claimed at 1 of 3 points. The on-call agent (task 18) is not built.
